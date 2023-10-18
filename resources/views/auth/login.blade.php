@@ -10,8 +10,8 @@
 
     <body>
         <header>
-            <img src="/img/logo_goriz_color.svg" alt="">
-            <img src="/img/Frame 9191.svg" alt="">
+            <img src="{{ URL::asset('img/logo_goriz_color.svg') }}" alt="">
+            <img src="{{ URL::asset('img/Frame 9191.svg') }}" alt="">
         </header>
 
         <form class="mainform" method="POST" action="{{ route('login') }}">
