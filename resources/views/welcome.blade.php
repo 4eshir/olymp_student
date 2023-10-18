@@ -18,6 +18,10 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
+            .relative {
+                background: white!important;
+            }
         </style>
     </head>
     <body class="antialiased">
