@@ -8,7 +8,7 @@ const NavBar = () => {
 
   useEffect(() => {
     // При загрузке страницы проверяем параметр location и устанавливаем активную вкладку
-    if (location.pathname === '/profile' || location.pathname === '/profilenodata' || location.pathname === '/profileinputdata') {
+    if (location.pathname === '/profileBlade' || location.pathname === '/profilenodata' || location.pathname === '/profileinputdata') {
       setActiveTab('profile');
     } else if (location.pathname === '/my-olympiads') {
       setActiveTab('my-olympiads');
@@ -30,7 +30,7 @@ const NavBar = () => {
         <Link to="/" onClick={() => handleTabClick('home')} className={activeTab === 'home' ? 'active' : ''}>
           Главная
         </Link>
-        <Link to="/profile" onClick={() => handleTabClick('profile')} className={activeTab === 'profile' ? 'active' : ''}>
+        <Link to="/profileBlade" onClick={() => handleTabClick('profile')} className={activeTab === 'profile' ? 'active' : ''}>
           Профиль
         </Link>
         <Link to="/my-olympiads" onClick={() => handleTabClick('my-olympiads')} className={activeTab === 'my-olympiads' ? 'active' : ''}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../style/profile.scss';
+import '../../style/profileBlade.scss';
 import '../../style/ProfileForms.scss';
 import Header from '../header';
 import Footer from '../footer';

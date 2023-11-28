@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../style/profile.scss';
+import '../../style/profileBlade.scss';
 import Header from '../header';
 import Footer from '../footer';
 import Navbar from './navbar';
