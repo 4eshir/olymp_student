@@ -27,7 +27,7 @@ class ChangeUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
+        Schema::table('user', function($table) {
             $table->dropColumn('remember_token');
             $table->dropColumn('created_at');
             $table->dropColumn('updated_at');

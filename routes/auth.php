@@ -56,4 +56,3 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('main', [\App\Http\Controllers\Lk\LkController::class, 'create']);
