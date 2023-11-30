@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\View;
@@ -25,6 +26,10 @@ class LkController extends Controller
      */
     public function create($id)
     {
+        if (!Gate::allows('profile', $id)) {
+            abort(403);
+        }
+
         $model = UserWork::where('id', $id)->first();
         $municipalities = MunicipalityWork::all();
         $educational = EducationalInstitutionWork::all();
