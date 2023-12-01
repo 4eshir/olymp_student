@@ -12,8 +12,12 @@
 
 <body>
 <header>
-    <img src="/img/logo_goriz_color.svg" alt="">
-    <img src="/img/Frame 9191.svg" alt="">
+    <a href="/login">
+        <img src="/img/logo_goriz_color.svg" alt="">
+    </a>
+    <a href="/login">
+        <img src="/img/Frame 9191.svg" alt="">
+    </a>
 </header>
 
 

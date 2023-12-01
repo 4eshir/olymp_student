@@ -9,6 +9,12 @@
 </head>
 <body>
 
+<p>{{ dd($try) }}</p>
+
+@if (Session::has('flash_message'))
+    <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
+@endif
+
 <form class="mainform" method="POST" action="{{ route('profileBase') }}">
     @csrf
     <h2>Что-то редактируем</h2>
@@ -89,7 +95,17 @@
     <div class="form-btn">
         <button class="btn btn-primary" type="submit">Сохранить</button>
     </div>
+
+
 </form>
+
+<br><br><br>
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+
+    <input type="submit" value="Выйти">
+</form>
+
 
 </body>
 </html>

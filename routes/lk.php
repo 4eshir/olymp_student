@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('profile', [\App\Http\Controllers\Lk\LkController::class, 'default'])->name('default');
     Route::get('profile/{id}', [\App\Http\Controllers\Lk\LkController::class, 'create'])->name('profile');
 
     Route::post('profileBase', [\App\Http\Controllers\Lk\LkController::class, 'storeBase'])->name('profileBase');

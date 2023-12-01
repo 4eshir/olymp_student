@@ -61,7 +61,6 @@ class LoginRequest extends FormRequest
         if (!Auth::attempt($credentials1, $this->boolean('remember')) && !Auth::attempt($credentials2, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-
             throw ValidationException::withMessages([
                 'Неверный логин и/или пароль',
             ]);

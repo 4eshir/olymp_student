@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Validation\Rules\PasswordCustom;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        PasswordCustom::defaults(function () {
+            return PasswordCustom::min(8)
+                ->mixedCase();
+        });
     }
 }

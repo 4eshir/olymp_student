@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
+use App\Http\Integrations\EventResource;
 use App\Models\common\EducationalInstitution;
 use App\Models\work\EducationalInstitutionWork;
 use App\Models\work\MunicipalityWork;
@@ -15,10 +16,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class LkController extends Controller
 {
+
+    public function default()
+    {
+        $id = Auth::id();
+
+        if (!Gate::allows('profile', $id)) {
+            abort(403);
+        }
+
+        $model = UserWork::where('id', $id)->first();
+        $municipalities = MunicipalityWork::all();
+        $educational = EducationalInstitutionWork::all();
+
+        $try = EventResource::list();
+
+        return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational, 'try' => $try]);
+    }
+
     /**
      * Display the password reset link request view.
      *
