@@ -34,9 +34,8 @@ class LkController extends Controller
         $municipalities = MunicipalityWork::all();
         $educational = EducationalInstitutionWork::all();
 
-        $try = EventResource::list();
 
-        return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational, 'try' => $try]);
+        return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);
     }
 
     /**
@@ -56,20 +55,45 @@ class LkController extends Controller
         return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);
     }
 
+    public function editCommon()
+    {
+        $id = Auth::id();
 
-    public function storeBase(Request $request)
+        if (!Gate::allows('profile', $id)) {
+            abort(403);
+        }
+
+        $model = UserWork::where('id', $id)->first();
+        return view('lk.profile-edit-common', ['model' => $model]);
+    }
+
+    public function requestCommon(Request $request)
     {
         $user = UserWork::where('id', $request->_id)->first();
 
         $user->name = $request->name;
-        $user->birthdate = $request->birthdate;
+        $user->surname = $request->surname;
+        $user->patronymic = $request->patronymic;
+        $user->birthdate = date("Y-m-d", strtotime($request->birthdate));
 
         $user->save();
 
-        return redirect()->route('profile', ['id' => $user->id]);
+        return redirect()->route('default');
     }
 
-    public function storeContact(Request $request)
+    public function editContact()
+    {
+        $id = Auth::id();
+
+        if (!Gate::allows('profile', $id)) {
+            abort(403);
+        }
+
+        $model = UserWork::where('id', $id)->first();
+        return view('lk.profile-edit-contact', ['model' => $model]);
+    }
+
+    public function requestContact(Request $request)
     {
         $user = UserWork::where('id', $request->_id)->first();
 
@@ -78,10 +102,24 @@ class LkController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile', ['id' => $user->id]);
+        return redirect()->route('default');
     }
 
-    public function storeSpecial(Request $request)
+    public function editSpecial()
+    {
+        $id = Auth::id();
+
+        if (!Gate::allows('profile', $id)) {
+            abort(403);
+        }
+
+        $model = UserWork::where('id', $id)->first();
+        $municipalities = MunicipalityWork::all();
+        $educational = EducationalInstitutionWork::all();
+        return view('lk.profile-edit-special', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);
+    }
+
+    public function requestSpecial(Request $request)
     {
         $user = UserWork::where('id', $request->_id)->first();
 
@@ -92,6 +130,27 @@ class LkController extends Controller
 
         $user->save();
 
+        return redirect()->route('default');
+    }
+
+    public function store(Request $request)
+    {
+        $user = UserWork::where('id', $request->_id)->first();
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->patronymic = $request->patronymic;
+        $user->birthdate = $request->birthdate;
+        $user->email = $request->email;
+        $user->phone_number = $request->phoneNumber;
+        $user->municipality_id = $request->municipality;
+        $user->educational_institution_id = $request->educational;
+        $user->class = $request->class;
+        $user->address = $request->address;
+
+        $user->save();
+
         return redirect()->route('profile', ['id' => $user->id]);
     }
+
 }

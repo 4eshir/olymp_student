@@ -2,6 +2,7 @@
 
 namespace App\Models\work;
 
+use App\Models\common\EducationalInstitution;
 use App\Models\User;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -15,4 +16,14 @@ class UserWork extends User
 {
     protected $guarded = [];
     public $timestamps = false;
+
+    public function municipality()
+    {
+        return $this->hasOne(MunicipalityWork::class, 'id', 'municipality_id');
+    }
+
+    public function educational()
+    {
+        return $this->hasOne(EducationalInstitution::class, 'id', 'educational_institution_id');
+    }
 }

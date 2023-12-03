@@ -14,10 +14,13 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [\App\Http\Controllers\Lk\LkController::class, 'default'])->name('default');
     Route::get('profile/{id}', [\App\Http\Controllers\Lk\LkController::class, 'create'])->name('profile');
 
-    Route::post('profileBase', [\App\Http\Controllers\Lk\LkController::class, 'storeBase'])->name('profileBase');
-    Route::post('profileContact', [\App\Http\Controllers\Lk\LkController::class, 'storeContact'])->name('profileContact');
-    Route::post('profileSpecial', [\App\Http\Controllers\Lk\LkController::class, 'storeSpecial'])->name('profileSpecial');
+    Route::get('profile-edit-common', [\App\Http\Controllers\Lk\LkController::class, 'editCommon'])->name('profileEditCommon');
+    Route::get('profile-edit-contact', [\App\Http\Controllers\Lk\LkController::class, 'editContact'])->name('profileEditContact');
+    Route::get('profile-edit-special', [\App\Http\Controllers\Lk\LkController::class, 'editSpecial'])->name('profileEditSpecial');
 
+    Route::post('profile-request-common', [\App\Http\Controllers\Lk\LkController::class, 'requestCommon'])->name('profileRequestCommon');
+    Route::post('profile-request-contact', [\App\Http\Controllers\Lk\LkController::class, 'requestContact'])->name('profileRequestContact');
+    Route::post('profile-request-special', [\App\Http\Controllers\Lk\LkController::class, 'requestSpecial'])->name('profileRequestSpecial');
 
     Route::get('entry', [\App\Http\Controllers\Lk\EntryController::class, 'create'])->name('entry');
 

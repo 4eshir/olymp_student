@@ -14,7 +14,8 @@ class EntryController extends Controller
 {
     public function create()
     {
-        return view('lk.entry');
+        $model = UserWork::where('id', Auth::id())->first();
+        return view('lk.entry', ['model' => $model]);
     }
 
     public function store(Request $request)

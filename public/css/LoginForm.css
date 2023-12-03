@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 .btn-primary {
   border-radius: 8px;
   background: #2092D1;
@@ -439,8 +440,148 @@ footer p {
     align-items: flex-start;
     gap: 16px;
   }
-}/*# sourceMappingURL=main_components.css.map */
-
-.logout-form{
-    width: 100%;
 }
+.main {
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  background: #F9F9F9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bg-element {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../../../../../../Users/user/Desktop/VSOH_Project/vendory/Vector.svg);
+  position: absolute;
+  opacity: 0; /* изначально нулевая прозрачность */
+}
+
+.bg-element:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(var(--size) var(--size) at var(--x, --y) var(--y, --x), rgba(249, 249, 249, 0) 0%, #F9F9F9 32.99%);
+}
+
+header {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 36px;
+  gap: 48px;
+  width: 100%;
+  background: linear-gradient(180deg, #FFF 17.09%, rgba(255, 255, 255, 0) 100%);
+  padding-bottom: 16px;
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+}
+
+.mainform {
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: 2;
+  display: flex;
+  width: 500px;
+  padding: 40px 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+  border-radius: 16px;
+  background: var(--White, #FFF);
+  box-shadow: 0px 4px 39px 0px rgba(56, 60, 63, 0.04);
+}
+@media (max-width: 768px) {
+  .mainform {
+    margin-top: 64px;
+    margin-bottom: 64px;
+  }
+}
+.mainform .errorBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 24px;
+  align-items: center;
+  color: #dc3545;
+}
+.mainform h2 {
+  color: #383C3F;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.mainform .form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+.mainform .form-field a {
+  color: var(--Group_3, #2092D1);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+.mainform .form-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+.mainform .form-btn p {
+  color: #383C3F;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.mainform .form-btn p a {
+  color: #2092D1;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+@media (max-width: 1440px) {
+  .mainform {
+    padding: 32px 24px;
+    gap: 28px;
+    width: 460px;
+  }
+  .mainform h2 {
+    font-size: 32px;
+  }
+}
+@media (max-width: 500px) {
+  .mainform {
+    padding: 20px 16px;
+    gap: 28px;
+    width: 320px;
+  }
+}/*# sourceMappingURL=LoginForm.css.map */

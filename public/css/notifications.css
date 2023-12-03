@@ -1,0 +1,10 @@
+.verification_info{
+    background-color: rgba(255, 255, 0, 0.5);
+    border: 1px solid #ffc000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.verification_text{
+    font-size: 13pt;
+}

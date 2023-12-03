@@ -53,8 +53,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Session::flash('flash_message', 'Учетная запись успешно создана. На электронную почту '.$request->email.' направлено письмо для завершения регистрации');
-
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

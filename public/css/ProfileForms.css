@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 .btn-primary {
   border-radius: 8px;
   background: #2092D1;
@@ -439,8 +440,73 @@ footer p {
     align-items: flex-start;
     gap: 16px;
   }
-}/*# sourceMappingURL=main_components.css.map */
-
-.logout-form{
-    width: 100%;
 }
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.title h4 {
+  color: var(--Black, #383C3F);
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0px;
+  margin: 0px;
+}
+.title .small_button_back {
+  display: flex;
+  padding: 6px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 6px;
+  background: var(--White, #FFF);
+}
+.title .small_button_back .arrow_gray:hover path {
+  fill-opacity: 0.6;
+}
+
+.mainform_profile {
+  display: flex;
+  width: 100%;
+  padding: 24px 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 60, 63, 0.1);
+  background: var(--White, #FFF);
+}
+@media (max-width: 500px) {
+  .mainform_profile {
+    padding: 16px 16px;
+  }
+}
+.mainform_profile div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mainform_profile div .info1 {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  flex-direction: row;
+}
+@media (max-width: 500px) {
+  .mainform_profile div .info1 {
+    flex-direction: column;
+  }
+}
+.mainform_profile .btnline {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  flex-direction: row;
+}/*# sourceMappingURL=ProfileForms.css.map */
