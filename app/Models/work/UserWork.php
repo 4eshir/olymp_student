@@ -17,6 +17,20 @@ class UserWork extends User
     protected $guarded = [];
     public $timestamps = false;
 
+    public function completed()
+    {
+        return $this->name !== null &&
+            $this->surname != null &&
+            $this->patronymic != null &&
+            $this->phone_number != null &&
+            $this->email != null &&
+            $this->address != null &&
+            $this->birthdate != null &&
+            $this->municipality_id != null &&
+            $this->educational_institution_id != null &&
+            $this->class != null;
+    }
+
     public function municipality()
     {
         return $this->hasOne(MunicipalityWork::class, 'id', 'municipality_id');

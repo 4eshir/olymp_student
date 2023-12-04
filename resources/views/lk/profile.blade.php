@@ -84,7 +84,7 @@
                 <a class="active" href="{{ route('default') }}">
                     Профиль
                 </a>
-                <a>
+                <a href="{{ route('entry') }}">
                     Мои олимпиады
                 </a>
                 <a>
@@ -110,9 +110,17 @@
             </form>
         @endif
 
+        @if (!$model->completed())
+            <div class='verification_info'>
+                <p class="verification_text" style="margin-bottom: 0">
+                    Чтобы участвовать в олимпиаде заполните все данные
+                </p>
+            </div>
+        @endif
+
         <div class='name_section'>
             <div class='name'>
-                <h3>{{ $model->name.' '.$model->surname.' '.$model->patronymic }}</h3>
+                <h3>{{ ($model->name ? $model->name : '---').' '.($model->surname ? $model->surname : '---').' '.($model->patronymic ? $model->patronymic : '---') }}</h3>
                 <?php
                     $arr = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
                 ?>
@@ -162,22 +170,22 @@
             <div class='info'>
                 <div class='raion'>
                     <span>Район</span>
-                    <p>{{ $model->municipality->name }}</p>
+                    <p>{{ $model->municipality_id ? $model->municipality->name : '---' }}</p>
                 </div>
 
                 <div class='school'>
                     <span>Школа</span>
-                    <p>{{ $model->educational->name }}</p>
+                    <p>{{ $model->educational_institution_id ? $model->educational->name : '---' }}</p>
                 </div>
 
                 <div class='grade_real'>
                     <span>Класс обучения</span>
-                    <p>{{ $model->class }}</p>
+                    <p>{{ $model->class ? $model->class : '---' }}</p>
                 </div>
 
                 <div class='grade'>
                     <span>Адрес проживания</span>
-                    <p>{{ $model->address }}</p>
+                    <p>{{ $model->address ? $model->address : '---' }}</p>
                 </div>
 
             </div>

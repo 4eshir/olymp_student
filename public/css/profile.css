@@ -496,10 +496,9 @@ footer p {
 .profile .section .call_section {
   display: flex;
   flex-direction: column;
-  padding: 24px 32px;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+  padding: 10px;
+  align-items: start;
+  justify-content: left;
   gap: 24px;
   align-self: stretch;
   border-radius: 12px;
@@ -514,12 +513,12 @@ footer p {
   width: 100%;
   color: var(--Secondary, #024566);
   font-family: Inter;
-  font-size: 22px;
+  font-size: 13pt;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 0px;
-  text-align: center;
+  text-align: left;
 }
 .profile .section .call_section .btn {
   width: auto;
