@@ -91,10 +91,10 @@
 <div class='profile'>
     <div class='navbar'>
         <div class='mainnav'>
-            <a class="active" href="{{ route('default') }}">
+            <a href="{{ route('default') }}">
                 Профиль
             </a>
-            <a>
+            <a class="active" href="{{ route('entry') }}">
                 Мои олимпиады
             </a>
             <a>
@@ -108,34 +108,40 @@
 
     <div class='section animate__animated animate__fadeIn'>
         <div class='title'>
-            <a href="{{ route('default') }}" class='small_button_back'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class='arrow_gray'>
-                    <path d="M16.6001 9.09992L16.6001 10.7666L6.6001 10.7666L11.1834 15.3499L10.0001 16.5333L3.4001 9.93325L10.0001 3.33325L11.1834 4.51658L6.6001 9.09992L16.6001 9.09992Z" fill="#383C3F" fill-opacity="0.1"/>
-                </svg>
-            </a>
-            <h4>Персональные данные</h4>
+            <h4>Запись на олимпиаду</h4>
         </div>
 
-        <form class='mainform_profile' method="POST" action="{{ route('profileRequestCommon') }}">
+        <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             @csrf
-            <h2>Запись на олимпиаду</h2>
+
             <div class="form-field">
 
-                <select class="form-select" name="participationClass" id="classInput">
+                <label>Предмет</label>
+                <select class="form-select" name="subject" id="classInput1">
+                    <option disabled>Выберите предмет</option>
+                    @foreach($subjects as $subject)
+                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="form-field">
+
+                <label>Класс участия в олимпиаде</label>
+                <select class="form-select" name="participationClass" id="classInput2">
                     <option disabled>Выберите класс</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
+                    @for($i = $model->class; $i < 12; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
                 </select>
 
             </div>
 
             <div class="form-btn">
-                <button class="btn btn-primary" type="submit">Сохранить</button>
+                <button class="btn btn-primary" type="submit">Записаться</button>
             </div>
         </form>
 

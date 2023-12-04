@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
+use App\Models\temporary\ChildrenEvent;
+use App\Models\temporary\Event;
+use App\Models\temporary\Subject;
 use App\Models\work\EducationalInstitutionWork;
 use App\Models\work\MunicipalityWork;
 use App\Models\work\OlympiadEntryWork;
@@ -15,19 +18,34 @@ class EntryController extends Controller
     public function create()
     {
         $model = UserWork::where('id', Auth::id())->first();
-        return view('lk.entry', ['model' => $model]);
+        $subjects = Subject::all();
+
+        return view('lk.entry', ['model' => $model, 'subjects' => $subjects]);
     }
 
     public function store(Request $request)
     {
-        $entry = new OlympiadEntryWork();
-        $entry->participation_class = $request->participationClass;
-        $entry->user_id = Auth::id();
 
-        $entry->children_event_id = 1;
 
-        $entry->save();
+        $events = Event::where('subject_id', $request->subject)->get();
+        $eIds = [];
+        foreach ($events as $event) $eIds[] = $event->id;
 
-        return redirect()->route('profile', ['id' => Auth::id()]);
+        $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)->where('class', $request->participationClass)->get();
+
+        foreach ($childrenEvents as $childrenEvent)
+        {
+            $entry = new OlympiadEntryWork();
+            $entry->participation_class = $request->participationClass;
+            $entry->user_id = Auth::id();
+
+            $entry->children_event_id = $childrenEvent->id;
+
+            $entry->save();
+        }
+
+
+
+        return redirect()->route('default');
     }
 }
