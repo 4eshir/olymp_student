@@ -62,28 +62,27 @@
             </svg>
         </div>
     </div>
-    <form method="POST" action="{{ route('logout') }}" class="navbar">
-        @csrf
-        <div class='mainnav'>
-            <a>
-                Главная
-            </a>
-            <a class="active" href="{{ route('default') }}">
-                Профиль
-            </a>
-            <a>
-                Мои олимпиады
-            </a>
-            <a>
-                Список олимпиад
-            </a>
-        </div>
 
+    <div class='mainnav'>
+        <a>
+            Главная
+        </a>
+        <a class="active" href="{{ route('default') }}">
+            Профиль
+        </a>
+        <a>
+            Мои олимпиады
+        </a>
+        <a>
+            Список олимпиад
+        </a>
+    </div>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
         <button type="submit" class="logout" style="border: 0">
             Выход
         </button>
-
-        {{--</div>--}}
     </form>
 
 </div>
@@ -94,7 +93,9 @@
 </header>
 
 <div class='profile'>
-    <div class='navbar'>
+    <form method="POST" action="{{ route('logout') }}" class="navbar">
+        @csrf
+        {{--<div class='navbar'>--}}
         <div class='mainnav'>
             <a href="{{ route('default') }}">
                 Профиль
@@ -106,13 +107,12 @@
                 Список олимпиад
             </a>
         </div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="logout" style="border: 0">
-                Выход
-            </button>
-        </form>
-    </div>
+        <button type="submit" class="logout" style="border: 0">
+            Выход
+        </button>
+
+        {{--</div>--}}
+    </form>
 
     <div class='section animate__animated animate__fadeIn'>
         <div class='title'>
