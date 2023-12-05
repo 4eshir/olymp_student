@@ -118,7 +118,11 @@ class LkController extends Controller
 
         $model = UserWork::where('id', $id)->first();
         $municipalities = MunicipalityWork::all();
-        $educational = EducationalInstitutionWork::all();
+        if ($model->municipality_id !== null)
+            $educational = EducationalInstitutionWork::where('municipality_id', $model->municipality_id)->get();
+        else
+            $educational = EducationalInstitutionWork::all();
+
         return view('lk.profile-edit-special', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);
     }
 

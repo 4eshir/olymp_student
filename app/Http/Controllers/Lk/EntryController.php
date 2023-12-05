@@ -14,6 +14,7 @@ use App\Models\work\OlympiadEntryWork;
 use App\Models\work\UserWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class EntryController extends Controller
 {
@@ -53,12 +54,22 @@ class EntryController extends Controller
 
         foreach ($childrenEvents as $childrenEvent)
         {
-            $entry = new OlympiadEntryWork();
-            $entry->user_id = Auth::id();
+            $duplicate = OlympiadEntryWork::where('user_id', Auth::id())->where('children_event_id', $childrenEvent->id)->get();
+            if (count($duplicate) > 0)
+            {
+                Session::flash('flash_message', 'Вы уже записаны на выбранную олимпиаду');
+            }
+            else
+            {
+                $entry = new OlympiadEntryWork();
+                $entry->user_id = Auth::id();
 
-            $entry->children_event_id = $childrenEvent->id;
+                $entry->children_event_id = $childrenEvent->id;
 
-            $entry->save();
+                $entry->save();
+            }
+
+
 
         }
 

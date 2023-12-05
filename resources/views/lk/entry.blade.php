@@ -31,12 +31,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактировать общую информацию</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/ProfileForms.css">
     <link rel="stylesheet" href="./css/profile.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -102,6 +104,7 @@
 </header>
 
 <div class='profile'>
+
     <form method="POST" action="{{ route('logout') }}" class="navbar">
         @csrf
         {{--<div class='navbar'>--}}
@@ -124,6 +127,13 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
+        @if (Session::has('flash_message'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%; margin-bottom: 0">
+                {{Session::get('flash_message')}}
+            </div>
+
+        @endif
         <div class='title'>
             <h4>Запись на олимпиаду</h4>
         </div>

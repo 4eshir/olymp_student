@@ -188,18 +188,19 @@
     }
 </style>
 <script>
+
     $(function () {
         var loader = $('#loader'),
             category = $('select[name="municipality"]'),
             subcategory = $('select[name="educational"]');
 
         loader.hide();
-        subcategory.attr('disabled','disabled')
+        //subcategory.attr('disabled','disabled')
 
         subcategory.change(function(){
             var id = $(this).val();
             if(!id){
-                subcategory.attr('disabled','disabled')
+                //subcategory.attr('disabled','disabled')
             }
         })
 
@@ -207,7 +208,7 @@
             var id= $(this).val();
             if(id){
                 loader.show();
-                subcategory.attr('disabled','disabled')
+                //subcategory.attr('disabled','disabled')
 
                 $.get('{{url('profile-dropdown-educational-data?municipality_id=')}}'+id)
                     .done(function(data){
