@@ -115,7 +115,7 @@
         @if (!$model->completed())
             <div class='verification_info'>
                 <p class="verification_text" style="margin-bottom: 0">
-                    Чтобы участвовать в олимпиаде заполните все данные
+                    Чтобы участвовать в олимпиаде корректно заполните все данные
                 </p>
             </div>
         @endif

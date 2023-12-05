@@ -29,6 +29,7 @@ class EntryController extends Controller
         foreach ($targetOlympiadEntries as $olympiadEntry)
         {
             $displayEntry = new DisplayEntry();
+            $displayEntry->id = $olympiadEntry->id;
             $displayEntry->subject = $olympiadEntry->childrenEvent->event->subject->name;
             $displayEntry->class = $olympiadEntry->childrenEvent->classT->name;
             $displayEntry->address = $olympiadEntry->childrenEvent->address ? $olympiadEntry->childrenEvent->address : 'Скоро станет известно';
@@ -73,6 +74,13 @@ class EntryController extends Controller
 
         }
 
+        return redirect()->route('entry');
+    }
+
+    public function delete(Request $request)
+    {
+        $entry = OlympiadEntryWork::where('id', $request->entryId)->first();
+        $entry->delete();
         return redirect()->route('entry');
     }
 

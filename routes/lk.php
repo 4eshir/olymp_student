@@ -27,5 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::get('entry', [\App\Http\Controllers\Lk\EntryController::class, 'create'])->name('entry');
     Route::get('entry-dropdown-class-data', [\App\Http\Controllers\Lk\EntryController::class, 'dropdownClassData'])->name('entryDropdownClassData');
 
+    Route::post('delete-entry', [\App\Http\Controllers\Lk\EntryController::class, 'delete'])->name('deleteEntry');
     Route::post('createEntry', [\App\Http\Controllers\Lk\EntryController::class, 'store'])->name('createEntry');
 });

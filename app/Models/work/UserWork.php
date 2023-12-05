@@ -27,7 +27,8 @@ class UserWork extends User
             $this->birthdate != null &&
             $this->municipality_id != null &&
             $this->educational_institution_id != null &&
-            $this->class != null;
+            $this->class != null
+            && $this->checkAge();
     }
 
     public function checkAge()

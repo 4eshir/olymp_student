@@ -6,6 +6,14 @@
     width: 100%;
 }
 
+.verification_danger{
+    background-color: rgba(255, 0, 0, 0.5);
+    border: 1px solid #ff0000;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
 .verification_text{
     font-size: 13pt;
 }

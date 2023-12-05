@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/ProfileForms.css">
     <link rel="stylesheet" href="./css/profile.css">
+    <link rel="stylesheet" href="./css/notifications.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
 
@@ -127,82 +128,105 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
-        @if (Session::has('flash_message'))
+        @if ($model->completed())
 
-            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%; margin-bottom: 0">
-                {{Session::get('flash_message')}}
+            @if (Session::has('flash_message'))
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%; margin-bottom: 0">
+                    {{Session::get('flash_message')}}
+                </div>
+
+            @endif
+            <div class='title'>
+                <h4>Запись на олимпиаду</h4>
+            </div>
+
+            <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                @csrf
+
+                <div class="form-field">
+
+                    <label>Предмет</label>
+                    <select class="form-select" name="subject" id="classInput1">
+                        <option value="" selected>Выберите предмет</option>
+                        @foreach($subjects as $subject)
+                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <div class="form-field">
+
+                    <label>Класс участия в олимпиаде</label>
+                    <select class="form-select" name="participationClass" id="classInput2"></select>
+                    <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
+
+                </div>
+
+                <div class="form-btn">
+                    <button class="btn btn-primary" type="submit">Записаться</button>
+                </div>
+            </form>
+
+            <div class='title'>
+                <h4>Мои олимпиады</h4>
+            </div>
+            <div class="mainform_profile">
+                <table class="table table-responsive">
+                    <tr>
+                        <th>Предмет</th>
+                        <th>Класс участия</th>
+                        <th>Номер тура</th>
+                        <th>Дата и время проведения</th>
+                        <th>Адрес проведения</th>
+                    </tr>
+                    @foreach($entries as $entry)
+                        <tr>
+                            <td>
+                                {{ $entry->subject }}
+                            </td>
+                            <td>
+                                {{ $entry->class }} класс
+                            </td>
+                            <td>
+                                {{ $entry->tour }} тур
+                            </td>
+                            <td>
+                                {{ $entry->datetime }}
+                            </td>
+                            <td>
+                                {{ $entry->address }}
+                            </td>
+                            <td>
+                                @if ($entry->checkDateDifference(7))
+                                    <form method="POST" action="{{ route('deleteEntry') }}">
+                                        @csrf
+                                        <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
+                                        <button type="submit" class="btn btn-danger">Отменить запись</button>
+                                    </form>
+                                @else
+                                    <span style="color: red">Отмена записи недоступна</span>
+                                @endif
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+
+        @else
+
+            <div class="verification_danger">
+                <p class="verification_text" style="margin-bottom: 0">
+                    Ваша учетная запись не подтверждена. Вам недоступна запись на олимпиаду.<br>
+                    Проверьте электронную почту, которую Вы указали при регистрации или следуйте инструкции в разделе "Профиль"
+                </p>
             </div>
 
         @endif
-        <div class='title'>
-            <h4>Запись на олимпиаду</h4>
-        </div>
-
-        <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
-
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-            @csrf
-
-            <div class="form-field">
-
-                <label>Предмет</label>
-                <select class="form-select" name="subject" id="classInput1">
-                    <option value="" selected>Выберите предмет</option>
-                    @foreach($subjects as $subject)
-                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                    @endforeach
-                </select>
-
-            </div>
-
-            <div class="form-field">
-
-                <label>Класс участия в олимпиаде</label>
-                <select class="form-select" name="participationClass" id="classInput2"></select>
-                <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
-
-            </div>
-
-            <div class="form-btn">
-                <button class="btn btn-primary" type="submit">Записаться</button>
-            </div>
-        </form>
-
-        <div class='title'>
-            <h4>Мои олимпиады</h4>
-        </div>
-        <div class="mainform_profile">
-            <table class="table table-responsive">
-                <tr>
-                    <th>Предмет</th>
-                    <th>Класс участия</th>
-                    <th>Номер тура</th>
-                    <th>Дата и время проведения</th>
-                    <th>Адрес проведения</th>
-                </tr>
-                @foreach($entries as $entry)
-                    <tr>
-                        <td>
-                            {{ $entry->subject }}
-                        </td>
-                        <td>
-                            {{ $entry->class }} класс
-                        </td>
-                        <td>
-                            {{ $entry->tour }} тур
-                        </td>
-                        <td>
-                            {{ $entry->datetime }}
-                        </td>
-                        <td>
-                            {{ $entry->address }}
-                        </td>
-
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-
     </div>
 
     <div class='Column'></div>
