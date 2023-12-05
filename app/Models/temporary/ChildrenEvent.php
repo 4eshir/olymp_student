@@ -16,4 +16,9 @@ class ChildrenEvent extends Model
     {
         return $this->hasOne(Event::class, 'id', 'event_id');
     }
+
+    public function class()
+    {
+        return $this->hasOne(ClassT::class, 'id', 'class_id');
+    }
 }
