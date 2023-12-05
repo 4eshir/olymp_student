@@ -62,27 +62,28 @@
             </svg>
         </div>
     </div>
-
-    <div class='mainnav'>
-        <a>
-            Главная
-        </a>
-        <a class="active" href="{{ route('default') }}">
-            Профиль
-        </a>
-        <a>
-            Мои олимпиады
-        </a>
-        <a>
-            Список олимпиад
-        </a>
-    </div>
-
-    <form method="POST" action="{{ route('logout') }}">
+    <form method="POST" action="{{ route('logout') }}" class="navbar">
         @csrf
+        <div class='mainnav'>
+            <a>
+                Главная
+            </a>
+            <a class="active" href="{{ route('default') }}">
+                Профиль
+            </a>
+            <a>
+                Мои олимпиады
+            </a>
+            <a>
+                Список олимпиад
+            </a>
+        </div>
+
         <button type="submit" class="logout" style="border: 0">
             Выход
         </button>
+
+        {{--</div>--}}
     </form>
 
 </div>
