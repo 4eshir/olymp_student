@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Lk;
 use App\Http\Controllers\Controller;
 use App\Http\Integrations\EventResource;
 use App\Models\common\EducationalInstitution;
+use App\Models\temporary\ChildrenEvent;
+use App\Models\temporary\Event;
 use App\Models\work\EducationalInstitutionWork;
 use App\Models\work\MunicipalityWork;
 use App\Models\work\UserWork;
@@ -152,6 +154,17 @@ class LkController extends Controller
         $user->save();
 
         return redirect()->route('profile', ['id' => $user->id]);
+    }
+
+
+    public function dropdownEducationalData(Request $request)
+    {
+        if($request->has('municipality_id')){
+
+            $educational = EducationalInstitutionWork::where('municipality_id', $request->get('municipality_id'))->get();
+
+            return ['success' => true, 'data' => $educational];
+        }
     }
 
 }

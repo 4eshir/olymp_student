@@ -137,7 +137,7 @@
 
                 <label>Предмет</label>
                 <select class="form-select" name="subject" id="classInput1">
-                    <option disabled>Выберите предмет</option>
+                    <option value="" selected>Выберите предмет</option>
                     @foreach($subjects as $subject)
                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                     @endforeach
@@ -270,9 +270,9 @@
                 loader.show();
                 subcategory.attr('disabled','disabled')
 
-                $.get('{{url('entryDropdownClassData?subject_id=')}}'+id)
+                $.get('{{url('entry-dropdown-class-data?subject_id=')}}'+id)
                     .done(function(data){
-                        var s='<option disabled>Выберите класс</option>';
+                        var s='<option value="" selected>Выберите класс</option>';
 
                         data["data"].forEach(function(row){
                             s +='<option value="'+row+'">'+row+'</option>'

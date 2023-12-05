@@ -102,14 +102,14 @@
 
             <div>
                 <select name="municipality" id="municipalityInput" class="form-select">
-                    <option disabled>Выберите район</option>
+                    <option value="" selected>Выберите район</option>
                     @foreach ($municipalities as $one)
                         echo '<option value="{{$one->id}}" {{ $model->municipality_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
                     @endforeach
                 </select>
 
                 <select name="educational" id="educationalInput" class="form-select">
-                    <option disabled>Выберите учебное учреждение</option>
+                    <option value="">Выберите учебное учреждение</option>
                     @foreach ($educational as $one)
                         echo '<option value="{{$one->id}}" {{ $model->educational_institution_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
                     @endforeach
@@ -177,5 +177,56 @@
     handleResize();
     window.addEventListener('resize', handleResize);
 </script>
+
+
+<style>
+    #loader {
+        position: absolute;
+        right: 18px;
+        top: 30px;
+        width: 20px;
+    }
+</style>
+<script>
+    $(function () {
+        var loader = $('#loader'),
+            category = $('select[name="municipality"]'),
+            subcategory = $('select[name="educational"]');
+
+        loader.hide();
+        subcategory.attr('disabled','disabled')
+
+        subcategory.change(function(){
+            var id = $(this).val();
+            if(!id){
+                subcategory.attr('disabled','disabled')
+            }
+        })
+
+        category.change(function() {
+            var id= $(this).val();
+            if(id){
+                loader.show();
+                subcategory.attr('disabled','disabled')
+
+                $.get('{{url('profile-dropdown-educational-data?municipality_id=')}}'+id)
+                    .done(function(data){
+                        var s='<option value="">Выберите учебное учреждение</option>';
+
+                        console.log(category);
+                        data["data"].forEach(function(row){
+                            s +='<option value="'+row.id+'">'+row.name+'</option>'
+                        });
+                        subcategory.removeAttr('disabled');
+                        subcategory.html(s);
+                        loader.hide();
+                    })
+            }
+
+        })
+    })
+</script>
+
+
 </body>
 </html>
