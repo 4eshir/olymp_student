@@ -10,6 +10,8 @@
     <link rel="stylesheet" href=".css/index.css">
     <link rel="stylesheet" href=".css/profile.css">
     <link rel="stylesheet" href=".css/notifications.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
     <style>
         /* Ваши стили для выделения выбранных дат */
         .datepicker-dropdown .datepicker-days .active,

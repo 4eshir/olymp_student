@@ -10,6 +10,7 @@
     <link rel="stylesheet" href=".css/index.css">
     <link rel="stylesheet" href=".css/ProfileForms.css">
     <link rel="stylesheet" href=".css/profile.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
