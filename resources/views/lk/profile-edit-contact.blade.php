@@ -53,9 +53,12 @@
         </a>
     </div>
 
-    <button type="submit" class="logout" style="border: 0">
-        Выход
-    </button>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="logout" style="border: 0">
+            Выход
+        </button>
+    </form>
 
 </div>
 
@@ -77,9 +80,12 @@
                 Список олимпиад
             </a>
         </div>
-        <button type="submit" class="logout" style="border: 0">
-            Выход
-        </button>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout" style="border: 0">
+                Выход
+            </button>
+        </form>
     </div>
 
     <div class='section animate__animated animate__fadeIn'>
