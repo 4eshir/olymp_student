@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lk;
 use App\Http\Controllers\Controller;
 use App\Models\displayed\DisplayEntry;
 use App\Models\temporary\ChildrenEvent;
+use App\Models\temporary\ClassT;
 use App\Models\temporary\Event;
 use App\Models\temporary\Subject;
 use App\Models\work\EducationalInstitutionWork;
@@ -53,7 +54,6 @@ class EntryController extends Controller
         foreach ($childrenEvents as $childrenEvent)
         {
             $entry = new OlympiadEntryWork();
-            $entry->participation_class = $request->participationClass;
             $entry->user_id = Auth::id();
 
             $entry->children_event_id = $childrenEvent->id;
@@ -74,19 +74,28 @@ class EntryController extends Controller
 
             $childrenEvent = ChildrenEvent::whereIn('event_id', $eIds)->get();
             $classes = [];
-            foreach ($childrenEvent as $one) $classes[] = $one->class;
+            foreach ($childrenEvent as $one) $classes[] = $one->class_id;
 
             $classes = array_unique($classes);
 
+            $realClasses = ClassT::whereIn('id', $classes)->get();
+            $classNumbers = [];
+            $classMinimal = [];
+            foreach ($realClasses as $class)
+            {
+                $classNumbers[] = $class->name;
+                $classMinimal[] = $class->number;
+            }
+
             $userClass = UserWork::where('id', Auth::id())->first()->class;
 
-            for ($i = 0; $i < count($classes); $i++)
-                if ($classes[$i] < $userClass)
-                    unset($classes[$i]);
+            for ($i = 0; $i < count($classNumbers); $i++)
+                if ($classMinimal[$i] < $userClass)
+                    unset($classNumbers[$i]);
 
-            $classes = array_values($classes);
+            $classNumbers = array_values($classNumbers);
 
-            return ['success'=>true,'data'=>$classes];
+            return ['success'=>true,'data'=>$classNumbers];
         }
     }
 }
