@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('profile-request-special', [\App\Http\Controllers\Lk\LkController::class, 'requestSpecial'])->name('profileRequestSpecial');
 
     Route::get('entry', [\App\Http\Controllers\Lk\EntryController::class, 'create'])->name('entry');
+    Route::get('entryDropdownClassData', [\App\Http\Controllers\Lk\EntryController::class, 'dropdownClassData'])->name('entryDropdownClassData');
 
     Route::post('createEntry', [\App\Http\Controllers\Lk\EntryController::class, 'store'])->name('createEntry');
 });

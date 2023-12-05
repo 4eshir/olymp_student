@@ -62,8 +62,31 @@ class EntryController extends Controller
 
         }
 
-
-
         return redirect()->route('entry');
+    }
+
+    public function dropdownClassData(Request $request)
+    {
+        if($request->has('subject_id')){
+            $events = Event::where('subject_id', $request->get('subject_id'))->get();
+            $eIds = [];
+            foreach ($events as $event) $eIds[] = $event->id;
+
+            $childrenEvent = ChildrenEvent::whereIn('event_id', $eIds)->get();
+            $classes = [];
+            foreach ($childrenEvent as $one) $classes[] = $one->class;
+
+            $classes = array_unique($classes);
+
+            $userClass = UserWork::where('id', Auth::id())->first()->class;
+
+            for ($i = 0; $i < count($classes); $i++)
+                if ($classes[$i] < $userClass)
+                    unset($classes[$i]);
+
+            $classes = array_values($classes);
+
+            return ['success'=>true,'data'=>$classes];
+        }
     }
 }

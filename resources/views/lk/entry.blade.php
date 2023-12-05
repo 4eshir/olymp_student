@@ -22,6 +22,8 @@
 </form>--}}
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +42,13 @@
 
 </head>
 <body>
+
+<script
+    src="https://code.jquery.com/jquery-3.6.3.js"
+    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous">
+</script>
+
 <header class="header_mobile">
     <div>
         <img class = "vsohlogo" src="img/logo_goriz_color.svg" alt="" />
@@ -131,12 +140,8 @@
             <div class="form-field">
 
                 <label>Класс участия в олимпиаде</label>
-                <select class="form-select" name="participationClass" id="classInput2">
-                    <option disabled>Выберите класс</option>
-                    @for($i = $model->class; $i < 12; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
+                <select class="form-select" name="participationClass" id="classInput2"></select>
+                <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
 
             </div>
 
@@ -224,5 +229,55 @@
     handleResize();
     window.addEventListener('resize', handleResize);
 </script>
+
+
+
+<style>
+    #loader {
+        position: absolute;
+        right: 18px;
+        top: 30px;
+        width: 20px;
+    }
+</style>
+<script>
+    $(function () {
+        var loader = $('#loader'),
+            category = $('select[name="subject"]'),
+            subcategory = $('select[name="participationClass"]');
+
+        loader.hide();
+        subcategory.attr('disabled','disabled')
+
+        subcategory.change(function(){
+            var id = $(this).val();
+            if(!id){
+                subcategory.attr('disabled','disabled')
+            }
+        })
+
+        category.change(function() {
+            var id= $(this).val();
+            if(id){
+                loader.show();
+                subcategory.attr('disabled','disabled')
+
+                $.get('{{url('entryDropdownClassData?subject_id=')}}'+id)
+                    .done(function(data){
+                        var s='<option disabled>Выберите класс</option>';
+
+                        data["data"].forEach(function(row){
+                            s +='<option value="'+row+'">'+row+'</option>'
+                        });
+                        subcategory.removeAttr('disabled');
+                        subcategory.html(s);
+                        loader.hide();
+                    })
+            }
+
+        })
+    })
+</script>
+
 </body>
 </html>
