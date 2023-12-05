@@ -49,7 +49,7 @@ class EntryController extends Controller
         $eIds = [];
         foreach ($events as $event) $eIds[] = $event->id;
 
-        $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)->where('class', $request->participationClass)->get();
+        $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)->where('class_id', $request->participationClass)->get();
 
         foreach ($childrenEvents as $childrenEvent)
         {
@@ -81,21 +81,29 @@ class EntryController extends Controller
             $realClasses = ClassT::whereIn('id', $classes)->get();
             $classNumbers = [];
             $classMinimal = [];
+            $classIds = [];
             foreach ($realClasses as $class)
             {
                 $classNumbers[] = $class->name;
                 $classMinimal[] = $class->number;
+                $classIds[] = $class->id;
             }
 
             $userClass = UserWork::where('id', Auth::id())->first()->class;
 
             for ($i = 0; $i < count($classNumbers); $i++)
                 if ($classMinimal[$i] < $userClass)
+                {
                     unset($classNumbers[$i]);
+                    unset($classMinimal[$i]);
+                    unset($classIds[$i]);
+                }
 
             $classNumbers = array_values($classNumbers);
+            $classMinimal = array_values($classMinimal);
+            $classIds = array_values($classIds);
 
-            return ['success'=>true,'data'=>$classNumbers];
+            return ['success'=>true,'data'=>[$classNumbers, $classIds]];
         }
     }
 }

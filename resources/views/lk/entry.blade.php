@@ -274,9 +274,14 @@
                     .done(function(data){
                         var s='<option value="" selected>Выберите класс</option>';
 
-                        data["data"].forEach(function(row){
-                            s +='<option value="'+row+'">'+row+'</option>'
-                        });
+                        console.log(data);
+
+                        data = data["data"];
+                        for (let i = 0; i < data.length; i++)
+                        {
+                            s +='<option value="'+data[1][i]+'">'+data[0][i]+'</option>'
+                        }
+
                         subcategory.removeAttr('disabled');
                         subcategory.html(s);
                         loader.hide();
