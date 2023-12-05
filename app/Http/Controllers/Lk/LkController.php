@@ -36,7 +36,6 @@ class LkController extends Controller
         $municipalities = MunicipalityWork::all();
         $educational = EducationalInstitutionWork::all();
 
-        //dd($model);
 
         return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);
     }

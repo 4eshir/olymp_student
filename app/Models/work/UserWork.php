@@ -21,7 +21,6 @@ class UserWork extends User
     {
         return $this->name !== null &&
             $this->surname != null &&
-            $this->patronymic != null &&
             $this->phone_number != null &&
             $this->email != null &&
             $this->address != null &&
@@ -29,6 +28,14 @@ class UserWork extends User
             $this->municipality_id != null &&
             $this->educational_institution_id != null &&
             $this->class != null;
+    }
+
+    public function checkAge()
+    {
+        $currentDate = new \DateTime(date("Y-m-d"));
+        $diff = $currentDate->diff(new \DateTime($this->birthdate));
+
+        return $diff->y >= 10 && $diff->y <= 18;
     }
 
     public function municipality()

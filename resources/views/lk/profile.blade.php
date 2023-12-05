@@ -126,7 +126,16 @@
                 <?php
                     $arr = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
                 ?>
-                <p>Дата рождения: {{ date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}</p>
+
+                <p @if (!$model->checkAge()) style="color: red" @endif>
+                    Дата рождения: {{ date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}
+                    @if (!$model->checkAge())
+                        <br>
+                        <br>
+                        <i>Ваш возраст не может быть меньше 10 и больше 18 лет</i>
+                    @endif
+                </p>
+
             </div>
             <a href="{{ route('profileEditCommon') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_blue">
