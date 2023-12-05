@@ -7,13 +7,14 @@
 
     <title>Регистрация</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/registration_style.css">
+    <link rel="stylesheet" href="./css/registration_style.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 
 <body>
 <header>
-    <img src="/img/logo_goriz_color.svg" alt="">
-    <img src="/img/Frame 9191.svg" alt="">
+    <img src="./img/logo_goriz_color.svg" alt="">
+    <img src="./img/Frame 9191.svg" alt="">
 </header>
 
 <form class="mainform" method="POST" action="{{ route('register') }}">

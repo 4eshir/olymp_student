@@ -33,9 +33,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/ProfileForms.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/ProfileForms.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -51,8 +52,8 @@
 
 <header class="header_mobile">
     <div>
-        <img class = "vsohlogo" src="img/logo_goriz_color.svg" alt="" />
-        <img class= "citylogo" src="img/Frame 9191.svg" alt="" />
+        <img class = "vsohlogo" src="./img/logo_goriz_color.svg" alt="" />
+        <img class= "citylogo" src="./img/Frame 9191.svg" alt="" />
     </div>
     <div class="burger_btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -86,19 +87,24 @@
         </a>
     </div>
 
-    <a class="logout">
-        Выход
-    </a>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="logout" style="border: 0">
+            Выход
+        </button>
+    </form>
 
 </div>
 
 <header class="header_desktop">
-    <img class = "vsohlogo" src="img/logo_goriz_color.svg" alt="" />
-    <img class= "citylogo" src="img/Frame 9191.svg" alt="" />
+    <img class = "vsohlogo" src="./img/logo_goriz_color.svg" alt="" />
+    <img class= "citylogo" src="./img/Frame 9191.svg" alt="" />
 </header>
 
 <div class='profile'>
-    <div class='navbar'>
+    <form method="POST" action="{{ route('logout') }}" class="navbar">
+        @csrf
+        {{--<div class='navbar'>--}}
         <div class='mainnav'>
             <a href="{{ route('default') }}">
                 Профиль
@@ -110,10 +116,12 @@
                 Список олимпиад
             </a>
         </div>
-        <a class="logout">
+        <button type="submit" class="logout" style="border: 0">
             Выход
-        </a>
-    </div>
+        </button>
+
+        {{--</div>--}}
+    </form>
 
     <div class='section animate__animated animate__fadeIn'>
         <div class='title'>
