@@ -5,15 +5,15 @@ namespace App\Models\temporary;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChildrenEvent extends Model
+class OlympiadEntry extends Model
 {
     use HasFactory;
 
-    protected $table = 'children_event';
+    protected $table = 'olympiad_entry';
     public $timestamps = false;
 
-    public function event()
+    public function childrenEvent()
     {
-        return $this->hasOne(Event::class, 'id', 'event_id');
+        return $this->hasOne(ChildrenEvent::class, 'id', 'children_event_id');
     }
 }

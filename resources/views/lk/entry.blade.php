@@ -22,7 +22,7 @@
 </form>--}}
 
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -144,6 +144,41 @@
                 <button class="btn btn-primary" type="submit">Записаться</button>
             </div>
         </form>
+
+        <div class='title'>
+            <h4>Мои олимпиады</h4>
+        </div>
+        <div class="mainform_profile">
+            <table class="table table-responsive">
+                <tr>
+                    <th>Предмет</th>
+                    <th>Класс участия</th>
+                    <th>Номер тура</th>
+                    <th>Дата и время проведения</th>
+                    <th>Адрес проведения</th>
+                </tr>
+                @foreach($entries as $entry)
+                    <tr>
+                        <td>
+                            {{ $entry->subject }}
+                        </td>
+                        <td>
+                            {{ $entry->class }} класс
+                        </td>
+                        <td>
+                            {{ $entry->tour }} тур
+                        </td>
+                        <td>
+                            {{ $entry->datetime }}
+                        </td>
+                        <td>
+                            {{ $entry->address }}
+                        </td>
+
+                    </tr>
+                @endforeach
+            </table>
+        </div>
 
     </div>
 

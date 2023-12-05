@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
+use App\Models\displayed\DisplayEntry;
 use App\Models\temporary\ChildrenEvent;
 use App\Models\temporary\Event;
 use App\Models\temporary\Subject;
@@ -19,15 +20,31 @@ class EntryController extends Controller
     {
         $model = UserWork::where('id', Auth::id())->first();
         $subjects = Subject::all();
+        $entries = [];
 
-        return view('lk.entry', ['model' => $model, 'subjects' => $subjects]);
+        $targetOlympiadEntries = OlympiadEntryWork::where('user_id', Auth::id())->get();
+
+        foreach ($targetOlympiadEntries as $olympiadEntry)
+        {
+            $displayEntry = new DisplayEntry();
+            $displayEntry->subject = $olympiadEntry->childrenEvent->event->subject->name;
+            $displayEntry->class = $olympiadEntry->childrenEvent->class;
+            $displayEntry->address = $olympiadEntry->childrenEvent->address ? $olympiadEntry->childrenEvent->address : 'Скоро станет известно';
+            $displayEntry->datetime = $olympiadEntry->childrenEvent->date_olympiad ?
+                date("d.m.y", strtotime($olympiadEntry->childrenEvent->date_olympiad)).' в '.date("H:i", strtotime($olympiadEntry->childrenEvent->date_olympiad)) :
+                'Скоро станет известно';
+            $displayEntry->tour = $olympiadEntry->childrenEvent->event->tour;
+
+            $entries[] = $displayEntry;
+        }
+
+        return view('lk.entry', ['model' => $model, 'subjects' => $subjects, 'entries' => $entries]);
     }
 
     public function store(Request $request)
     {
-
-
         $events = Event::where('subject_id', $request->subject)->get();
+
         $eIds = [];
         foreach ($events as $event) $eIds[] = $event->id;
 
@@ -42,10 +59,11 @@ class EntryController extends Controller
             $entry->children_event_id = $childrenEvent->id;
 
             $entry->save();
+
         }
 
 
 
-        return redirect()->route('default');
+        return redirect()->route('entry');
     }
 }
