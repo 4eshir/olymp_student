@@ -277,7 +277,7 @@
                         console.log(data);
 
                         data = data["data"];
-                        for (let i = 0; i < data.length; i++)
+                        for (let i = 0; i < data[0].length; i++)
                         {
                             s +='<option value="'+data[1][i]+'">'+data[0][i]+'</option>'
                         }

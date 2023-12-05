@@ -29,7 +29,7 @@ class EntryController extends Controller
         {
             $displayEntry = new DisplayEntry();
             $displayEntry->subject = $olympiadEntry->childrenEvent->event->subject->name;
-            $displayEntry->class = $olympiadEntry->childrenEvent->class->name;
+            $displayEntry->class = $olympiadEntry->childrenEvent->classT->name;
             $displayEntry->address = $olympiadEntry->childrenEvent->address ? $olympiadEntry->childrenEvent->address : 'Скоро станет известно';
             $displayEntry->datetime = $olympiadEntry->childrenEvent->date_olympiad ?
                 date("d.m.y", strtotime($olympiadEntry->childrenEvent->date_olympiad)).' в '.date("H:i", strtotime($olympiadEntry->childrenEvent->date_olympiad)) :
