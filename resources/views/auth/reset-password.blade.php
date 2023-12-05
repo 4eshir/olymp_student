@@ -15,10 +15,10 @@
 
 <body>
 <header>
-    <a href="/login">
+    <a href="/public/login">
         <img src="./img/logo_goriz_color.svg" alt=""><img src="../img/logo_goriz_color.svg" alt="">
     </a>
-    <a href="/login">
+    <a href="/public/login">
         <img src="./img/Frame 9191.svg" alt=""><img src="../img/Frame 9191.svg" alt="">
     </a>
 </header>
