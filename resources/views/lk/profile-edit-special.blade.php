@@ -51,9 +51,9 @@
         </a>
     </div>
 
-    <a class="logout">
+    <button type="submit" class="logout" style="border: 0">
         Выход
-    </a>
+    </button>
 
 </div>
 
