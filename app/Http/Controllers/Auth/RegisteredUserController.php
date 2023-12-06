@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\work\UserWork;
 use App\Providers\RouteServiceProvider;
+use App\Rules\TrueCheckboxValue;
 use App\Validation\Rules\PasswordCustom;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -36,11 +37,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'accepted' => 'Вы должны согласиться с политикой обработки данных',
+        ];
+
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'confirmed', PasswordCustom::defaults()],
             'phone_number' => ['required', 'unique:user'],
         ]);
+
+        $request->validate([
+            'pdPolicy' => 'accepted',
+        ], $messages);
+
 
         $request->phone_number = str_replace(["(", ")", "+", "-", " "], "", $request->phone_number);
         $request->phone_number = substr_replace($request->phone_number, '8', 0, 1);

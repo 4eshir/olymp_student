@@ -30,6 +30,13 @@
         <input name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword2" placeholder="Повторите пароль" autocomplete="new-password">
     </div>
 
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="pdPolicy">
+        <label class="form-check-label" for="flexCheckDefault">
+            Согласен с <a href="#">политикой обработки данных</a>
+        </label>
+    </div>
+
     @if(count($errors) > 0)
         <div class="alert alert-danger" style="width: 100%; padding-left: 5px; padding-bottom: 0; margin-bottom: 0">
             <ul>
@@ -40,12 +47,6 @@
         </div>
     @endif
 
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-            Согласен с <a href="#">политикой обработки данных</a>
-        </label>
-    </div>
     <div class="form-btn">
         <button class="btn btn-primary" type="submit">Продолжить</button>
         <p>Уже есть аккаунт? <a href="{{ route('login') }}">Войти</a></p>
