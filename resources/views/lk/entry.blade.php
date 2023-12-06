@@ -189,7 +189,7 @@
                                 {{ $entry->subject }}
                             </td>
                             <td>
-                                {{ $entry->class }} класс
+                                {{ $entry->class }}
                             </td>
                             <td>
                                 {{ $entry->tour }} тур
