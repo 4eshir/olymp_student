@@ -1,21 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\work\UserWork;
-use App\Providers\RouteServiceProvider;
-use App\Rules\TrueCheckboxValue;
-use App\Validation\Rules\PasswordCustom;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class EntryListController extends Controller
 {
     /**
      * Display the registration view.
@@ -24,17 +13,10 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('admin.entry-list');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    /*
     public function store(Request $request)
     {
         $messages = [
@@ -67,5 +49,5 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
-    }
+    }*/
 }
