@@ -95,7 +95,7 @@
                     <path d="M16.6001 9.09992L16.6001 10.7666L6.6001 10.7666L11.1834 15.3499L10.0001 16.5333L3.4001 9.93325L10.0001 3.33325L11.1834 4.51658L6.6001 9.09992L16.6001 9.09992Z" fill="#383C3F" fill-opacity="0.1"/>
                 </svg>
             </a>
-            <h4>Персональные данные</h4>
+            <h4>Личные данные</h4>
         </div>
 
         <form class='mainform_profile' method="POST" action="{{ route('profileRequestCommon') }}">
