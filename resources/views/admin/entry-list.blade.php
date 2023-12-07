@@ -68,216 +68,47 @@
 
 
 
+
 <article class="content">
-    <table class="table table-striped">
+    <table class="table table-striped" id="myTable">
         <thead>
         <tr>
+            <th></th>
+            <th><input style="width: 100%" type="text" id="userInput" onkeyup="userSearch()"></th>
+            <th><input style="width: 100%" type="text" id="subjectInput" onkeyup="subjectSearch()"></th>
+            <th><input style="width: 100%" type="text" id="dateInput" onkeyup="dateSearch()"></th>
+            <th><input style="width: 100%" type="text" id="classInput" onkeyup="classSearch()"></th>
+            <th><input style="width: 100%" type="text" id="tourInput" onkeyup="tourSearch()"></th>
+            <th><input style="width: 100%" type="text" id="dateEntryInput" onkeyup="dateEntrySearch()"></th>
+            <th><input style="width: 100%" type="text" id="statusInput" onkeyup="statusSearch()"></th>
+        </tr>
+
+        <tr>
+            <th></th>
             <th>Обучающийся/Обучающаяся</th>
             <th>Предмет</th>
             <th>Дата проведения</th>
             <th>Класс участия</th>
             <th>Тур</th>
             <th>Дата подачи заявки</th>
+            <th>Статус заявки</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Faith Andrew</td>
-            <td>Angela Christopher</td>
-            <td>David Elias</td>
-            <td>Samuel Thomas</td>
-            <td>Richard Elias</td>
-        </tr>
-        <tr>
-            <td>Mirabel Anthony</td>
-            <td> Stella Kai</td>
-            <td>Mercy Logan</td>
-            <td>Joshua Cooper</td>
-            <td>Tosin Ade</td>
-        </tr>
-        <tr>
-            <td>Lola Aiden</td>
-            <td>John David</td>
-            <td>Nathan Luca</td>
-            <td>Precious Ezra</td>
-            <td>Favour Prime</td>
-        </tr>
-        <tr>
-            <td>Emmanuel Adrian</td>
-            <td>Deborah Aaron</td>
-            <td>Esther Camaeron</td>
-            <td>Lara Logan</td>
-            <td>Duff Christian</td>
-        </tr>
-        <tr>
-            <td>Claire Davis</td>
-            <td>Femi Grey</td>
-            <td>Micah Obi</td>
-            <td>Bassey Colton</td>
-            <td>Chelsea Ryan</td>
-        </tr>
-        <tr>
-            <td>Abdul Ahmed</td>
-            <td>Clement White</td>
-            <td>Margot Hassan</td>
-            <td>Mickey Bassey</td>
-            <td>Victor Stephen</td>
-        </tr>
-        <tr>
-            <td>Emily Luke</td>
-            <td>Ralph David</td>
-            <td>James William</td>
-            <td>Emma Henry</td>
-            <td>Eddie Oliver</td>
-        </tr>
-        <tr>
-            <td>Micheal Andrew</td>
-            <td>Venita Blue</td>
-            <td>Oyin Ade</td>
-            <td>Jack Oliver</td>
-            <td>Amara David</td>
-        </tr>
-        <tr>
-            <td>Ava Theo</td>
-            <td>Sophia Robert</td>
-            <td>Excel James </td>
-            <td>Daniel Andrew</td>
-            <td>Lorelai Donald</td>
-        </tr>
-        <tr>
-            <td>Joshua Kenneth</td>
-            <td>Brian Ade</td>
-            <td>Nana Kevin</td>
-            <td>Ronald Stephneson</td>
-            <td>Martin Sophia</td>
-        </tr>
-        <tr>
-            <td>Wiiliam Ava</td>
-            <td>Nduka Janeth</td>
-            <td>Evelyn Micheal</td>
-            <td>Chloe Henry</td>
-            <td>Jack Ava</td>
-        </tr>
-        <tr>
-            <td>Asher Levi</td>
-            <td>Owen Samuel</td>
-            <td>Gabriella Liam</td>
-            <td>Iris James </td>
-            <td>Bella Ahmed</td>
-        </tr>
-        <tr>
-            <td>Katie Jones</td>
-            <td>Billy Frankel</td>
-            <td>Bella Holmes</td>
-            <td>Freddie Nowra</td>
-            <td>Lucinda Henry</td>
-        </tr>
-        <tr>
-            <td>Richard Nolle</td>
-            <td>Sam Philby</td>
-            <td>Anika Belou</td>
-            <td>Lea Williams</td>
-            <td>Noel Jackson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr><tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-        <tr>
-            <td>Iloo Navagendra</td>
-            <td>David Templeton</td>
-            <td>Nathan Brown</td>
-            <td>Lulu Manson</td>
-            <td>Beverley Johnson</td>
-        </tr>
-
-
+        <?php $counter = 1; ?>
+        @foreach($model as $row)
+            <tr>
+                <td>{{ $counter }}</td>
+                <td>{{ $row->user->surname.' '.$row->user->name.' '.$row->user->patronymic.' '.$row->user->educational->name.' '.$row->user->class.' класс' }}</td>
+                <td>{{ $row->childrenEvent->event->subject->name }}</td>
+                <td>{{ date("d.m.y", strtotime($row->childrenEvent->date_olympiad)) }}</td>
+                <td>{{ $row->childrenEvent->classT->name }}</td>
+                <td>{{ $row->childrenEvent->event->tour }} тур</td>
+                <td>{{ date("d.m.Y H:i", $row->created_at) }}</td>
+                <td>{!! $row->prettyStatus() !!}</td>
+            </tr>
+            <?php $counter++ ?>
+        @endforeach
 
         </tbody>
     </table>
@@ -288,7 +119,7 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         const content = document.querySelector('.content');
         const itemsPerPage = 10;
         let currentPage = 0;
@@ -339,4 +170,158 @@
         createPageButtons(); // Call this function to create the page buttons initially
         showPage(currentPage);
     });
+*/
+
+    function userSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("userInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function subjectSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("subjectInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function dateSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("dateInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function classSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("classInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function tourSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("tourInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function dateEntrySearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("dateEntryInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function statusSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("statusInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[7];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
