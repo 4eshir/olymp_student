@@ -46,9 +46,6 @@
         <a>
             Мои олимпиады
         </a>
-        <a>
-            Список олимпиад
-        </a>
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
@@ -79,9 +76,6 @@
             <a href="{{ route('entry') }}">
                 Мои олимпиады
             </a>
-            <a>
-                Список олимпиад
-            </a>
         </div>
 
         <button type="submit" class="logout" style="border: 0">
@@ -107,21 +101,21 @@
 
             <div>
                 <select name="municipality" id="municipalityInput" class="form-select">
-                    <option value="" selected>Выберите район</option>
+                    <option value="" selected>Выберите район нахождения Вашего учебного заведения</option>
                     @foreach ($municipalities as $one)
                         echo '<option value="{{$one->id}}" {{ $model->municipality_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
                     @endforeach
                 </select>
 
                 <select name="educational" id="educationalInput" class="form-select">
-                    <option value="">Выберите учебное учреждение</option>
+                    <option value="">Выберите Ваше учебное учреждение</option>
                     @foreach ($educational as $one)
                         echo '<option value="{{$one->id}}" {{ $model->educational_institution_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
                     @endforeach
                 </select>
 
                 <select name="class" id="classInput" class="form-select">
-                    <option disabled>Выберите класс</option>
+                    <option disabled>Выберите Ваш класс обучения</option>
                     <option value="7" {{ $model->class == 7 ? 'selected' : '' }}>7</option>
                     <option value="8" {{ $model->class == 8 ? 'selected' : '' }}>8</option>
                     <option value="9" {{ $model->class == 9 ? 'selected' : '' }}>9</option>

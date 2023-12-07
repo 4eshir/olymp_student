@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редактировать общую информацию</title>
+    <title>Мои олимпиады</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -85,9 +85,6 @@
         <a>
             Мои олимпиады
         </a>
-        <a>
-            Список олимпиад
-        </a>
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
@@ -116,9 +113,6 @@
             <a class="active" href="{{ route('entry') }}">
                 Мои олимпиады
             </a>
-            <a>
-                Список олимпиад
-            </a>
         </div>
         <button type="submit" class="logout" style="border: 0">
             Выход
@@ -138,7 +132,7 @@
 
             @endif
             <div class='title'>
-                <h4>Запись на олимпиаду</h4>
+                <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
 
             <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
@@ -162,12 +156,24 @@
 
                     <label>Класс участия в олимпиаде</label>
                     <select class="form-select" name="participationClass" id="classInput2"></select>
-                    <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
 
                 </div>
 
+                <div class="form-field">
+
+                    <label>Обоснование участия</label>
+                    <select class="form-select" name="warrant" id="classInput3">
+                        @foreach($warrants as $warrant)
+                            <option value="{{ $warrant->id }}">{{ $warrant->name }}</option>
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
+
                 <div class="form-btn">
-                    <button class="btn btn-primary" type="submit">Записаться</button>
+                    <button class="btn btn-primary" type="submit">Подать заявку на участие</button>
                 </div>
             </form>
 
@@ -182,6 +188,7 @@
                         <th>Номер тура</th>
                         <th>Дата и время проведения</th>
                         <th>Адрес проведения</th>
+                        <th></th>
                     </tr>
                     @foreach($entries as $entry)
                         <tr>
@@ -205,10 +212,10 @@
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
-                                        <button type="submit" class="btn btn-danger">Отменить запись</button>
+                                        <button type="submit" class="btn btn-danger">Отменить заявку</button>
                                     </form>
                                 @else
-                                    <span style="color: red">Отмена записи недоступна</span>
+                                    <span style="color: red">Отмена заявки недоступна</span>
                                 @endif
                             </td>
 
@@ -220,9 +227,11 @@
         @else
 
             <div class="verification_danger">
+                <p class="verification_text">
+                    Ваша учетная запись не подтверждена. Вам недоступна регистрация на региональный этап Всероссийсой олимпиады школьников.
+                </p>
                 <p class="verification_text" style="margin-bottom: 0">
-                    Ваша учетная запись не подтверждена. Вам недоступна запись на олимпиаду.<br>
-                    Проверьте электронную почту, которую Вы указали при регистрации или следуйте инструкции в разделе "Профиль"
+                    Проверьте электронную почту, которую Вы указали при регистрации или следуйте инструкции в разделе "Профиль".
                 </p>
             </div>
 

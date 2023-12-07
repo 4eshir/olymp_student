@@ -503,6 +503,16 @@ footer p {
     flex-direction: column;
   }
 }
+
+.info2 {
+    gap: 0;
+}
+.info2 p {
+    margin-bottom: 0;
+    color: #8C8C8C;
+    font-weight: 500;
+}
+
 .mainform_profile .btnline {
   display: flex;
   align-items: flex-start;

@@ -49,9 +49,6 @@
         <a>
             Мои олимпиады
         </a>
-        <a>
-            Список олимпиад
-        </a>
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
@@ -81,9 +78,6 @@
             </a>
             <a href="{{ route('entry') }}">
                 Мои олимпиады
-            </a>
-            <a>
-                Список олимпиад
             </a>
         </div>
 
@@ -136,7 +130,20 @@
                         value="{{ $model->patronymic }}"
                     />
                 </div>
-                <input name="birthdate" type="text" id="datepicker" class="form-control" placeholder="Дата рождения" value="{{ date("d/m/Y", strtotime($model->birthdate)) }}">
+                <div class="info1">
+                    <div class="info2">
+                        <p>Пол</p>
+                        <select name="sex" id="sexInput" class="form-select">
+                            <option value="Мужской" {{ $model->sex == 'Мужской' ? 'selected' : '' }}>Мужской</option>
+                            <option value="Женский" {{ $model->sex == 'Женский' ? 'selected' : '' }}>Женский</option>
+                        </select>
+                    </div>
+                    <div class="info2">
+                        <p>Дата рождени </p>
+                        <input name="birthdate" type="text" id="datepicker" class="form-control" placeholder="Дата рождения" value="{{ date("d/m/Y", strtotime($model->birthdate)) }}">
+                    </div>
+                </div>
+
             </div>
 
             <div class="form-btn">

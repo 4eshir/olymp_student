@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
+use App\Models\common\WarrantInvolvement;
 use App\Models\displayed\DisplayEntry;
 use App\Models\temporary\ChildrenEvent;
 use App\Models\temporary\ClassT;
@@ -23,6 +24,7 @@ class EntryController extends Controller
         $model = UserWork::where('id', Auth::id())->first();
         $subjects = Subject::all();
         $entries = [];
+        $warrant = WarrantInvolvement::all();
 
         $targetOlympiadEntries = OlympiadEntryWork::where('user_id', Auth::id())->get();
 
@@ -41,7 +43,7 @@ class EntryController extends Controller
             $entries[] = $displayEntry;
         }
 
-        return view('lk.entry', ['model' => $model, 'subjects' => $subjects, 'entries' => $entries]);
+        return view('lk.entry', ['model' => $model, 'subjects' => $subjects, 'entries' => $entries, 'warrants' => $warrant]);
     }
 
     public function store(Request $request)
@@ -66,10 +68,11 @@ class EntryController extends Controller
                 $entry->user_id = Auth::id();
 
                 $entry->children_event_id = $childrenEvent->id;
+                $entry->warrant_involvement_id = $request->warrant;
+                $entry->created_at = date("Y-m-d H:i:s");
 
                 $entry->save();
             }
-
 
 
         }

@@ -76,6 +76,7 @@ class LkController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->patronymic = $request->patronymic;
+        $user->sex = $request->sex;
         $user->birthdate = date("Y-m-d", strtotime($request->birthdate));
 
         $user->save();
