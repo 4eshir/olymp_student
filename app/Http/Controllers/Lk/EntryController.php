@@ -69,7 +69,7 @@ class EntryController extends Controller
 
                 $entry->children_event_id = $childrenEvent->id;
                 $entry->warrant_involvement_id = $request->warrant;
-                $entry->created_at = strtotime(date("Y-m-d H:i:s"));
+                //$entry->created_at = strtotime(date("Y-m-d H:i:s"));
 
                 $entry->save();
             }

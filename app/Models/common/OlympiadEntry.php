@@ -10,5 +10,4 @@ class OlympiadEntry extends Model
     use HasFactory;
 
     protected $table = 'olympiad_entry';
-    public $timestamps = false;
 }
