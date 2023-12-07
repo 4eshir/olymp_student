@@ -104,7 +104,7 @@
                 <td>{{ date("d.m.y", strtotime($row->childrenEvent->date_olympiad)) }}</td>
                 <td>{{ $row->childrenEvent->classT->name }}</td>
                 <td>{{ $row->childrenEvent->event->tour }} тур</td>
-                <td>{{ date("d.m.Y H:i", $row->created_at) }}</td>
+                <td>{{ date("d.m.Y H:i", strtotime($row->created_at)) }}</td>
                 <td>{!! $row->prettyStatus() !!}</td>
             </tr>
             <?php $counter++ ?>
