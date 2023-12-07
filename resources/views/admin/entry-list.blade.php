@@ -72,11 +72,12 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Grade 1</th>
-            <th>Grade 2</th>
-            <th>Grade 3</th>
-            <th>Grade 4</th>
-            <th>Grade 5</th>
+            <th>Обучающийся/Обучающаяся</th>
+            <th>Предмет</th>
+            <th>Дата проведения</th>
+            <th>Класс участия</th>
+            <th>Тур</th>
+            <th>Дата подачи заявки</th>
         </tr>
         </thead>
         <tbody>
