@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\work\OlympiadEntryWork;
 
 class EntryListController extends Controller
 {
@@ -13,7 +14,9 @@ class EntryListController extends Controller
      */
     public function create()
     {
-        return view('admin.entry-list');
+        $model = OlympiadEntryWork::all();
+
+        return view('admin.entry-list', ['model' => $model]);
     }
 
     /*

@@ -8,7 +8,6 @@ use App\Models\temporary\ChildrenEvent;
 class OlympiadEntryWork extends OlympiadEntry
 {
     protected $guarded = [];
-    public $timestamps = false;
 
     public function childrenEvent()
     {
