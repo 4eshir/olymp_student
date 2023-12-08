@@ -106,7 +106,7 @@ header {
 }
 
 .mainform {
-  margin-top: auto;
+  margin-top: 3%;
   margin-bottom: auto;
   z-index: 2;
   display: flex;
@@ -171,7 +171,7 @@ header {
 }
 
 .login_info {
-    margin-top: auto;
+    margin-top: 1%;
     z-index: 2;
     display: flex;
     width: 500px;
