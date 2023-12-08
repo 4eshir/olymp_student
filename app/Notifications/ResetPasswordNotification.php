@@ -13,7 +13,7 @@ class ResetPasswordNotification extends ResetPassword {
     protected function buildMailMessage($url) {
         return (new MailMessage)
             ->subject('Уведомление о сбросе пароля')
-            ->from('noreply@schooltech.ru')
+            ->from('vsosh@schooltech.ru')
             ->line(Lang::get('Вы получили это письмо, потому что отправили запрос на сброс пароля для вашей учетной записи в системе ВСоШ.'))
             ->action(Lang::get('Сбросить пароль'), $url)
             ->line(Lang::get('Срок действия ссылки для сброса пароля истечет через :count минут.', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')]))

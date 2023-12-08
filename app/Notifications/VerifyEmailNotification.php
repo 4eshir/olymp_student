@@ -14,7 +14,7 @@ class VerifyEmailNotification extends VerifyEmail
     {
         return (new MailMessage)
             ->subject(Lang::get('Подтверждение аккаунта ВСоШ'))
-            ->from('noreply@schooltech.ru')
+            ->from('vsosh@schooltech.ru')
             ->line(Lang::get('Нажмите на кнопку ниже, чтобы подтвердить свой e-mail'))
             ->action(Lang::get('Подтвердить e-mail'), $url);
     }
