@@ -16,7 +16,7 @@ class EntryListController extends Controller
     {
         $model = OlympiadEntryWork::all();
 
-        return view('admin.entry-list', ['model' => $model]);
+        return view('admin.entry-list.layout', ['model' => $model]);
     }
 
     /*
