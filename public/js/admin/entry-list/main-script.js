@@ -24,6 +24,10 @@ function userSearch() {
     }
 
     recountTableNumber();
+
+    var elem = document.getElementById("allCount");
+    elem.innerHTML = "Всего заявок: " + countTrTable();
+
 }
 
 

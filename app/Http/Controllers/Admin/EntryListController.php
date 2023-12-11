@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\work\OlympiadEntryWork;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EntryListController extends Controller
 {
@@ -14,6 +16,10 @@ class EntryListController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('admin-base')) {
+            abort(403);
+        }
+
         $model = OlympiadEntryWork::all();
 
         return view('admin.entry-list.layout', ['model' => $model]);
