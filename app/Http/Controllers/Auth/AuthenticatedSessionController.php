@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = UserWork::where('id', Auth::id())->first();
 
-        return $user->role_id == 1 ? redirect()->intended(RouteServiceProvider::HOME) : redirect()->intended(RouteServiceProvider::HOME_ADMIN);
+        return $user->role_id == 1 ? redirect()->intended(RouteServiceProvider::HOME_ADMIN) : redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
