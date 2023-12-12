@@ -19,13 +19,13 @@
             <thead>
             <tr>
                 <th></th>
-                <th><input style="width: 100%" type="text" id="userInput" onkeyup="userSearch()"></th>
-                <th><input style="width: 100%" type="text" id="subjectInput" onkeyup="subjectSearch()"></th>
-                <th><input style="width: 100%" type="text" id="dateInput" onkeyup="dateSearch()"></th>
-                <th><input style="width: 100%" type="text" id="classInput" onkeyup="classSearch()"></th>
-                <th><input style="width: 100%" type="text" id="tourInput" onkeyup="tourSearch()"></th>
-                <th><input style="width: 100%" type="text" id="dateEntryInput" onkeyup="dateEntrySearch()"></th>
-                <th><input style="width: 100%" type="text" id="statusInput" onkeyup="statusSearch()"></th>
+                <th><input style="width: 100%" type="text" id="userInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="subjectInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="dateInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="classInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="tourInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="dateEntryInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="statusInput" onkeyup="search()"></th>
             </tr>
 
             <tr>
