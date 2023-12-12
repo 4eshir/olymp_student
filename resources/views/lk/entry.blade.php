@@ -123,14 +123,7 @@
 
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
-
-            @if (Session::has('flash_message'))
-
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%; margin-bottom: 0">
-                    {{Session::get('flash_message')}}
-                </div>
-
-            @endif
+            
             <div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
@@ -176,6 +169,21 @@
                     <button class="btn btn-primary" type="submit">Подать заявку на участие</button>
                 </div>
             </form>
+
+            @if (Session::has('flash_message'))
+                <div class="modalBackground">
+                    <div class="modalActive">
+                        <div class="modalClose">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                                <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
+                            </svg>
+                        </div>
+                        <div class="modalWindow">
+                            {!! \Illuminate\Support\Facades\Session::get('flash_message')  !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <div class='title'>
                 <h4>Мои олимпиады</h4>
@@ -251,37 +259,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <!-- Initialize the datepicker -->
-<script>
-    $(function() {
-        $('#datepicker').datepicker();
-    });
-
-    var burgerBtn = document.querySelector('.burger_btn');
-    var burgerBtn2 = document.querySelector('.burger_btn_close');
-    var burgerMenu = document.querySelector('.burger');
-
-    document.addEventListener('DOMContentLoaded', function() {
-        burgerBtn.addEventListener('click', function() {
-            // Переключение отображения блока
-            burgerMenu.style.display = 'flex';
-        });
-        burgerBtn2.addEventListener('click', function() {
-            // Переключение отображения блока
-            burgerMenu.style.display = 'none';
-        });
-    });
-
-    function handleResize() {
-        if ((window.innerWidth > 768) && (burgerMenu.style.display == 'flex')) {
-            burgerMenu.style.display = 'none';
-        }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-</script>
-
-
 
 <style>
     #loader {
@@ -334,6 +311,7 @@
         })
     })
 </script>
-
+<script src="{{ asset('js/lk/entry.js') }}"></script>
+<script src="{{ asset('js/lk/modal.js') }}"></script>
 </body>
 </html>
