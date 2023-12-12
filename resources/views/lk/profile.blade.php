@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./css/profile.css">
     <link rel="stylesheet" href="./css/notifications.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-
     <style>
         /* Ваши стили для выделения выбранных дат */
         .datepicker-dropdown .datepicker-days .active,
@@ -104,6 +103,8 @@
                 <p>    Если Вы указали неверный email при регистрации, перейдите в раздел редактирования контактов, укажите правильную электронную почту и подтвердите её.</p>
                 <input type="submit" class="btn btn-warning" value="Повторная отправка письма с подтверждением">
 
+                @if (Session::has('flash_message'))
+                    {{ \Illuminate\Support\Facades\Session::get('flash_message') }}
                 <div class="modalBackground">
                     <div class="modalActive">
                         <div class="modalClose">
@@ -111,8 +112,7 @@
                                 <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
                             </svg>
                         </div>
-                        @if (Session::has('flash_message'))
-                            <div class="modalWindow" style="display:block;">{{ \Illuminate\Support\Facades\Session::get('flash_message') }}
+                            <div class="modalWindow" style="display:block;">
                                 <p>Письмо с подтверждением успешно отправлено!</p>
                                 <div style="padding: 0 45% 5%">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" class="edit_icon_gray">
@@ -125,9 +125,9 @@
                                 <p>1. Проверьте папки со спамом и массовыми рассылками.</p>
                                 <p>2. Проверьте корректность введенного email-адреса.</p>
                             </div>
-                        @endif
                     </div>
                 </div>
+                @endif
 
             </form>
         @endif
@@ -235,85 +235,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <!-- Initialize the datepicker -->
 <script>
-    var burgerBtn = document.querySelector('.burger_btn');
-    var burgerBtn2 = document.querySelector('.burger_btn_close');
-    var burgerMenu = document.querySelector('.burger');
 
-    document.addEventListener('DOMContentLoaded', function() {
-        burgerBtn.addEventListener('click', function() {
-            // Переключение отображения блока
-            burgerMenu.style.display = 'flex';
-        });
-        burgerBtn2.addEventListener('click', function() {
-            // Переключение отображения блока
-            burgerMenu.style.display = 'none';
-        });
-    });
-
-    function handleResize() {
-        if ((window.innerWidth > 768) && (burgerMenu.style.display == 'flex')) {
-            burgerMenu.style.display = 'none';
-        }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    // устанавливаем триггер для модального окна (название можно изменить)
-    const modalTrigger = document.getElementsByClassName("trigger")[0];
-
-    // получаем ширину отображенного содержимого и толщину ползунка прокрутки
-    const windowInnerWidth = document.documentElement.clientWidth;
-    const scrollbarWidth = parseInt(window.innerWidth) - parseInt(windowInnerWidth);
-
-    // привязываем необходимые элементы
-    const bodyElementHTML = document.getElementsByTagName("body")[0];
-    const modalBackground = document.getElementsByClassName("modalBackground")[0];
-    const modalClose = document.getElementsByClassName("modalClose")[0];
-    const modalActive = document.getElementsByClassName("modalActive")[0];
-
-    // функция для корректировки положения body при появлении ползунка прокрутки
-    function bodyMargin() {
-        bodyElementHTML.style.marginRight = "-" + scrollbarWidth + "px";
-    }
-
-    // при длинной странице - корректируем сразу
-    bodyMargin();
-
-    // событие нажатия на триггер открытия модального окна
-    modalTrigger.addEventListener("click", function () {
-        // делаем модальное окно видимым
-        modalBackground.style.display = "block";
-
-        // если размер экрана больше 1366 пикселей (т.е. на мониторе может появиться ползунок)
-        if (windowInnerWidth >= 1366) {
-            bodyMargin();
-        }
-
-        // позиционируем наше окно по середине, где 175 - половина ширины модального окна
-        modalActive.style.left = "calc(50% - " + (175 - scrollbarWidth / 2) + "px)";
-    });
-
-    // нажатие на крестик закрытия модального окна
-    modalClose.addEventListener("click", function () {
-        modalBackground.style.display = "none";
-        if (windowInnerWidth >= 1366) {
-            bodyMargin();
-        }
-    });
-
-    // закрытие модального окна на зону вне окна, т.е. на фон
-    modalBackground.addEventListener("click", function (event) {
-        if (event.target === modalBackground) {
-            modalBackground.style.display = "none";
-            if (windowInnerWidth >= 1366) {
-                bodyMargin();
-            }
-        }
-    });
 
 </script>
 
-
+<script src="{{ asset('js/lk/profile.js') }}"></script>
 </body>
 </html>
