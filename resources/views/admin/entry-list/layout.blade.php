@@ -12,6 +12,8 @@
 <body style="background-color: #f1f1f1">
     @include('admin.entry-list.navbar')
 
+    <p>{{ $model->temp }}</p>
+
     <article class="content">
         <h3 align="left">Заявки на олимпиаду</h3>
         <h5 align="left" style="color: green" id="allCount"></h5>

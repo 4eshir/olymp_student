@@ -9,6 +9,8 @@ class OlympiadEntryWork extends OlympiadEntry
 {
     protected $guarded = [];
 
+    public $temp = '';
+
     public function childrenEvent()
     {
         return $this->hasOne(ChildrenEvent::class, 'id', 'children_event_id');
@@ -26,5 +28,12 @@ class OlympiadEntryWork extends OlympiadEntry
         if ($this->status === 0) $strStatus = '<span style="color: red">Отклонена</span>';
         if ($this->status === 1) $strStatus = '<span style="color: green">Одобрена</span>';
         return $strStatus;
+    }
+
+    public function getDisplayData()
+    {
+        $boobs1 = "boobs1";
+        $boobs2 = "boobs2";
+        return ["item1" => $boobs1, "item2" => $boobs2];
     }
 }

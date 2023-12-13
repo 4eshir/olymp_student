@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\work\OlympiadEntryWork;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
 
 class EntryListController extends Controller
 {
@@ -21,6 +22,8 @@ class EntryListController extends Controller
         }
 
         $model = OlympiadEntryWork::all();
+
+        $model->temp = Http::get(url('/api/get-entries'));
 
         return view('admin.entry-list.layout', ['model' => $model]);
     }
