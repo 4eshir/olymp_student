@@ -3,7 +3,7 @@
 @if (! empty($greeting))
 # {{ $greeting }}
 @else
-@if ($level === 'error')
+@if ($level === 'error.blade.php')
 # @lang('Whoops!')
 @else
 # @lang('Hello!')
@@ -21,7 +21,7 @@
 <?php
     switch ($level) {
         case 'success':
-        case 'error':
+        case 'error.blade.php':
             $color = $level;
             break;
         default:

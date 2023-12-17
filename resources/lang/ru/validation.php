@@ -7,7 +7,7 @@ return [
     | Validation Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines contain the default error messages used by
+    | The following language lines contain the default error.blade.php messages used by
     | the validator class. Some of these rules have multiple versions such
     | as the size rules. Feel free to tweak each of these messages here.
     |
@@ -162,7 +162,10 @@ return [
     */
 
     'attributes' => [
-
+        'email' => 'E-mail',
+        'login' => '"E-mail или телефон"',
+        'password' => '"Пароль"',
+        'phone_number' => '"Номер телефона"',
     ],
 
 ];

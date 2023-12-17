@@ -19,33 +19,38 @@
 
 <form class="mainform" method="POST" action="{{ route('register') }}">
     @csrf
+
+    <div class="form-field">
+        @if(count($errors) > 0)
+            <div class="alert alert-danger" style="width: 100%; padding-left: 5px; padding-bottom: 0; margin-bottom: 0">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
     <h2>Регистрация</h2>
     <div class="form-field">
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
         <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Email" value="{{ old('email') }}"/>
-        <input name="phone_number" class="form-control tel" id="exampleFormControlInput2" placeholder="Номер телефона" value="{{ old('phone_number') }}">
+        <input name="phone_number" class="form-control tel @error('phone_number') is-invalid @enderror" id="exampleFormControlInput2" placeholder="Номер телефона" value="{{ old('phone_number') }}">
         <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword1" placeholder="Пароль" autocomplete="new-password">
         <input name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword2" placeholder="Повторите пароль" autocomplete="new-password">
     </div>
 
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="pdPolicy">
+        <input class="form-check-input @error('pdPolicy') is-invalid @enderror" type="checkbox" id="flexCheckDefault" name="pdPolicy">
         <label class="form-check-label" for="flexCheckDefault">
             Согласен с <a href="#">политикой обработки данных</a>
         </label>
     </div>
 
-    @if(count($errors) > 0)
-        <div class="alert alert-danger" style="width: 100%; padding-left: 5px; padding-bottom: 0; margin-bottom: 0">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <div class="form-btn">
         <button class="btn btn-primary" type="submit">Продолжить</button>
@@ -123,6 +128,29 @@
         bgElement.style.setProperty('--size', `${gradientSize}%`);
 
     })
+
+
+    var email = document.getElementById('exampleFormControlInput1');
+    var phone = document.getElementById('exampleFormControlInput2');
+    var password = document.getElementById('inputPassword1');
+    var password_repeat = document.getElementById('inputPassword2');
+
+    email.addEventListener("change", function () {
+        this.classList.remove("is-invalid");
+    });
+
+    phone.addEventListener("change", function () {
+        this.classList.remove("is-invalid");
+    });
+
+    password.addEventListener("change", function () {
+        this.classList.remove("is-invalid");
+    });
+
+    password_repeat.addEventListener("change", function () {
+        this.classList.remove("is-invalid");
+    });
+
 </script>
 
 </body>
