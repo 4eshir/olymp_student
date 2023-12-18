@@ -103,7 +103,9 @@
                 <select name="municipality" id="municipalityInput" class="form-select">
                     <option value="" selected>Выберите район нахождения Вашего учебного учреждения</option>
                     @foreach ($municipalities as $one)
-                        echo '<option value="{{$one->id}}" {{ $model->municipality_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
+                        @if($one->id < 14)
+                            echo '<option value="{{$one->id}}" {{ $model->municipality_id == $one->id ? 'selected' : '' }}>{{$one->name}}</option>';
+                        @endif
                     @endforeach
                 </select>
 
