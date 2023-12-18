@@ -24,8 +24,6 @@ class EntryListController extends Controller
 
         $model = OlympiadEntryWork::all();
 
-        dd(App::environment('local'));
-
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
 
         return view('admin.entry-list.layout', ['model' => $model]);
