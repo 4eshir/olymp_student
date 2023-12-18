@@ -157,7 +157,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <h1>{{ $errorCode }}</h1>
         <p> {!! $title !!}</p>
         <div class="sub">
-            <p><a class="btn-back" href="{{ $homeLink }}">Вернуться назад</a></p>
+            <p><a class="btn-back" href="{{ $homeLink }}">{{ $buttonText }}</a></p>
         </div>
     </div>
 </div>
