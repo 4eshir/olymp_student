@@ -123,8 +123,8 @@
                     <option value="11" {{ $model->class == 11 ? 'selected' : '' }}>11</option>
                 </select>
 
-                <input name="address" type="text" class="form-control" id="addressInput" placeholder="г. Астрахань, ул. Куликова, д 0, кв 0" value="{{ $model->address }}"/>
-
+                {{--<input name="address" type="text" class="form-control" id="addressInput" placeholder="г. Астрахань, ул. Куликова, д 0, кв 0" value="{{ $model->address }}"/>
+--}}
             </div>
 
             <div class='btnline'>

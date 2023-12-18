@@ -214,11 +214,6 @@
                     <p>{{ $model->class ? $model->class : '---' }}</p>
                 </div>
 
-                <div class='grade'>
-                    <span>Адрес проживания</span>
-                    <p>{{ $model->address ? $model->address : '---' }}</p>
-                </div>
-
             </div>
         </div>
     </div>

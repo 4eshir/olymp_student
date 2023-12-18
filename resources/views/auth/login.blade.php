@@ -25,6 +25,7 @@
     </div>
 
     <form class="mainform animate__animated animate__fadeIn" method="POST" action="{{ route('login') }}">
+        @csrf
         <div class="form-field">
             @if(count($errors) > 0)
                 <div class="alert alert-danger" style="width: 100%; padding-left: 5px; padding-bottom: 0; margin-bottom: 0">

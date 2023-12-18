@@ -23,7 +23,6 @@ class UserWork extends User
             $this->surname != null &&
             $this->phone_number != null &&
             $this->email != null &&
-            $this->address != null &&
             $this->birthdate != null &&
             $this->municipality_id != null &&
             $this->educational_institution_id != null &&
