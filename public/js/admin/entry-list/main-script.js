@@ -1,4 +1,4 @@
-var markedTr = [[], [], [], [], [], [], []]
+var markedTr = [[], [], [], [], [], [], [], [], []]
 
 window.onload = function () {
     var elem = document.getElementById("allCount");
@@ -11,6 +11,8 @@ function search()
     subjectSearch();
     dateSearch();
     classSearch();
+    schoolSearch();
+    jurisdictionSearch()
     tourSearch();
     dateEntrySearch();
     statusSearch();
@@ -131,10 +133,10 @@ function classSearch() {
 }
 
 
-function tourSearch() {
+function schoolSearch() {
     // Declare variables
     var input, filter, table, tr, td, i;
-    input = document.getElementById("tourInput");
+    input = document.getElementById("schoolInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
@@ -143,10 +145,11 @@ function tourSearch() {
 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
+
         td = tr[i].getElementsByTagName("td")[5];
-        let index = markedTr[4].indexOf(i);
-        if (index !== -1) markedTr[4].splice(index, 1);
         if (td && !checkMarked(i)) {
+            let index = markedTr[4].indexOf(i);
+            if (index !== -1) markedTr[4].splice(index, 1);
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
@@ -158,10 +161,10 @@ function tourSearch() {
 }
 
 
-function dateEntrySearch() {
+function jurisdictionSearch() {
     // Declare variables
     var input, filter, table, tr, td, i;
-    input = document.getElementById("dateEntryInput");
+    input = document.getElementById("jurisdictionInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
@@ -171,9 +174,9 @@ function dateEntrySearch() {
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[6];
-        let index = markedTr[5].indexOf(i);
-        if (index !== -1) markedTr[5].splice(index, 1);
         if (td && !checkMarked(i)) {
+            let index = markedTr[5].indexOf(i);
+            if (index !== -1) markedTr[5].splice(index, 1);
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
@@ -185,10 +188,10 @@ function dateEntrySearch() {
 }
 
 
-function statusSearch() {
+function tourSearch() {
     // Declare variables
     var input, filter, table, tr, td, i;
-    input = document.getElementById("statusInput");
+    input = document.getElementById("tourInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
@@ -206,6 +209,60 @@ function statusSearch() {
             } else {
                 tr[i].style.display = "none";
                 markedTr[6].push(i);
+            }
+        }
+    }
+}
+
+
+function dateEntrySearch() {
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("dateEntryInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    if (filter === "") markedTr[7].length = 0;
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[8];
+        let index = markedTr[7].indexOf(i);
+        if (index !== -1) markedTr[7].splice(index, 1);
+        if (td && !checkMarked(i)) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+                markedTr[7].push(i);
+            }
+        }
+    }
+}
+
+
+function statusSearch() {
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("statusInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    if (filter === "") markedTr[8].length = 0;
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[9];
+        let index = markedTr[8].indexOf(i);
+        if (index !== -1) markedTr[8].splice(index, 1);
+        if (td && !checkMarked(i)) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+                markedTr[8].push(i);
             }
         }
     }

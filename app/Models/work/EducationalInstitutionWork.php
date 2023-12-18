@@ -8,4 +8,9 @@ class EducationalInstitutionWork extends EducationalInstitution
 {
     protected $guarded = [];
     public $timestamps = false;
+
+    public function jurisdiction()
+    {
+        return $this->hasOne(MunicipalityWork::class, 'id', 'jurisdiction_id');
+    }
 }

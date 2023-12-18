@@ -2,6 +2,8 @@
 
 namespace App\Models\temporary;
 
+use App\Models\common\EducationalInstitution;
+use App\Models\work\EducationalInstitutionWork;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -23,6 +23,8 @@
                 <th><input style="width: 100%" type="text" id="subjectInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="dateInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="classInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="schoolInput" onkeyup="search()"></th>
+                <th><input style="width: 100%" type="text" id="jurisdictionInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="tourInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="dateEntryInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="statusInput" onkeyup="search()"></th>
@@ -34,6 +36,8 @@
                 <th>Предмет</th>
                 <th>Дата проведения</th>
                 <th>Класс участия</th>
+                <th>Уч. учреждение</th>
+                <th>МО</th>
                 <th>Тур</th>
                 <th>Дата подачи заявки</th>
                 <th>Статус заявки</th>
@@ -48,6 +52,8 @@
                     <td>{{ $row->childrenEvent->event->subject->name }}</td>
                     <td>{{ date("d.m.y", strtotime($row->childrenEvent->date_olympiad)) }}</td>
                     <td>{{ $row->childrenEvent->classT->name }}</td>
+                    <td>{{ $row->user->educational->name }}</td>
+                    <td>{{ $row->user->educational->jurisdiction->name }}</td>
                     <td>{{ $row->childrenEvent->event->tour }} тур</td>
                     <td>{{ date("d.m.Y H:i", strtotime($row->created_at)) }}</td>
                     <td>{!! $row->prettyStatus() !!}</td>

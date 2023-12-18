@@ -45,6 +45,6 @@ class UserWork extends User
 
     public function educational()
     {
-        return $this->hasOne(EducationalInstitution::class, 'id', 'educational_institution_id');
+        return $this->hasOne(EducationalInstitutionWork::class, 'id', 'educational_institution_id');
     }
 }
