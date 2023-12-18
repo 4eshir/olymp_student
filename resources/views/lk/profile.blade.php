@@ -48,13 +48,10 @@
     </div>
 
     <div class='mainnav'>
-        <a>
-            Главная
-        </a>
         <a class="active" href="{{ route('default') }}">
             Профиль
         </a>
-        <a>
+        <a href="{{ route('entry') }}">
             Мои олимпиады
         </a>
     </div>
@@ -87,9 +84,12 @@
                 </a>
             </div>
 
-            <button type="submit" class="logout" style="border: 0">
-                Выход
-            </button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="logout" style="border: 0">
+                    Выход
+                </button>
+            </form>
 
         {{--</div>--}}
     </form>

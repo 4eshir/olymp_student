@@ -25,7 +25,7 @@
     </div>
 
     <form class="mainform animate__animated animate__fadeIn" method="POST" action="{{ route('login') }}">
-        @csrf
+
         <div class="form-field">
             @if(count($errors) > 0)
                 <div class="alert alert-danger" style="width: 100%; padding-left: 5px; padding-bottom: 0; margin-bottom: 0">
@@ -39,7 +39,7 @@
         </div>
         <h2>Вход в аккаунт</h2>
         <div class="form-field">
-
+            @csrf
             <!-- Session Status -->
             <x-auth-session-status style="color: #00bd00;" class="mb-4" :status="session('status')" />
 

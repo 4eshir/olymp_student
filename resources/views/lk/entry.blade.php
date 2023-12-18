@@ -76,13 +76,10 @@
     </div>
 
     <div class='mainnav'>
-        <a>
-            Главная
-        </a>
-        <a class="active" href="{{ route('default') }}">
+        <a href="{{ route('default') }}">
             Профиль
         </a>
-        <a>
+        <a class="active" href="{{ route('entry') }}">
             Мои олимпиады
         </a>
     </div>
@@ -114,16 +111,19 @@
                 Мои олимпиады
             </a>
         </div>
-        <button type="submit" class="logout" style="border: 0">
-            Выход
-        </button>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout" style="border: 0">
+                Выход
+            </button>
+        </form>
 
         {{--</div>--}}
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
-            
+
             <div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
