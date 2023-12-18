@@ -39,13 +39,10 @@
     </div>
 
     <div class='mainnav'>
-        <a>
-            Главная
-        </a>
         <a class="active" href="{{ route('default') }}">
             Профиль
         </a>
-        <a>
+        <a href="{{ route('entry') }}">
             Мои олимпиады
         </a>
     </div>
