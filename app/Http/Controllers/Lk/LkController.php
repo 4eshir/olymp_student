@@ -13,6 +13,7 @@ use App\Models\work\UserWork;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -35,6 +36,8 @@ class LkController extends Controller
         $model = UserWork::where('id', $id)->first();
         $municipalities = MunicipalityWork::all();
         $educational = EducationalInstitutionWork::all();
+
+
 
 
         return view('lk.profile', ['model' => $model, 'municipalities' => $municipalities, 'educational' => $educational]);

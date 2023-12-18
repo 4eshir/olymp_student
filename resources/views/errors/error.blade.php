@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Free Funky 404 for Website Template | Home :: w3layouts</title>
+    <title>Что-то пошло не так...</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href='//fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 
