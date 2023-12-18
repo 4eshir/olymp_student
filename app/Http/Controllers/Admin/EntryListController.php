@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\work\OlympiadEntryWork;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
@@ -22,6 +23,8 @@ class EntryListController extends Controller
         }
 
         $model = OlympiadEntryWork::all();
+
+        dd(App::environment('production'));
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
 
