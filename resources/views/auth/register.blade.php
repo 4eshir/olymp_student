@@ -46,7 +46,7 @@
     <div class="form-check">
         <input class="form-check-input @error('pdPolicy') is-invalid @enderror" type="checkbox" id="flexCheckDefault" name="pdPolicy">
         <label class="form-check-label" for="flexCheckDefault">
-            Согласен с <a href="#">политикой обработки данных</a>
+            Согласен с <a href="./Пользовательское соглашение ГАОУ АО ДПО «РШТ».docx">правилами пользования сайтом</a> и <a href="./Согласие на обработку персональных данных пользователей.docx">обработки персональных данных</a> в соответствии с <a href="./Политика в отношении обработки ПДн  ГАОУ АО ДО РШТ.pdf">Политикой конфиденциальности</a>
         </label>
     </div>
 
