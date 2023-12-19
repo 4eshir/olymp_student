@@ -493,7 +493,7 @@ header {
   margin-bottom: auto;
   z-index: 2;
   display: flex;
-  max-width: 500px;
+  width: 500px;
   padding: 40px 32px;
   flex-direction: column;
   align-items: center;
@@ -519,6 +519,7 @@ header {
   align-items: center;
   color: #dc3545;
 }
+
 .mainform h2 {
   color: #383C3F;
   font-family: Inter;
@@ -527,6 +528,7 @@ header {
   font-weight: 600;
   line-height: normal;
 }
+
 .mainform .form-field {
   display: flex;
   flex-direction: column;
