@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EntryApiController;
+use App\Http\Controllers\Api\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/get-entries', [EntryApiController::class, 'getOlympiadEntry'])->name('getOlympiadEntry');
+Route::get('/get-entries/{token}', [EntryApiController::class, 'getOlympiadEntry'])->name('getOlympiadEntry');
+
+Route::get('/get-users/{token}/{params}', [UserApiController::class, 'getUsers'])->name('getUsers');
