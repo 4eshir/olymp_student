@@ -496,9 +496,10 @@ footer p {
 .profile .section .call_section {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  align-items: start;
-  justify-content: left;
+  padding: 24px 32px;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
   gap: 24px;
   align-self: stretch;
   border-radius: 12px;
@@ -513,12 +514,12 @@ footer p {
   width: 100%;
   color: var(--Secondary, #024566);
   font-family: Inter;
-  font-size: 13pt;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 0px;
-  text-align: left;
+  text-align: center;
 }
 .profile .section .call_section .btn {
   width: auto;
@@ -903,56 +904,5 @@ footer p {
     flex-direction: column;
     align-items: center;
     gap: 32px;
-      max-width: 430px;
   }
 }/*# sourceMappingURL=profile.css.map */
-
-/* фон нашего модального окна */
-.modalBackground {
-    /*display: none;*/
-    background: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    /* указываем z-индекс для корректного наслаивания */
-    z-index: 1;
-    top: 0;
-    left: 0;
-}
-
-/* позиционирование самого модального окна */
-.modalActive {
-    position: absolute;
-    width: 350px;
-    height: 490px;
-    top: calc(50% - 250px);
-    left: calc(50% - 175px);
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    cursor: default;
-    padding: 40px 20px;
-}
-
-/* кнопочка закрытия модального окна */
-.modalClose {
-    font-family: var(--font-regular);
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-/* делаем позиционирование внутренних элементов относительно модального окна */
-.modalWindow {
-    position: relative;
-}
-
-.modalWindow p:first-child {
-    font-size: 15pt;
-    font-weight: 500;
-    text-align: center;
-    padding: 1.2em;
-}

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/ProfileForms.css">
-    <link rel="stylesheet" href="./css/profile.css">
+    <link rel="stylesheet" href="./css/auth/index.css">
+    <link rel="stylesheet" href="./css/auth/ProfileForms.css">
+    <link rel="stylesheet" href="./css/auth/profile.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -103,20 +103,20 @@
             <div>
                 <div class="info1">
                     <input
-                        name="name"
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        placeholder="Имя"
-                        value="{{ $model->name }}"
-                    />
-                    <input
                         name="surname"
                         type="text"
                         class="form-control"
                         id="grade"
                         placeholder="Фамилия"
                         value="{{ $model->surname }}"
+                    />
+                    <input
+                        name="name"
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        placeholder="Имя"
+                        value="{{ $model->name }}"
                     />
                     <input
                         name="patronymic"
@@ -129,14 +129,14 @@
                 </div>
                 <div class="info1">
                     <div class="info2">
-                        <p>Пол</p>
+                        <span>Пол</span>
                         <select name="sex" id="sexInput" class="form-select">
                             <option value="Мужской" {{ $model->sex == 'Мужской' ? 'selected' : '' }}>Мужской</option>
                             <option value="Женский" {{ $model->sex == 'Женский' ? 'selected' : '' }}>Женский</option>
                         </select>
                     </div>
                     <div class="info2">
-                        <p>Дата рождени </p>
+                        <span>Дата рождения </span>
                         <input name="birthdate" type="text" id="datepicker" class="form-control" placeholder="Дата рождения" value="{{ date("d/m/Y", strtotime($model->birthdate)) }}">
                     </div>
                 </div>

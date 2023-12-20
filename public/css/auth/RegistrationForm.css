@@ -453,22 +453,22 @@ footer p {
 }
 
 .bg-element {
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../../../../../../../Users/user/Desktop/VSOH_Project/vendory/Vector.svg);
-  position: absolute;
-  opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../img/Vector.svg);
+    position: absolute;
+    opacity: 30%;
 }
 
 .bg-element:before {
-  content: "";
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(var(--size) var(--size) at var(--x, --y) var(--y, --x), rgba(249, 249, 249, 0) 0%, #F9F9F9 32.99%);
+    content: "";
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(var(--size) var(--size) at var(--x, --y) var(--y, --x), rgba(249, 249, 249, 0) 0%, #F9F9F9 32.99%);
 }
 
 header {
@@ -489,7 +489,7 @@ header {
 }
 
 .mainform {
-  margin-top: auto;
+  margin-top: 3%;
   margin-bottom: auto;
   z-index: 2;
   display: flex;

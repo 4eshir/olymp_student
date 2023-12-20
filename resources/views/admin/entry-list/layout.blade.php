@@ -48,7 +48,7 @@
             @foreach($model as $row)
                 <tr>
                     <td>{{ $counter }}</td>
-                    <td>{{ $row->user->surname ? : 'none'.' '.$row->user->name ? : 'none'.' '.$row->user->patronymic ? : 'none'.' '.$row->user->educational->name ? : 'none'.' '.$row->user->class ? : '??'.' класс' }}</td>
+                    <td>{{ ($row->user->surname ? : 'none').' '.($row->user->name ? : 'none').' '.($row->user->patronymic ? : 'none') }}</td>
                     <td>{{ $row->childrenEvent->event->subject->name }}</td>
                     <td>{{ date("d.m.y", strtotime($row->childrenEvent->date_olympiad)) }}</td>
                     <td>{{ $row->childrenEvent->classT->name }}</td>
