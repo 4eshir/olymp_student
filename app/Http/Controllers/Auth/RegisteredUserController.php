@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -37,6 +38,13 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->phone_number = str_replace(["(", ")", "+", "-", " "], "", $request->phone_number);
+        $request->phone_number = substr_replace($request->phone_number, '8', 0, 1);
+
+        $request->merge([
+            'phone_number' => $request->phone_number,
+        ]);
+
         $messages = [
             'accepted' => 'Вы должны согласиться с политикой обработки данных',
         ];
@@ -44,16 +52,13 @@ class RegisteredUserController extends Controller
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'confirmed', PasswordCustom::defaults()],
-            'phone_number' => ['required', 'unique:user'],
+            'phone_number' => ['required', Rule::unique('user', 'phone_number')],
         ]);
 
         $request->validate([
             'pdPolicy' => 'accepted',
         ], $messages);
 
-
-        $request->phone_number = str_replace(["(", ")", "+", "-", " "], "", $request->phone_number);
-        $request->phone_number = substr_replace($request->phone_number, '8', 0, 1);
 
         $user = UserWork::create([
             'phone_number' => $request->phone_number,

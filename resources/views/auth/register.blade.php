@@ -39,8 +39,17 @@
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
+        <?php
+            $oldPhone = old('phone_number');
+            $phone = '';
+            if ($oldPhone)
+            {
+                $phone = '+'.substr(substr_replace($oldPhone, '7', 0, 1), 0, 1).' ('.substr($oldPhone, 1, 3).') '.substr($oldPhone, 4, 3).' '.substr($oldPhone, 7);
+            }
+        ?>
+
         <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Email" value="{{ old('email') }}"/>
-        <input name="phone_number" class="form-control tel @error('phone_number') is-invalid @enderror" id="exampleFormControlInput2" placeholder="Номер телефона" value="{{ old('phone_number') }}">
+        <input name="phone_number" class="form-control tel @error('phone_number') is-invalid @enderror" id="exampleFormControlInput2" placeholder="Номер телефона" value="{{ $phone }}">
         <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword1" placeholder="Пароль" autocomplete="new-password">
         <input name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword2" placeholder="Повторите пароль" autocomplete="new-password">
     </div>
