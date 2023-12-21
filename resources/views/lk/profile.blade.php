@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/auth/index.css">
     <link rel="stylesheet" href="./css/auth/profile.css">
     <link rel="stylesheet" href="./css/notifications.css">
+    <link rel="stylesheet" href="./css/modal_window.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <style>
         /* Ваши стили для выделения выбранных дат */
