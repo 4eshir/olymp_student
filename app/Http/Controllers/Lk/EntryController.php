@@ -15,6 +15,7 @@ use App\Models\work\OlympiadEntryWork;
 use App\Models\work\UserWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class EntryController extends Controller
@@ -102,7 +103,16 @@ class EntryController extends Controller
     public function delete(Request $request)
     {
         $entry = OlympiadEntryWork::where('id', $request->entryId)->first();
-        $entry->delete();
+
+        $childrenEventsId = DB::select('SELECT `children_event`.`id` FROM `children_event` inner join `event` on `children_event`.`event_id` = `event`.`id` WHERE `event`.`subject_id` = (SELECT `event`.`subject_id` from `event` INNER JOIN `children_event` on `children_event`.`event_id` = `event`.`id` WHERE `children_event`.`id` = '.$entry->children_event_id.')');
+        $idArr = [];
+        foreach ($childrenEventsId as $one) $idArr[] = $one->id;
+
+        $deleteEntry = OlympiadEntryWork::where('user_id', $entry->user_id)->whereIn('children_event_id', $idArr)->get();
+
+        foreach ($deleteEntry as $entry)
+            $entry->delete();
+
         return redirect()->route('entry');
     }
 
