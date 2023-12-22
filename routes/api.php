@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/get-entries/{token}', [EntryApiController::class, 'getOlympiadEntry'])->name('getOlympiadEntry');
 
-Route::get('/get-users/{token}/{params}', [UserApiController::class, 'getUsers'])->name('getUsers');
+Route::get('/get-users/{token}/{role?}', [UserApiController::class, 'getUsers'])->name('getUsers');
+Route::get('/get-schools/{token}/{municipality?}/{jurisdiction?}', [UserApiController::class, 'getSchools'])->name('getSchools');
+Route::get('/get-municipalities/{token}', [UserApiController::class, 'getMunicipalities'])->name('getMunicipalities');
