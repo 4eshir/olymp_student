@@ -28,14 +28,26 @@ class UserApiController extends Controller
     }
 
     // Возвращает все школы с указанным municipality и jurisdiction (id в справочниках БД)
-    public function getSchools($token, $municipality = null, $jurisdiction = null)
+    public function getSchools($token, $municipality = null)
     {
-        $schools = null;
+        $schools = EducationalInstitutionWorkApi::where('municipality_id', $municipality)->get();
 
-        if (!$municipality && !$jurisdiction) $schools = EducationalInstitutionWorkApi::all();
-        else if (!$jurisdiction) $schools = EducationalInstitutionWorkApi::where('municipality_id', $municipality)->get();
-        else if (!$municipality) $schools = EducationalInstitutionWorkApi::where('jurisdiction_id', $jurisdiction)->get();
-        else $schools = EducationalInstitutionWorkApi::where('jurisdiction_id', $jurisdiction)->where('municipality_id', $municipality)->get();
+        $ids = [];
+        $data = [];
+
+        foreach ($schools as $school)
+        {
+            $ids[] = $school->id;
+            $data[] = [$school->id, $school->name, $school->municipality->name ? : '', $school->jurisdiction->name ? : ''];
+        }
+
+        return response()->json(['id' => $ids, 'data' => $data]);
+    }
+
+    // Возвращает все школы с указанным municipality и jurisdiction (id в справочниках БД)
+    public function getSchoolsJuri($token, $jurisdiction = null)
+    {
+        $schools = EducationalInstitutionWorkApi::where('jurisdiction_id', $jurisdiction)->get();
 
         $ids = [];
         $data = [];
