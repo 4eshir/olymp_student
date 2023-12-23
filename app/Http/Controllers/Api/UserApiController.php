@@ -7,6 +7,8 @@ use App\Models\api\EducationalInstitutionWorkApi;
 use App\Models\api\MunicipalityWorkApi;
 use App\Models\work\EducationalInstitutionWork;
 use App\Models\work\OlympiadEntryWork;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 
 class UserApiController extends Controller
@@ -77,5 +79,11 @@ class UserApiController extends Controller
         }
 
         return response()->json(['id' => $ids, 'data' => $data]);
+    }
+
+    // Изменяет статус заявки для обучающихся
+    public function checkStudents(Request $request)
+    {
+        var_dump(json_decode(file_get_contents('php://input'))->firstName);
     }
 }
