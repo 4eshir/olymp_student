@@ -54,8 +54,9 @@ class EntryController extends Controller
         $eIds = [];
         foreach ($events as $event) $eIds[] = $event->id;
 
-        $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)->where('class_id', $request->participationClass)->get();
+        $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)/*->where('class_id', $request->participationClass)*/->get();
 
+        $duplicate = 0;
         foreach ($childrenEvents as $childrenEvent)
         {
             $duplicate = OlympiadEntryWork::where('user_id', Auth::id())->where('children_event_id', $childrenEvent->id)->get();
@@ -63,26 +64,32 @@ class EntryController extends Controller
             {
                 $message = '<p>Вы не можете подать заявку на выбранную олимпиаду!</p>
                             <div style="padding: 0 45% 5%">
-                                <svg fill="#2092D1" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="-0.5 0.5 42 42" xml:space="preserve">
+                                <svg fill="#dc3545" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="-0.5 0.5 42 42" xml:space="preserve">
                                     <path d="M29.582,8.683l-0.129,0.12L8.3,29.954c-0.249,0.249-0.428,0.478-0.547,0.688c-2.04-2.639-3.233-6-3.233-9.701 c0-8.797,6.626-15.482,15.421-15.482C23.632,5.459,26.955,6.644,29.582,8.683z M10.937,33.704c0.189-0.117,0.388-0.287,0.606-0.507 l21.151-21.151l0.041-0.04c1.74,2.518,2.746,5.602,2.746,8.994c0,8.785-6.696,15.541-15.481,15.541 C16.568,36.541,13.454,35.506,10.937,33.704z M0.5,21c0,10.775,8.735,19.5,19.5,19.5c10.767,0,19.501-8.725,19.501-19.5 c0-10.775-8.734-19.5-19.5-19.5C9.235,1.5,0.5,10.225,0.5,21z"/>
                                 </svg>
                             </div>
                             <p>Вероятные причины: </p>
                             <p>1. Вы уже записаны на выбранную олимпиаду, проверьте это можно в разделе "мои олимпиады".</p>
                             <p>2. Подача заявок уже завершена. Установленные организаторами сроки подачи заявок прошли.</p>';
+                break;
             }
-            else
+        }
+
+        if (count($duplicate) == 0)
+            foreach ($childrenEvents as $childrenEvent)
             {
-                $entry = new OlympiadEntryWork();
-                $entry->user_id = Auth::id();
+                if ($childrenEvent->class_id == $request->participationClass)
+                {
+                    $entry = new OlympiadEntryWork();
+                    $entry->user_id = Auth::id();
 
-                $entry->children_event_id = $childrenEvent->id;
-                $entry->warrant_involvement_id = $request->warrant;
-                //$entry->created_at = strtotime(date("Y-m-d H:i:s"));
+                    $entry->children_event_id = $childrenEvent->id;
+                    $entry->warrant_involvement_id = $request->warrant;
+                    //$entry->created_at = strtotime(date("Y-m-d H:i:s"));
 
-                $entry->save();
+                    $entry->save();
 
-                $message = '<p>Вы успешно подали заявку на выбранную олимпиаду!</p>
+                    $message = '<p>Вы успешно подали заявку на выбранную олимпиаду!</p>
                             <div style="padding: 0 45% 5%">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" class="edit_icon_gray">
                                     <path d="M17.5821 6.95711C17.9726 6.56658 17.9726 5.93342 17.5821 5.54289C17.1916 5.15237 16.5584 5.15237 16.1679 5.54289L5.54545 16.1653L1.70711 12.327C1.31658 11.9365 0.683417 11.9365 0.292893 12.327C-0.0976311 12.7175 -0.097631 13.3507 0.292893 13.7412L4.83835 18.2866C5.22887 18.6772 5.86204 18.6772 6.25256 18.2866L17.5821 6.95711Z" fill="rgb(153, 215, 244)" fill-opacity="1"/>
@@ -92,10 +99,10 @@ class EntryController extends Controller
                             <p>Обратите внимание на дату, время, адрес и количество туров проведения выбранного Вами предмета.</p>
                             <p>Вы имеете право писать олимпиаду за класс старше, но не наоборот.</p>
                             <p>Напоминаем участникам о недопустимости использования средств связи во время проведения туров.</p>';
+                }
             }
 
-            Session::flash('flash_message', $message);
-        }
+        Session::flash('flash_message', $message);
 
         return redirect()->route('entry');
     }
