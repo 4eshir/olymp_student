@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/get-entries/{token}', [EntryApiController::class, 'getOlympiadEntry'])->name('getOlympiadEntry');
+Route::get('/get-entries/{token}/{municipality_id}/{subject_id}', [EntryApiController::class, 'getOlympiadEntry'])->name('getOlympiadEntry');
 
 Route::get('/get-users/{token}/{role?}', [UserApiController::class, 'getUsers'])->name('getUsers');
 Route::get('/get-schools/{token}/{municipality?}', [UserApiController::class, 'getSchools'])->name('getSchools');
@@ -28,4 +28,4 @@ Route::get('/get-schools-juri/{token}/{jurisdiction?}', [UserApiController::clas
 Route::get('/get-municipalities/{token}', [UserApiController::class, 'getMunicipalities'])->name('getMunicipalities');
 
 
-Route::post('/check-students', [UserApiController::class, 'checkStudents'])->name('checkStudents');
+Route::post('/check-students', [EntryApiController::class, 'checkStudents'])->name('checkStudents');

@@ -81,9 +81,5 @@ class UserApiController extends Controller
         return response()->json(['id' => $ids, 'data' => $data]);
     }
 
-    // Изменяет статус заявки для обучающихся
-    public function checkStudents(Request $request)
-    {
-        var_dump(json_decode(file_get_contents('php://input'))->firstName);
-    }
+
 }

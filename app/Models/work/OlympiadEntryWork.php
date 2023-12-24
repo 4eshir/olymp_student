@@ -21,6 +21,11 @@ class OlympiadEntryWork extends OlympiadEntry
         return $this->hasOne(UserWork::class, 'id', 'user_id');
     }
 
+    public function warrant()
+    {
+        return $this->hasOne(WarrantInvolvementWork::class, 'id', 'warrant_involvement_id');
+    }
+
     public function prettyStatus()
     {
         $strStatus = '';
