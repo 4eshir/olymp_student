@@ -32,7 +32,7 @@ class UserApiController extends Controller
     // Возвращает все школы с указанным municipality и jurisdiction (id в справочниках БД)
     public function getSchools($token, $municipality = null)
     {
-        $schools = $municipality ? EducationalInstitutionWorkApi::all() : EducationalInstitutionWorkApi::where('municipality_id', $municipality)->get();
+        $schools = !$municipality ? EducationalInstitutionWorkApi::all() : EducationalInstitutionWorkApi::where('municipality_id', $municipality)->get();
 
         $ids = [];
         $data = [];
