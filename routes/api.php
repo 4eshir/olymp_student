@@ -26,6 +26,7 @@ Route::get('/get-users/{token}/{role?}', [UserApiController::class, 'getUsers'])
 Route::get('/get-schools/{token}/{municipality?}', [UserApiController::class, 'getSchools'])->name('getSchools');
 Route::get('/get-schools-juri/{token}/{jurisdiction?}', [UserApiController::class, 'getSchoolsJuri'])->name('getSchoolsJuri');
 Route::get('/get-municipalities/{token}', [UserApiController::class, 'getMunicipalities'])->name('getMunicipalities');
+Route::get('/get-subject/{token}/{subject}', [EntryApiController::class, 'getSubject'])->name('getSubject');
 
 
 Route::post('/check-students', [EntryApiController::class, 'checkStudents'])->name('checkStudents');
