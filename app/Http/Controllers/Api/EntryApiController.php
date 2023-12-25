@@ -7,6 +7,7 @@ use App\Models\api\ChildrenEventApi;
 use App\Models\api\EducationalInstitutionWorkApi;
 use App\Models\api\EventApi;
 use App\Models\api\OlympiadEntryWorkApi;
+use App\Models\api\SubjectApi;
 use App\Models\api\UserWorkApi;
 use App\Models\work\OlympiadEntryWork;
 use Illuminate\Http\Request;
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class EntryApiController extends Controller
 {
+    public function getSubject($token, $subject_id)
+    {
+        return response()->json(['name' => SubjectApi::where('id', $subject_id)->first()->name]);
+    }
+
+
     public function getOlympiadEntry($token, $municipality_id, $subject_id)
     {
         // КАК СЛОЖНО ДЕЛАТЬ БЛЯДСКИЕ ДЖОЙНЫ В ELOQUENT!!!
