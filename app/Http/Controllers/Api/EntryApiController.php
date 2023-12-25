@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\api\ChildrenEventApi;
 use App\Models\api\EducationalInstitutionWorkApi;
 use App\Models\api\EventApi;
+use App\Models\api\MunicipalityWorkApi;
 use App\Models\api\OlympiadEntryWorkApi;
 use App\Models\api\SubjectApi;
 use App\Models\api\UserWorkApi;
@@ -19,6 +20,11 @@ class EntryApiController extends Controller
     public function getSubject($token, $subject_id)
     {
         return response()->json(['name' => SubjectApi::where('id', $subject_id)->first()->name]);
+    }
+
+    public function getMunicipality($token, $municipality_id)
+    {
+        return response()->json(['name' => MunicipalityWorkApi::where('id', $municipality_id)->first()->name]);
     }
 
 
