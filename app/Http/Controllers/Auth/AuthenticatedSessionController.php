@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Http;
 
 class AuthenticatedSessionController extends Controller
 {
+    protected $maxLoginAttempts = 100000;
+    protected $lockoutTime = 1;
     /**
      * Display the login view.
      *

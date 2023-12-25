@@ -9,6 +9,7 @@ use App\Models\api\EventApi;
 use App\Models\api\OlympiadEntryWorkApi;
 use App\Models\api\SubjectApi;
 use App\Models\api\UserWorkApi;
+use App\Models\temporary\ChildrenEvent;
 use App\Models\work\OlympiadEntryWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +74,22 @@ class EntryApiController extends Controller
         $results = [];
 
         for ($i = 0; $i < count($body->data); $i++)
-            $results[] = OlympiadEntryWorkApi::where('id', $body->data[$i][0])->update(['citizenship_id' => $body->data[$i][1], 'disabled' => $body->data[$i][2], 'status' => $body->data[$i][3]]);
+        {
+            $olympiadEntry = OlympiadEntryWorkApi::where('id', $body->data[$i][0])->first();
+
+            $childrenEvent = ChildrenEventApi::where('id', $olympiadEntry->children_event_id)->first();
+            $subject_id = EventApi::where('id', $childrenEvent->event_id)->first()->subject_id;
+            $eventsId = EventApi::where('subject_id', $subject_id)->get();
+            $eventIdArr = [];
+            foreach ($eventsId as $one) $eventIdArr[] = $one->id;
+            $childrenEvents = ChildrenEventApi::where('class_id', $childrenEvent->class_id)->whereIn('event_id', $eventIdArr)->get();
+
+            foreach ($childrenEvents as $childrenEventId)
+                $results[] = OlympiadEntryWorkApi::where('user_id', $olympiadEntry->user_id)->where('children_event_id', $childrenEventId->id)->update(['citizenship_id' => $body->data[$i][1], 'disabled' => $body->data[$i][2], 'status' => $body->data[$i][3]]);
+
+            //$results[] = OlympiadEntryWorkApi::where('user_id', $olympiadEntry->user_id)->update(['citizenship_id' => $body->data[$i][1], 'disabled' => $body->data[$i][2], 'status' => $body->data[$i][3]]);
+        }
+
 
         return $results;
     }
