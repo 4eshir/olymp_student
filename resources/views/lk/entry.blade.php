@@ -125,7 +125,7 @@
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
 
-            <div class='title'>
+            {{--<div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
 
@@ -184,7 +184,16 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif--}}
+
+            <div class="verification_success">
+                <p class="verification_text">
+                    Регистрация на региональный этап Всероссийской Олимпиады школьников 2023/2024 завершена.
+                </p>
+                <p class="verification_text">
+                    Ожидайте рассмотрения своих заявок (результаты в таблице ниже).
+                </p>
+            </div>
 
             <div class='title'>
                 <h4>Мои олимпиады</h4>
@@ -217,21 +226,23 @@
                                 {{ $entry->address }}
                             </td>
                             <td>
-                                @if ($entry->checkDateDifference(7))
+                                {{--@if ($entry->checkDateDifference(7))
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
                                         <button type="submit" class="btn btn-danger">Отменить заявку</button>
                                     </form>
-                                @else
+                                @else --}}
                                     <span style="color: red">Отмена заявки недоступна</span>
-                                @endif
+                                {{--@endif --}}
                             </td>
 
                         </tr>
                     @endforeach
                 </table>
             </div>
+
+
 
         @else
 
