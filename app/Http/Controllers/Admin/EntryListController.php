@@ -37,7 +37,7 @@ class EntryListController extends Controller
                 'Дата рождения', 'Гражданство', 'Ограниченные возможности здоровья',
                 'Полное наименование общеобразовательной организации', 'Класс/возрастная группа участия', 'Класс обучения',
                 'Является победителем/ призером заключительного этапа ВсОШ 2022/23 уч.г.', 'Муниципалитет (округ), город', 'Обоснование участия',
-                'Предмет', 'Статус заявки', 'Код участника'], // Заголовки столбцов
+                'Предмет', 'Статус заявки', 'Код участника', 'Номер телефона участника'], // Заголовки столбцов
         ];
 
         $olympiadEntryAll = OlympiadEntryWork::all();
@@ -51,7 +51,8 @@ class EntryListController extends Controller
                 date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id ? $citizenship[$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled? $ovz[$olympiadEntry->disabled] : '',
                 $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class . ' класс',
                 $olympiadEntry->warrant_involvement_id == 2 ? 'Да' : 'Нет', $olympiadEntry->user->educational->jurisdiction->name, $olympiadEntry->warrant->name,
-                $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена')];
+                $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена'),
+                $olympiadEntry->user->phone_number];
         }
 
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
