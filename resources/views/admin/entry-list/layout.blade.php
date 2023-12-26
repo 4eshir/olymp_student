@@ -14,6 +14,10 @@
 
     <article class="content">
         <h3 align="left">Заявки на олимпиаду</h3>
+        <form method="POST" action="{{ route('downloadExcel') }}">
+            @csrf
+            <input type="submit" class="btn btn-primary button-1" id = "button-1" value="Cкачать таблицу заявок">
+        </form>
         <h5 align="left" style="color: green" id="allCount"></h5>
         <table class="table table-striped" id="myTable">
             <thead>
