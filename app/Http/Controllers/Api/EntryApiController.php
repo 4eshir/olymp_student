@@ -49,7 +49,7 @@ class EntryApiController extends Controller
         $uIds = [];
         foreach ($users as $user) $uIds[] = $user->id;
 
-        $entries = OlympiadEntryWorkApi::whereIn('children_event_id', $ceIds)->whereIn('user_id', $uIds)->whereNull('status')->get();
+        $entries = OlympiadEntryWorkApi::whereIn('children_event_id', $ceIds)->whereIn('user_id', $uIds)/*->whereNull('status')*/->get();
 
         // КАК СЛОЖНО ДЕЛАТЬ БЛЯДСКИЕ ДЖОЙНЫ В ELOQUENT!!!
 
