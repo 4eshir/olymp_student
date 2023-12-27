@@ -226,15 +226,15 @@
                                 {{ $entry->address }}
                             </td>
                             <td>
-                                {{--@if ($entry->checkDateDifference(7))
+                                @if ($entry->checkDateDifference(7))
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
                                         <button type="submit" class="btn btn-danger">Отменить заявку</button>
                                     </form>
-                                @else --}}
+                                @else
                                     <span style="color: red">Отмена заявки недоступна</span>
-                                {{--@endif --}}
+                                @endif
                             </td>
 
                         </tr>
