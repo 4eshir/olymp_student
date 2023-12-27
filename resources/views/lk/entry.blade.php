@@ -125,7 +125,7 @@
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
 
-            <div class='title'>
+            {{--<div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
 
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="verification_success">
                 <p class="verification_text">
@@ -226,15 +226,15 @@
                                 {{ $entry->address }}
                             </td>
                             <td>
-                                @if ($entry->status === null)
+                                {{--@if ($entry->status === null)
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
                                         <button type="submit" class="btn btn-danger">Отменить заявку</button>
                                     </form>
-                                @else
+                                @else--}}
                                     <span style="color: red">Отмена заявки недоступна</span>
-                                @endif
+                                {{--@endif --}}
                             </td>
 
                         </tr>
