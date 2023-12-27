@@ -123,8 +123,8 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
-        {{-- @if ($model->completed())
-
+        @if ($model->completed())
+{{--
             <div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
