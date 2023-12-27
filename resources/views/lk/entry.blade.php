@@ -226,7 +226,7 @@
                                 {{ $entry->address }}
                             </td>
                             <td>
-                                @if ($entry->checkDateDifference(7))
+                                @if ($entry->status === null)
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>

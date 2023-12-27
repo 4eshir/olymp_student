@@ -16,6 +16,7 @@ class DisplayEntry
     public $datetime;
     public $address;
     public $tour;
+    public $status;
 
     public function checkDateDifference($days)
     {

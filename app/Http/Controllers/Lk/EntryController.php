@@ -40,6 +40,7 @@ class EntryController extends Controller
                 date("d.m.y", strtotime($olympiadEntry->childrenEvent->date_olympiad)).' в '.date("H:i", strtotime($olympiadEntry->childrenEvent->date_olympiad)) :
                 'Скоро станет известно';
             $displayEntry->tour = $olympiadEntry->childrenEvent->event->tour;
+            $displayEntry->status = $olympiadEntry->status;
 
             $entries[] = $displayEntry;
         }
