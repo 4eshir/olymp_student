@@ -123,9 +123,9 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
-        @if ($model->completed())
+        @if (/*$model->completed()*/$model->educational->id == 288)
 
-            {{--<div class='title'>
+            <div class='title'>
                 <h4>Регистрация на региональный этап ВсОШ</h4>
             </div>
 
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-            @endif--}}
+            @endif
 
             <div class="verification_success">
                 <p class="verification_text">
