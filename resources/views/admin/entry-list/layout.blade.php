@@ -18,13 +18,11 @@
             @csrf
             <input type="submit" class="btn btn-primary button-1" id = "button-1" value="Cкачать таблицу заявок">
         </form>
-{{--
 
         <form method="POST" action="{{ route('genCodes') }}">
             @csrf
             <input type="submit" class="btn btn-danger button-1" id = "button-1" value="Сгенерировать коды">
         </form>
---}}
 
         <h5 align="left" style="color: green" id="allCount"></h5>
         <table class="table table-striped" id="myTable">
