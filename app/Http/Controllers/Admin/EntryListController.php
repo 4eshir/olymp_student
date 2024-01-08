@@ -40,8 +40,10 @@ class EntryListController extends Controller
                 $tempCE = ChildrenEvent::where('id', $entry->children_event_id)->first();
                 $tempE = Event::where('id', $tempCE->event_id)->first();
 
-                $code = strlen($entry->participation_class) < 2 ? '0' : '';
-                $code .= $tempCE->classT->name.'_';
+                $class = explode(" ", $tempCE->classT->name)[0];
+                $code = strlen($class) < 2 ? '0' : '';
+                $code .= $class.'_';
+                
                 $code .= $counter < 100 ? '0' : '';
                 $code .= $counter < 10 ? '0' : '';
                 $code .= $counter.'_';
