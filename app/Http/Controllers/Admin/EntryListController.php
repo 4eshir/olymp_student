@@ -18,7 +18,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class EntryListController extends Controller
 {
-    /*public function genCodes()
+    public function genCodes()
     {
         $subjects = Subject::all();
 
@@ -34,7 +34,9 @@ class EntryListController extends Controller
 
             $entries = OlympiadEntryWork::whereIn('children_event_id', $ceIds)->get();
 
-            $counter = 1;
+            $counter9 = 0;
+            $counter10 = 0;
+            $counter11 = 0;
             foreach ($entries as $entry)
             {
                 $tempCE = ChildrenEvent::where('id', $entry->children_event_id)->first();
@@ -44,6 +46,25 @@ class EntryListController extends Controller
                 $code = strlen($class) < 2 ? '0' : '';
                 $code .= $class.'_';
 
+                if ($class == '9')
+                {
+                    $counter9++;
+                    $counter = $counter9;
+                }
+
+                if ($class == '10')
+                {
+                    $counter10++;
+                    $counter = $counter10;
+                }
+
+                if ($class == '11')
+                {
+                    $counter11++;
+                    $counter = $counter11;
+                }
+
+
                 $code .= $counter < 100 ? '0' : '';
                 $code .= $counter < 10 ? '0' : '';
                 $code .= $counter.'_';
@@ -52,13 +73,11 @@ class EntryListController extends Controller
 
                 $entry->code = $code;
                 $entry->save();
-
-                $counter++;
             }
         }
 
 
-    }*/
+    }
     /**
      * Display the registration view.
      *
