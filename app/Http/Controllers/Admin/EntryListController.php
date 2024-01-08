@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\api\ChildrenEventApi;
+use App\Models\api\OlympiadEntryWorkApi;
+use App\Models\temporary\ChildrenEvent;
+use App\Models\temporary\Event;
+use App\Models\temporary\Subject;
 use App\Models\work\OlympiadEntryWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -13,6 +18,43 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class EntryListController extends Controller
 {
+    public function genCodes()
+    {
+        $subjects = Subject::all();
+
+        foreach ($subjects as $subject)
+        {
+            $events = Event::where('subject_id', $subject->id)->get();
+            $eIds = [];
+            foreach ($events as $event) $eIds[] = $event->id;
+
+            $childrenEvents = ChildrenEvent::whereIn('event_id', $eIds)->get();
+            $ceIds = [];
+            foreach ($childrenEvents as $childrenEvent) $ceIds[] = $childrenEvent->id;
+
+            $entries = OlympiadEntryWork::whereIn('children_event_id', $ceIds)->get();
+
+            $counter = 1;
+            foreach ($entries as $entry)
+            {
+                $code = strlen($entry->participation_class) < 2 ? '0' : '';
+                $code .= $entry->participation_class.'_';
+                $code .= $counter < 100 ? '0' : '';
+                $code .= $counter < 10 ? '0' : '';
+                $code .= $counter.'_';
+
+                $tempCE = ChildrenEvent::where('id', $entry->children_event_id)->first();
+                $tempE = Event::where('id', $tempCE->event_id)->first();
+
+                $code .= $tempE->tour;
+
+                $entry->code = $code;
+                $entry->save();
+            }
+        }
+
+
+    }
     /**
      * Display the registration view.
      *
@@ -33,11 +75,11 @@ class EntryListController extends Controller
 
     public function downloadExcel(Request $request){
         $excelExport = [
-            ['Субъект РФ', 'Фамилия', 'Имя', 'Отчество', 'Пол',
+            ['Субъект РФ', 'Код участника', 'Фамилия', 'Имя', 'Отчество', 'Пол',
                 'Дата рождения', 'Гражданство', 'Ограниченные возможности здоровья',
                 'Полное наименование общеобразовательной организации', 'Класс/возрастная группа участия', 'Класс обучения',
                 'Является победителем/ призером заключительного этапа ВсОШ 2022/23 уч.г.', 'Муниципалитет (округ), город', 'Обоснование участия',
-                'Предмет', 'Статус заявки', 'Код участника', 'Номер телефона участника'], // Заголовки столбцов
+                'Предмет', 'Тур', 'Статус заявки', 'Номер телефона участника'], // Заголовки столбцов
         ];
 
         $olympiadEntryAll = OlympiadEntryWork::all();
@@ -46,12 +88,11 @@ class EntryListController extends Controller
 
         foreach ($olympiadEntryAll as $olympiadEntry)
         {
-            if ($olympiadEntry->childrenEvent->event->tour == 1)
-            $excelExport[] = ['Астраханская область', $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
+            $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
                 date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id ? $citizenship[$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled? $ovz[$olympiadEntry->disabled] : '',
                 $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class . ' класс',
                 $olympiadEntry->warrant_involvement_id == 2 ? 'Да' : 'Нет', $olympiadEntry->user->educational->jurisdiction->name, $olympiadEntry->warrant->name,
-                $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена'),
+                $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->childrenEvent->event->tour, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена'),
                 $olympiadEntry->user->phone_number];
         }
 
