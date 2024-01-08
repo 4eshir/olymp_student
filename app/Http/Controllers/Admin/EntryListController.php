@@ -37,19 +37,21 @@ class EntryListController extends Controller
             $counter = 1;
             foreach ($entries as $entry)
             {
+                $tempCE = ChildrenEvent::where('id', $entry->children_event_id)->first();
+                $tempE = Event::where('id', $tempCE->event_id)->first();
+
                 $code = strlen($entry->participation_class) < 2 ? '0' : '';
-                $code .= $entry->participation_class.'_';
+                $code .= $tempCE->classT->name.'_';
                 $code .= $counter < 100 ? '0' : '';
                 $code .= $counter < 10 ? '0' : '';
                 $code .= $counter.'_';
-
-                $tempCE = ChildrenEvent::where('id', $entry->children_event_id)->first();
-                $tempE = Event::where('id', $tempCE->event_id)->first();
 
                 $code .= $tempE->tour;
 
                 $entry->code = $code;
                 $entry->save();
+
+                $counter++;
             }
         }
 
