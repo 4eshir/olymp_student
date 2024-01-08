@@ -111,14 +111,9 @@ class EntryListController extends Controller
 
         foreach ($olympiadEntryAll as $olympiadEntry)
         {
-            var_dump($citizenship[(int)$olympiadEntry->citizenship_id]);
-            var_dump($olympiadEntry->citizenship_id);
-            var_dump((int)$olympiadEntry->citizenship_id);
-            $try = null;
-            var_dump($try == null ? $citizenship[(int)$olympiadEntry->citizenship_id] : 'boobs');
             if ($olympiadEntry->childrenEvent->event->tour == 1)
             $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
-                date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id ? $citizenship[(int)$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled ? $ovz[(int)$olympiadEntry->disabled] : '',
+                date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id !== null ? $citizenship[(int)$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled !== null ? $ovz[(int)$olympiadEntry->disabled] : '',
                 $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class . ' класс',
                 $olympiadEntry->warrant_involvement_id == 2 ? 'Да' : 'Нет', $olympiadEntry->user->educational->jurisdiction->name, $olympiadEntry->warrant->name,
                 $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена'),
