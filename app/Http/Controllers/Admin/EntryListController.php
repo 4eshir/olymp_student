@@ -111,6 +111,9 @@ class EntryListController extends Controller
 
         foreach ($olympiadEntryAll as $olympiadEntry)
         {
+            var_dump($citizenship[(int)$olympiadEntry->citizenship_id]);
+            var_dump($olympiadEntry->citizenship_id);
+            var_dump((int)$olympiadEntry->citizenship_id);
             if ($olympiadEntry->childrenEvent->event->tour == 1)
             $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
                 date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id ? $citizenship[(int)$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled ? $ovz[(int)$olympiadEntry->disabled] : '',
