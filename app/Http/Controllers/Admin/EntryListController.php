@@ -18,7 +18,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class EntryListController extends Controller
 {
-    public function genCodes()
+    /*public function genCodes()
     {
         $subjects = Subject::all();
 
@@ -43,7 +43,7 @@ class EntryListController extends Controller
                 $class = explode(" ", $tempCE->classT->name)[0];
                 $code = strlen($class) < 2 ? '0' : '';
                 $code .= $class.'_';
-                
+
                 $code .= $counter < 100 ? '0' : '';
                 $code .= $counter < 10 ? '0' : '';
                 $code .= $counter.'_';
@@ -58,7 +58,7 @@ class EntryListController extends Controller
         }
 
 
-    }
+    }*/
     /**
      * Display the registration view.
      *
