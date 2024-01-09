@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="./css/auth/profile.css">
     <link rel="stylesheet" href="./css/notifications.css">
     <link rel="stylesheet" href="./css/modal_window.css">
+    <link rel="stylesheet" href="./css/entry.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
 
@@ -198,8 +199,8 @@
             <div class='title'>
                 <h4>Мои олимпиады</h4>
             </div>
-            <div class="mainform_profile">
-                <table class="table table-responsive">
+            <div class="entry-back">
+                {{--<table class="table table-responsive">
                     <tr>
                         <th>Предмет</th>
                         <th>Класс участия</th>
@@ -207,9 +208,87 @@
                         <th>Дата и время проведения</th>
                         <th>Адрес проведения</th>
                         <th></th>
-                    </tr>
+                    </tr>--}}
+                    <?php $c = 0 ?>
                     @foreach($entries as $entry)
-                        <tr>
+                        <?php $c++ ?>
+                        <div class="main-entry">
+
+                            <div class="vertical-compose">
+                                <div class="top-compose">
+                                    <span class="primary">{{ $entry->subject }}</span>
+                                </div>
+                                <div class="down-compose">
+                                    <span class="primary">{{ $entry->tour }} тур</span>
+                                </div>
+                            </div>
+
+
+                            <div class="address-entry">
+                                <span>{{ $entry->address }}</span>
+                            </div>
+
+                            <div class="vertical-compose">
+                                <div class="top-compose">
+                                    erwewe
+                                </div>
+                                <div class="down-compose">
+                                    wewqqewe
+                                </div>
+                            </div>
+
+                            <div class="open">
+                                <a data-bs-toggle="collapse" href="#target{{ $c }}">
+                                    <img src="./img/open-img.png" height="30" width="30"/>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="collapse full-info" id="target{{ $c }}">
+                            <div class="entry-datetime">
+                                <div class="description">BOOBS</div>
+                                <div class="data">21.01</div>
+                            </div>
+
+                            <div style="display: inline-block; margin: 0"></div>
+
+                            <div class="entry-datetime">
+                                <div class="description">BOOBS</div>
+                                <div class="data">21.01</div>
+                            </div>
+
+                            <div style="display: inline-block; margin: 0"></div>
+
+                            <div class="entry-datetime">
+                                <div class="description">BOOBS</div>
+                                <div class="data">21.01</div>
+                            </div>
+                            <div class="entry-address">
+                                <div class="description">BOOBS</div>
+                                <div class="data">fegregregegewgegee</div>
+                            </div>
+
+                            <div class="entry-datetime">
+
+                            </div>
+                            <div class="entry-address">
+
+                            </div>
+
+                            <div class="entry-datetime">
+
+                            </div>
+                            <div class="entry-address">
+
+                            </div>
+
+                            <div class="entry-datetime">
+
+                            </div>
+                        </div>
+
+
+                        {{--<tr>
                             <td>
                                 {{ $entry->subject }}
                             </td>
@@ -226,20 +305,20 @@
                                 {{ $entry->address }}
                             </td>
                             <td>
-                                {{--@if ($entry->status === null)
+                                --}}{{--@if ($entry->status === null)
                                     <form method="POST" action="{{ route('deleteEntry') }}">
                                         @csrf
                                         <input type="hidden" name="entryId" value="{{ $entry->id }}"/>
                                         <button type="submit" class="btn btn-danger">Отменить заявку</button>
                                     </form>
-                                @else--}}
+                                @else--}}{{--
                                     <span style="color: red">Отмена заявки недоступна</span>
-                                {{--@endif --}}
+                                --}}{{--@endif --}}{{--
                             </td>
 
-                        </tr>
+                        </tr>--}}
                     @endforeach
-                </table>
+                {{--</table>--}}
             </div>
 
 
