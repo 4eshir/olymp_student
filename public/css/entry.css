@@ -70,13 +70,15 @@
 .full-info {
     background-color: #ebf7fd;
     border-radius: 0 0 16px 16px;
-    width: 95%;
-    margin: -24px auto 24px auto;
+    width: 100%;
+    margin: -40px auto 24px auto;
     padding: 10px;
 }
 
 .entry-datetime {
-    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
 }
 
 .entry-datetime::after {
@@ -84,7 +86,9 @@
 }
 
 .entry-address {
-    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
 }
 
 .entry-address::after {
@@ -92,15 +96,11 @@
 }
 
 .description {
-    float: left;
     width: 50%;
 }
 
 .data {
-    float: left;
     width: 45%;
-    text-align: right;
-    margin-right: 5%;
 }
 
 .primary {

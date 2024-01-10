@@ -43,6 +43,8 @@ class EntryController extends Controller
                 public $statement_points;
                 public $showing_works;
                 public $address_showing_works;
+                public $petition_appeal;
+                public $address_petition_appeal;
                 public $appeal;
                 public $address_appeal;
                 public $publication;
@@ -53,22 +55,22 @@ class EntryController extends Controller
 
                     $this->id = $entry->id;
 
-                    if ($childrenEvent !== null)
-                    {
+                    if ($childrenEvent !== null) {
                         $this->tour = $this->getTour($childrenEvent);
                         $this->subject = $this->getSubject($childrenEvent);
                         $this->address = $childrenEvent->address;
-                        $this->olymp_date = explode(" ", $childrenEvent->date_olympiad)[0];
-                        $this->olymp_time = explode(" ", $childrenEvent->date_olympiad)[1];
+                        $this->olymp_date = date("d.m.y", strtotime(explode(" ", $childrenEvent->date_olympiad)[0]));
+                        $this->olymp_time = date("H:i", strtotime(explode(" ", $childrenEvent->date_olympiad)[1]));
                     }
 
-                    if ($importantDates !== null)
-                    {
+                    if ($importantDates !== null) {
                         $this->end_check_work = $importantDates->end_check_work;
                         $this->statement_points = $importantDates->statement_points;
                         $this->showing_works = $importantDates->showing_works;
                         $this->address_showing_works = $importantDates->address_showing_works;
                         $this->appeal = $importantDates->appeal;
+                        $this->petition_appeal = $importantDates->petition_appeal;
+                        $this->address_petition_appeal = $importantDates->address_petition_appeal;
                         $this->address_appeal = $importantDates->address_appeal;
                         $this->publication = $importantDates->publication;
                     }
@@ -87,7 +89,7 @@ class EntryController extends Controller
                 }
 
                 public function shortAddress($count) {
-                    return substr($this->address, 0, $count)."...";
+                    return strlen($this->address) > $count + 3 ? mb_substr($this->address, 0, $count)."..." : $this->address;
                 }
             };
 

@@ -223,17 +223,16 @@
                                 </div>
                             </div>
 
-
                             <div class="address-entry">
-                                <span>{{ $entry->address }}</span>
+                                <span>{{ $entry->shortAddress(50) }}</span>
                             </div>
 
                             <div class="vertical-compose">
                                 <div class="top-compose">
-                                    erwewe
+                                    {{ $entry->olymp_date }}
                                 </div>
                                 <div class="down-compose">
-                                    wewqqewe
+                                    {{ $entry->olymp_time }}
                                 </div>
                             </div>
 
@@ -246,44 +245,52 @@
 
                         <div class="collapse full-info" id="target{{ $c }}">
                             <div class="entry-datetime">
-                                <div class="description">BOOBS</div>
-                                <div class="data">21.01</div>
+                                <div class="description">Адрес проведения олимпиады</div>
+                                <div class="data">{{ $entry->address }}</div>
                             </div>
 
-                            <div style="display: inline-block; margin: 0"></div>
+                            <hr>
 
                             <div class="entry-datetime">
-                                <div class="description">BOOBS</div>
-                                <div class="data">21.01</div>
+                                <div class="description">Дата окончания проверки работ</div>
+                                <div class="data">{{ $entry->end_check_work }}</div>
                             </div>
 
-                            <div style="display: inline-block; margin: 0"></div>
+                            <div class="entry-datetime">
+                                <div class="description">Дата объявления результатов</div>
+                                <div class="data">{{ $entry->statement_points }}</div>
+                            </div>
 
                             <div class="entry-datetime">
-                                <div class="description">BOOBS</div>
-                                <div class="data">21.01</div>
+                                <div class="description">Дата и время показа работ</div>
+                                <div class="data">{{ $entry->showing_works }}</div>
                             </div>
                             <div class="entry-address">
-                                <div class="description">BOOBS</div>
-                                <div class="data">fegregregegewgegee</div>
+                                <div class="description">Адрес показа работ</div>
+                                <div class="data">{{ $entry->address_showing_works }}</div>
                             </div>
 
                             <div class="entry-datetime">
-
+                                <div class="description">Дата и время подачи заявлений на апелляцию</div>
+                                <div class="data">{{ $entry->petition_appeal }}</div>
                             </div>
                             <div class="entry-address">
-
+                                <div class="description">Адрес подачи заявлений на апелляцию</div>
+                                <div class="data">{{ $entry->address_petition_appeal }}</div>
                             </div>
 
                             <div class="entry-datetime">
-
+                                <div class="description">Дата и время проведения апелляции</div>
+                                <div class="data">{{ $entry->appeal }}</div>
                             </div>
                             <div class="entry-address">
-
+                                <div class="description">Адрес проведения апелляции</div>
+                                <div class="data">{{ $entry->address_appeal }}</div>
                             </div>
 
                             <div class="entry-datetime">
-
+                                <div class="description">Дата публикации результатов</div>
+                                <div class="data">{{ $entry->publication }}</div>
                             </div>
                         </div>
 
