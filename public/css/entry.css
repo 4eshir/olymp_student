@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 24px;
+    z-index: 10;
 }
 
 .vertical-compose {
@@ -73,6 +74,7 @@
     width: 100%;
     margin: -40px auto 24px auto;
     padding: 10px;
+    z-index: 5;
 }
 
 .entry-datetime {

@@ -253,7 +253,7 @@
 
                             <div class="entry-datetime">
                                 <div class="description">Дата окончания проверки работ</div>
-                                <div class="data">{{ $entry->end_check_work }}</div>
+                                <div class="data">{{ $entry->end_checked_work }}</div>
                             </div>
 
                             <div class="entry-datetime">

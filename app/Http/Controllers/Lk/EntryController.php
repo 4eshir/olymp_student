@@ -39,7 +39,7 @@ class EntryController extends Controller
                 public $tour;
                 public $olymp_date;
                 public $olymp_time;
-                public $end_check_work;
+                public $end_checked_work;
                 public $statement_points;
                 public $showing_works;
                 public $address_showing_works;
@@ -64,15 +64,15 @@ class EntryController extends Controller
                     }
 
                     if ($importantDates !== null) {
-                        $this->end_check_work = $importantDates->end_check_work;
-                        $this->statement_points = $importantDates->statement_points;
-                        $this->showing_works = $importantDates->showing_works;
+                        $this->end_checked_work = date("d.m.y", strtotime($importantDates->end_checked_work));
+                        $this->statement_points = date("d.m.y", strtotime($importantDates->statement_points));
+                        $this->showing_works = date("d.m.y в H:i", strtotime($importantDates->showing_works));
                         $this->address_showing_works = $importantDates->address_showing_works;
-                        $this->appeal = $importantDates->appeal;
-                        $this->petition_appeal = $importantDates->petition_appeal;
+                        $this->appeal = date("d.m.y в H:i", strtotime($importantDates->appeal));
+                        $this->petition_appeal = date("d.m.y в H:i", strtotime($importantDates->petition_appeal));
                         $this->address_petition_appeal = $importantDates->address_petition_appeal;
                         $this->address_appeal = $importantDates->address_appeal;
-                        $this->publication = $importantDates->publication;
+                        $this->publication = date("d.m.y", strtotime($importantDates->publication));
                     }
 
                 }
