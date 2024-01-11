@@ -37,7 +37,7 @@
 @media (max-width: 768px) {
     .vertical-compose {
         width: 35%;
-        padding-right: 5%;
+        margin-right: 5%;
     }
 }
 
