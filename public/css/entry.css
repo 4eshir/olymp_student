@@ -80,7 +80,7 @@
 .entry-datetime {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .entry-datetime::after {
@@ -90,7 +90,7 @@
 .entry-address {
     display: flex;
     justify-content: space-between;
-    margin-top: 0;
+    margin-top: 10px;
 }
 
 .entry-address::after {
