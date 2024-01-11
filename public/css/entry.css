@@ -34,6 +34,12 @@
     padding-left: 1%;
 }
 
+@media (max-width: 500px) {
+    .vertical-compose {
+        width: 35%;
+    }
+}
+
 .top-compose {
     height: 50%;
     /*line-height: 36px;*/
@@ -55,6 +61,14 @@
     padding-right: 1%;
     padding-left: 1%;
 }
+
+@media (max-width: 500px) {
+    .address-entry {
+        width: 0;
+        display: none;
+    }
+}
+
 
 .open {
     float: left;
