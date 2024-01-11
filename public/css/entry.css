@@ -34,7 +34,7 @@
     padding-left: 1%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .vertical-compose {
         width: 35%;
     }
@@ -62,7 +62,7 @@
     padding-left: 1%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .address-entry {
         width: 0;
         display: none;
