@@ -8,6 +8,7 @@ use App\Models\displayed\DisplayEntry;
 use App\Models\temporary\ChildrenEvent;
 use App\Models\temporary\ClassT;
 use App\Models\temporary\Event;
+use App\Models\temporary\ImportantDates;
 use App\Models\temporary\Subject;
 use App\Models\work\EducationalInstitutionWork;
 use App\Models\work\MunicipalityWork;
@@ -31,18 +32,70 @@ class EntryController extends Controller
 
         foreach ($targetOlympiadEntries as $olympiadEntry)
         {
-            $displayEntry = new DisplayEntry();
-            $displayEntry->id = $olympiadEntry->id;
-            $displayEntry->subject = $olympiadEntry->childrenEvent->event->subject->name;
-            $displayEntry->class = $olympiadEntry->childrenEvent->classT->name;
-            $displayEntry->address = $olympiadEntry->childrenEvent->address ? $olympiadEntry->childrenEvent->address : 'Скоро станет известно';
-            $displayEntry->datetime = $olympiadEntry->childrenEvent->date_olympiad ?
-                date("d.m.y", strtotime($olympiadEntry->childrenEvent->date_olympiad)).' в '.date("H:i", strtotime($olympiadEntry->childrenEvent->date_olympiad)) :
-                'Скоро станет известно';
-            $displayEntry->tour = $olympiadEntry->childrenEvent->event->tour;
-            $displayEntry->status = $olympiadEntry->status;
+            $display = new class () {
+                public $id;
+                public $subject;
+                public $address;
+                public $tour;
+                public $olymp_date;
+                public $olymp_time;
+                public $end_checked_work;
+                public $statement_points;
+                public $showing_works;
+                public $address_showing_works;
+                public $petition_appeal;
+                public $address_petition_appeal;
+                public $appeal;
+                public $address_appeal;
+                public $publication;
 
-            $entries[] = $displayEntry;
+                public function fill($entry) {
+                    $childrenEvent = ChildrenEvent::where('id', $entry->children_event_id)->first();
+                    $importantDates = ImportantDates::where('children_event_id', $childrenEvent->id)->first();
+
+                    $this->id = $entry->id;
+
+                    if ($childrenEvent !== null) {
+                        $this->tour = $this->getTour($childrenEvent);
+                        $this->subject = $this->getSubject($childrenEvent);
+                        $this->address = $childrenEvent->address;
+                        $this->olymp_date = date("d.m.y", strtotime(explode(" ", $childrenEvent->date_olympiad)[0]));
+                        $this->olymp_time = date("H:i", strtotime(explode(" ", $childrenEvent->date_olympiad)[1]));
+                    }
+
+                    if ($importantDates !== null) {
+                        $this->end_checked_work = date("d.m.y", strtotime($importantDates->end_checked_work));
+                        $this->statement_points = date("d.m.y", strtotime($importantDates->statement_points));
+                        $this->showing_works = date("d.m.y в H:i", strtotime($importantDates->showing_works));
+                        $this->address_showing_works = $importantDates->address_showing_works;
+                        $this->appeal = date("d.m.y в H:i", strtotime($importantDates->appeal));
+                        $this->petition_appeal = date("d.m.y в H:i", strtotime($importantDates->petition_appeal));
+                        $this->address_petition_appeal = $importantDates->address_petition_appeal;
+                        $this->address_appeal = $importantDates->address_appeal;
+                        $this->publication = date("d.m.y", strtotime($importantDates->publication));
+                    }
+
+                }
+
+                private function getSubject($childrenEvent) {
+                    $event = Event::where('id', $childrenEvent->event_id)->first();
+                    $subject = Subject::where('id', $event->subject_id)->first();
+                    return $subject->name;
+                }
+
+                private function getTour($childrenEvent) {
+                    $event = Event::where('id', $childrenEvent->event_id)->first();
+                    return $event->tour;
+                }
+
+                public function shortAddress($count) {
+                    return strlen($this->address) > $count + 3 ? mb_substr($this->address, 0, $count)."..." : $this->address;
+                }
+            };
+
+            $display->fill($olympiadEntry);
+
+            $entries[] = $display;
         }
 
         return view('lk.entry', ['model' => $model, 'subjects' => $subjects, 'entries' => $entries, 'warrants' => $warrant]);
