@@ -126,66 +126,68 @@
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
 
-            {{--<div class='title'>
-                <h4>Регистрация на региональный этап ВсОШ</h4>
-            </div>
-
-            <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
-
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                @csrf
-
-                <div class="form-field">
-
-                    <label>Предмет</label>
-                    <select class="form-select" name="subject" id="classInput1">
-                        <option value="" selected>Выберите предмет</option>
-                        @foreach($subjects as $subject)
-                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                        @endforeach
-                    </select>
-
+            @if($model->id == 9)
+                <div class='title'>
+                    <h4>Регистрация на региональный этап ВсОШ</h4>
                 </div>
 
-                <div class="form-field">
+                <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
 
-                    <label>Класс участия в олимпиаде</label>
-                    <select class="form-select" name="participationClass" id="classInput2"></select>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    @csrf
 
-                </div>
+                    <div class="form-field">
 
-                <div class="form-field">
+                        <label>Предмет</label>
+                        <select class="form-select" name="subject" id="classInput1">
+                            <option value="" selected>Выберите предмет</option>
+                            @foreach($subjects as $subject)
+                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                            @endforeach
+                        </select>
 
-                    <label>Обоснование участия</label>
-                    <select class="form-select" name="warrant" id="classInput3">
-                        @foreach($warrants as $warrant)
-                            <option value="{{ $warrant->id }}">{{ $warrant->name }}</option>
-                        @endforeach
-                    </select>
+                    </div>
 
-                </div>
+                    <div class="form-field">
 
-                <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
+                        <label>Класс участия в олимпиаде</label>
+                        <select class="form-select" name="participationClass" id="classInput2"></select>
 
-                <div class="form-btn">
-                    <button class="btn btn-primary" type="submit">Подать заявку на участие</button>
-                </div>
-            </form>
+                    </div>
 
-            @if (\Illuminate\Support\Facades\Session::has('flash_message'))
-                <div class="modalBackground">
-                    <div class="modalActive">
-                        <div class="modalClose">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
-                                <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
-                            </svg>
-                        </div>
-                        <div class="modalWindow">
-                            {!! \Illuminate\Support\Facades\Session::get('flash_message')  !!}
+                    <div class="form-field">
+
+                        <label>Обоснование участия</label>
+                        <select class="form-select" name="warrant" id="classInput3">
+                            @foreach($warrants as $warrant)
+                                <option value="{{ $warrant->id }}">{{ $warrant->name }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+
+                    <img id="loader" src="{{url('/images/ajax-loader.gif')}}" alt="loader">
+
+                    <div class="form-btn">
+                        <button class="btn btn-primary" type="submit">Подать заявку на участие</button>
+                    </div>
+                </form>
+
+                @if (\Illuminate\Support\Facades\Session::has('flash_message'))
+                    <div class="modalBackground">
+                        <div class="modalActive">
+                            <div class="modalClose">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                                    <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="modalWindow">
+                                {!! \Illuminate\Support\Facades\Session::get('flash_message')  !!}
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif --}}
+                @endif
+            @endif
 
             <div class="verification_success">
                 <p class="verification_text">
