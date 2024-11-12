@@ -89,7 +89,13 @@ class EntryListController extends Controller
             abort(403);
         }
 
-        $model = OlympiadEntryWork::all();
+        //$model = OlympiadEntryWork::all();
+        $model = OlympiadEntryWork::select('olympiad_entry.*')
+            ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
+            ->join('subject', 'children_event.subject_id', '=', 'subject.id')
+            ->where('subject.actual', true)
+            ->groupBy('subject.id')->get();
+        //where('created_at', '<', '2024-01-01 00:00:00')->get();
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
 
@@ -101,7 +107,7 @@ class EntryListController extends Controller
             ['Субъект РФ', 'Код участника', 'Фамилия', 'Имя', 'Отчество', 'Пол',
                 'Дата рождения', 'Гражданство', 'Ограниченные возможности здоровья',
                 'Полное наименование общеобразовательной организации', 'Класс/возрастная группа участия', 'Класс обучения',
-                'Является победителем/ призером заключительного этапа ВсОШ 2022/23 уч.г.', 'Муниципалитет (округ), город', 'Обоснование участия',
+                'Является победителем/ призером заключительного этапа ВсОШ', 'Муниципалитет (округ), город', 'Обоснование участия',
                 'Предмет', 'Статус заявки', 'Номер телефона участника', 'Эл.почта участника'], // Заголовки столбцов
         ];
 
