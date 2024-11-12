@@ -90,8 +90,8 @@ class EntryListController extends Controller
         }
 
         //$model = OlympiadEntryWork::all();
-        $model = OlympiadEntryWork::select('olympiad_entry.*')
-            ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
+        $model = OlympiadEntryWork::/*select('olympiad_entry.*')
+            ->*/join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
             ->join('subject', 'children_event.subject_id', '=', 'subject.id')
             ->where('subject.actual', true)
             ->groupBy('subject.id')->get();
