@@ -79,8 +79,8 @@ class EntryController extends Controller
 
                 private function getSubject($childrenEvent) {
                     $event = Event::where('id', $childrenEvent->event_id)->first();
-                    $subject = Subject::where('id', $event->subject_id)->first();
-                    return $subject->name;
+                    $subject = Subject::where('id', $event->subject_id)->where('actual', true)->first();
+                    return $subject ? $subject->name : null;
                 }
 
                 private function getTour($childrenEvent) {
