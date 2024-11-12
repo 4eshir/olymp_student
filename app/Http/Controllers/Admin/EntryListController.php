@@ -89,7 +89,6 @@ class EntryListController extends Controller
             abort(403);
         }
 
-        //$model = OlympiadEntryWork::all();
         $model = OlympiadEntryWork::select('olympiad_entry.*')
             ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
             ->join('event', 'children_event.event_id', '=', 'event.id')

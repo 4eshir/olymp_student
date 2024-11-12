@@ -46,7 +46,7 @@
                 <th></th>
                 <th>Обучающийся/Обучающаяся</th>
                 <th>Предмет</th>
-                <th>Дата проведения</th>
+                <th>Дата проведения (первого тура)</th>
                 <th>Класс участия</th>
                 <th>Уч. учреждение</th>
                 <th>МО</th>
@@ -66,7 +66,7 @@
                     <td>{{ $row->childrenEvent->classT->name }}</td>
                     <td>{{ $row->user->educational->name }}</td>
                     <td>{{ $row->user->educational->jurisdiction->name }}</td>
-                    <td>{{ $row->childrenEvent->event->tour }} тур</td>
+                    <!--<td>{{-- $row->childrenEvent->event->tour --}} тур</td>-->
                     <td>{{ date("d.m.Y H:i", strtotime($row->created_at)) }}</td>
                     <td>{!! $row->prettyStatus() !!}</td>
                 </tr>

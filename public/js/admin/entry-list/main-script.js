@@ -13,7 +13,7 @@ function search()
     classSearch();
     schoolSearch();
     jurisdictionSearch()
-    tourSearch();
+    //tourSearch();
     dateEntrySearch();
     statusSearch();
 
