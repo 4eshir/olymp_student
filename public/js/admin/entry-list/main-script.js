@@ -223,19 +223,19 @@ function dateEntrySearch() {
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
 
-    if (filter === "") markedTr[7].length = 0;
+    if (filter === "") markedTr[6].length = 0;
 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[8];
-        let index = markedTr[7].indexOf(i);
-        if (index !== -1) markedTr[7].splice(index, 1);
+        td = tr[i].getElementsByTagName("td")[7];
+        let index = markedTr[6].indexOf(i);
+        if (index !== -1) markedTr[6].splice(index, 1);
         if (td && !checkMarked(i)) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
-                markedTr[7].push(i);
+                markedTr[6].push(i);
             }
         }
     }
@@ -250,19 +250,19 @@ function statusSearch() {
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
 
-    if (filter === "") markedTr[8].length = 0;
+    if (filter === "") markedTr[7].length = 0;
 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[9];
-        let index = markedTr[8].indexOf(i);
-        if (index !== -1) markedTr[8].splice(index, 1);
+        td = tr[i].getElementsByTagName("td")[8];
+        let index = markedTr[7].indexOf(i);
+        if (index !== -1) markedTr[7].splice(index, 1);
         if (td && !checkMarked(i)) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
-                markedTr[8].push(i);
+                markedTr[7].push(i);
             }
         }
     }
