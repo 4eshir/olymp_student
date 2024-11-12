@@ -95,7 +95,7 @@ class EntryListController extends Controller
             ->join('event', 'children_event.event_id', '=', 'event.id')
             ->join('subject', 'event.subject_id', '=', 'subject.id')
             //->where('subject.actual', true)
-            ->andWhere('event.tour', 1)->get();
+            ->where('event.tour', 1)->get();
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
 
