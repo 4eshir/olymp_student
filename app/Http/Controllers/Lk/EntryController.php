@@ -24,7 +24,7 @@ class EntryController extends Controller
     public function create()
     {
         $model = UserWork::where('id', Auth::id())->first();
-        $subjects = Subject::where('actual', true)->first();
+        $subjects = Subject::where('actual', true)->get();
         $entries = [];
         $warrant = WarrantInvolvement::all();
 
