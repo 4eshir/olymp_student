@@ -26,7 +26,7 @@ class EntryController extends Controller
         $model = UserWork::where('id', Auth::id())->first();
         $subjects = Subject::where('actual', true)->get();
         $entries = [];
-        $warrant = WarrantInvolvement::all();
+        $warrant = WarrantInvolvement::where('actual', true)->get();
 
         $targetOlympiadEntries = OlympiadEntryWork::where('user_id', Auth::id())->get();
 
