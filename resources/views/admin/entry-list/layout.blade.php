@@ -37,7 +37,7 @@
                 <th><input style="width: 100%" type="text" id="classInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="schoolInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="jurisdictionInput" onkeyup="search()"></th>
-                <th><input style="width: 100%" type="text" id="tourInput" onkeyup="search()"></th>
+                <!--<th><input style="width: 100%" type="text" id="tourInput" onkeyup="search()"></th>-->
                 <th><input style="width: 100%" type="text" id="dateEntryInput" onkeyup="search()"></th>
                 <th><input style="width: 100%" type="text" id="statusInput" onkeyup="search()"></th>
             </tr>
@@ -50,7 +50,7 @@
                 <th>Класс участия</th>
                 <th>Уч. учреждение</th>
                 <th>МО</th>
-                <th>Тур</th>
+                <!--<th>Тур</th>-->
                 <th>Дата подачи заявки</th>
                 <th>Статус заявки</th>
             </tr>
