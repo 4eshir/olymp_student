@@ -21,7 +21,7 @@ class EntryListController extends Controller
 {
     /*public function genCodes()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::where('actual', 1)->get();
 
         foreach ($subjects as $subject)
         {
@@ -33,7 +33,7 @@ class EntryListController extends Controller
             $ceIds = [];
             foreach ($childrenEvents as $childrenEvent) $ceIds[] = $childrenEvent->id;
 
-            $entries = OlympiadEntryWork::whereIn('children_event_id', $ceIds)->get();
+            $entries = OlympiadEntryWork::whereIn('children_event_id', $ceIds)->where('status', 1)->get();
 
             $counter9 = 0;
             $counter10 = 0;
@@ -44,7 +44,24 @@ class EntryListController extends Controller
                 $tempE = Event::where('id', $tempCE->event_id)->first();
 
                 $class = explode(" ", $tempCE->classT->name)[0];
-                $code = strlen($class) < 2 ? '0' : '';
+                $code = '';
+
+                switch ($subject->name) {
+                    case 'Техника, технологии и техническое творчество (труд/технология)':
+                        $code .= 'ТТТТ_';
+                        break;
+                    case 'Культура дома, дизайн и технологии (труд/технология)':
+                        $code .= 'ККДТ_';
+                        break;
+                    case 'Робототехника (труд/технология)':
+                        $code .= 'Р_';
+                        break;
+                    case 'Информационная безопасность (труд/технология)':
+                        $code .= 'ИБ_';
+                        break;
+                }
+
+                $code .= strlen($class) < 2 ? '0' : '';
                 $code .= $class.'_';
 
                 if ($class == '9')
@@ -77,8 +94,8 @@ class EntryListController extends Controller
             }
         }
 
-
     }*/
+
     /**
      * Display the registration view.
      *
