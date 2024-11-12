@@ -94,7 +94,7 @@ class EntryListController extends Controller
             ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
             ->join('event', 'children_event.event_id', '=', 'event.id')
             ->join('subject', 'event.subject_id', '=', 'subject.id')
-            //->where('subject.actual', true)
+            ->where('subject.actual', true)
             ->where('event.tour', 1)->get();
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
@@ -111,7 +111,13 @@ class EntryListController extends Controller
                 'Предмет', 'Статус заявки', 'Номер телефона участника', 'Эл.почта участника'], // Заголовки столбцов
         ];
 
-        $olympiadEntryAll = OlympiadEntryWork::all();
+        //$olympiadEntryAll = OlympiadEntryWork::all();
+        $olympiadEntryAll = OlympiadEntryWork::select('olympiad_entry.*')
+            ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
+            ->join('event', 'children_event.event_id', '=', 'event.id')
+            ->join('subject', 'event.subject_id', '=', 'subject.id')
+            ->where('subject.actual', true)
+            ->get();
         $citizenship = ['РФ', 'Резидент', 'Иностранный гражданин'];
         $ovz = ['Нет', 'Да'];
 
