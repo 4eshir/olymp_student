@@ -131,7 +131,7 @@ class EntryListController extends Controller
         $sheet->fromArray($excelExport, null, 'A1');
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save('Заявки на ВсОШ 2023-2024.xlsx');
+        $writer->save('Заявки на ВсОШ 2024-2025.xlsx');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="Заявки на ВсОШ 2024-2025.xlsx"');
@@ -143,8 +143,8 @@ class EntryListController extends Controller
         readfile('Заявки на ВсОШ 2024-2025.xlsx');
 
         // Удалить файл после скачивания
-        if (file_exists('Заявки на ВсОШ 2023-2024.xlsx')) {
-            unlink('Заявки на ВсОШ 2023-2024.xlsx');
+        if (file_exists('Заявки на ВсОШ 2024-2025.xlsx')) {
+            unlink('Заявки на ВсОШ 2024-2025.xlsx');
         }
 
         exit;
