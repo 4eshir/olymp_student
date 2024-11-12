@@ -24,7 +24,7 @@ class EntryController extends Controller
     public function create()
     {
         $model = UserWork::where('id', Auth::id())->first();
-        $subjects = Subject::all();
+        $subjects = Subject::where('actual', true)->first();
         $entries = [];
         $warrant = WarrantInvolvement::all();
 
@@ -79,8 +79,8 @@ class EntryController extends Controller
 
                 private function getSubject($childrenEvent) {
                     $event = Event::where('id', $childrenEvent->event_id)->first();
-                    $subject = Subject::where('id', $event->subject_id)->where('actual', true)->first();
-                    return $subject ? $subject->name : null;
+                    $subject = Subject::where('id', $event->subject_id)->first();
+                    return $subject->name;
                 }
 
                 private function getTour($childrenEvent) {
