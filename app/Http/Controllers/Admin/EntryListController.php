@@ -90,13 +90,12 @@ class EntryListController extends Controller
         }
 
         //$model = OlympiadEntryWork::all();
-        $model = OlympiadEntryWork::/*select('olympiad_entry.*')
-            ->*/join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
-            ->join('subject', 'children_event.subject_id', '=', 'subject.id')
-            ->where('subject.actual', true)
-            ->groupBy('subject.id')->get();
-        var_dump($model);
-        //where('created_at', '<', '2024-01-01 00:00:00')->get();
+        $model = OlympiadEntryWork::select('olympiad_entry.*')
+            ->join('children_event', 'olympiad_entry.children_event_id', '=', 'children_event.id')
+            ->join('event', 'children_event.event_id', '=', 'event.id')
+            ->join('subject', 'event.subject_id', '=', 'subject.id')
+            //->where('subject.actual', true)
+            ->andWhere('event.tour', 1)->get();
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
 
