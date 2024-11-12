@@ -95,6 +95,7 @@ class EntryListController extends Controller
             ->join('subject', 'children_event.subject_id', '=', 'subject.id')
             ->where('subject.actual', true)
             ->groupBy('subject.id')->get();
+        var_dump($model);
         //where('created_at', '<', '2024-01-01 00:00:00')->get();
 
         $model->temp = json_encode(Http::get(url('/api/get-entries')));
