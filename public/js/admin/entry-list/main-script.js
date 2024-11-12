@@ -188,7 +188,7 @@ function jurisdictionSearch() {
 }
 
 
-function tourSearch() {
+/*function tourSearch() {
     // Declare variables
     var input, filter, table, tr, td, i;
     input = document.getElementById("tourInput");
@@ -212,7 +212,7 @@ function tourSearch() {
             }
         }
     }
-}
+}*/
 
 
 function dateEntrySearch() {
