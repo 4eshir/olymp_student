@@ -113,12 +113,12 @@ class EntryListController extends Controller
 
         $olympiadEntryAll = OlympiadEntryWork::all();
         $citizenship = ['РФ', 'Резидент', 'Иностранный гражданин'];
-        $ovz = ['нет', 'да'];
+        $ovz = ['Нет', 'Да'];
 
         foreach ($olympiadEntryAll as $olympiadEntry)
         {
             if ($olympiadEntry->childrenEvent->event->tour == 1)
-            $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
+            $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, substr($olympiadEntry->user->sex, 0, 1),
                 date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id !== null ? $citizenship[(int)$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled !== null ? $ovz[(int)$olympiadEntry->disabled] : '',
                 $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class,
                 $olympiadEntry->warrant_involvement_id == 2 ? 'Да' : 'Нет', $olympiadEntry->user->educational->jurisdiction->name, $olympiadEntry->warrant->name,
