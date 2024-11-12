@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class EntryListController extends Controller
@@ -112,14 +113,14 @@ class EntryListController extends Controller
 
         $olympiadEntryAll = OlympiadEntryWork::all();
         $citizenship = ['РФ', 'Резидент', 'Иностранный гражданин'];
-        $ovz = ['Без ОВЗ', 'Имеется ОВЗ'];
+        $ovz = ['нет', 'да'];
 
         foreach ($olympiadEntryAll as $olympiadEntry)
         {
             if ($olympiadEntry->childrenEvent->event->tour == 1)
-            $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, $olympiadEntry->user->sex,
+            $excelExport[] = ['Астраханская область', $olympiadEntry->code, $olympiadEntry->user->surname, $olympiadEntry->user->name, $olympiadEntry->user->patronymic, Str::limit($olympiadEntry->user->sex, 1),
                 date("d.m.Y", strtotime($olympiadEntry->user->birthdate)), $olympiadEntry->citizenship_id !== null ? $citizenship[(int)$olympiadEntry->citizenship_id] : '', $olympiadEntry->disabled !== null ? $ovz[(int)$olympiadEntry->disabled] : '',
-                $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class . ' класс',
+                $olympiadEntry->user->educational->name, $olympiadEntry->childrenEvent->classT->name, $olympiadEntry->user->class,
                 $olympiadEntry->warrant_involvement_id == 2 ? 'Да' : 'Нет', $olympiadEntry->user->educational->jurisdiction->name, $olympiadEntry->warrant->name,
                 $olympiadEntry->childrenEvent->event->subject->name, $olympiadEntry->status == null ? 'Не рассмотрена' : ($olympiadEntry->status === 0 ? 'Отклонена' : 'Одобрена'),
                 $olympiadEntry->user->phone_number, $olympiadEntry->user->email];
@@ -133,13 +134,13 @@ class EntryListController extends Controller
         $writer->save('Заявки на ВсОШ 2023-2024.xlsx');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="Заявки на ВсОШ 2023-2024.xlsx"');
+        header('Content-Disposition: attachment; filename="Заявки на ВсОШ 2024-2025.xlsx"');
         header('Cache-Control: max-age=3600');
         header('Cache-Control: max-age=3600');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Expires: ' . gmdate('r', time() + 3600));
-        readfile('Заявки на ВсОШ 2023-2024.xlsx');
+        readfile('Заявки на ВсОШ 2024-2025.xlsx');
 
         // Удалить файл после скачивания
         if (file_exists('Заявки на ВсОШ 2023-2024.xlsx')) {
