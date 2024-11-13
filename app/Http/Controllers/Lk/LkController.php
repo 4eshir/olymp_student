@@ -167,7 +167,6 @@ class LkController extends Controller
             Cache::forget("code:{$phone}");
             $phone = SmsService::convertPhoneNumber($request->_phone);
             $result = SmsService::sendSms($phone);
-            var_dump($result);die;
             Session::put("sms_result:$phone", $result);
             Session::flash('warning', $result);
             return redirect()->route('showPhoneConfirm', ['phone' => $request->_phone, 'result' => $result]);
