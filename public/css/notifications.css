@@ -6,6 +6,14 @@
     width: 100%;
 }
 
+.verification_form{
+    background-color: rgb(217, 233, 248);
+    border: 1px solid #70c0ea;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
 .verification_danger{
     background-color: rgba(255, 0, 0, 0.2);
     border: 1px solid #ff0000;
@@ -26,4 +34,29 @@
 
 .verification_text{
     font-size: 13pt;
+}
+
+.code-input {
+    display: flex;
+    justify-content: left; /* Выровнять по центру */
+}
+
+.code-input-input {
+    width: 40px;
+    height: 50px;
+    margin-right: 5px; /* Отступ между полями */
+    text-align: center;
+    font-size: 24px;
+    border: 0;
+    border-radius: 10px;
+}
+
+/* Последний элемент не имеет правого отступа */
+.code-input input:last-child {
+    margin-right: 0;
+}
+
+#timer {
+    font-size: 2em;
+    margin-top: 20px;
 }

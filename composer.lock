@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "296c82fcf8f971ca80547477822883ed",
+    "content-hash": "d269dcf4f0e5e6466b4180bcdeed4391",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4484,6 +4484,40 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "smsaero/smsaero_api",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smsaero/smsaero_api.git",
+                "reference": "139faddca2ad480f7d8b5215f93f9a1e7ea7e106"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smsaero/smsaero_api/zipball/139faddca2ad480f7d8b5215f93f9a1e7ea7e106",
+                "reference": "139faddca2ad480f7d8b5215f93f9a1e7ea7e106",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SmsAero\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Библиотека для работы с API сервиса smsaero.ru",
+            "support": {
+                "issues": "https://github.com/smsaero/smsaero_api/issues",
+                "source": "https://github.com/smsaero/smsaero_api/tree/v1.0.0"
+            },
+            "time": "2023-03-28T00:46:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -9238,5 +9272,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

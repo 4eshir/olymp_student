@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="./css/auth/index.css">
-    <link rel="stylesheet" href="./css/auth/profile.css">
-    <link rel="stylesheet" href="./css/notifications.css">
-    <link rel="stylesheet" href="./css/modal_window.css">
+    <link rel="stylesheet" href="{{ asset('css/auth/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/notifications.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal_window.css') }}">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <style>
         /* Ваши стили для выделения выбранных дат */
@@ -29,8 +29,8 @@
 
 <header class="header_mobile">
     <div>
-        <img class = "vsohlogo" src="./img/logo_goriz_color.svg" alt="" />
-        <img class= "citylogo" src="./img/Frame 9191.svg" alt="" />
+        <img class = "vsohlogo" src="{{ asset('img/logo_goriz_color.svg') }}" alt="" />
+        <img class= "citylogo" src="{{ asset('img/Frame 9191.svg') }}" alt="" />
     </div>
     <div class="burger_btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -66,8 +66,8 @@
 </div>
 
 <header class="header_desktop">
-    <img class = "vsohlogo" src="./img/logo_goriz_color.svg" alt="" />
-    <img class= "citylogo" src="./img/Frame 9191.svg" alt="" />
+    <img class = "vsohlogo" src="{{ asset('img/logo_goriz_color.svg') }}" alt="" />
+    <img class= "citylogo" src="{{ asset('img/Frame 9191.svg') }}" alt="" />
 </header>
 
 <div class='profile'>
@@ -98,22 +98,23 @@
 
     <div class='section animate__animated animate__fadeIn'>
 
-        @if ($model->email_verified_at == null)
-            <form method="POST" class="verification_info" action="{{ route('verification.send') }}">
+        @if ($model->phone_verified_at == null)
+            <form method="POST" class="verification_info" action="{{ route('phoneConfirm') }}">
                 @csrf
-                <p class="verification_text">Пока Ваша учётная запись не подтверждена. На указанную Вами электронную почту было направлено письмо для подтверждения.</p>
-                <p>    Если Вы указали неверный email при регистрации, перейдите в раздел редактирования контактов, укажите правильную электронную почту и подтвердите её.</p>
-                <input type="submit" class="btn btn-warning" value="Повторная отправка письма с подтверждением">
+                <input name="_phone" type="hidden" value="{{$model->phone_number}}"/>
+                <p class="verification_text">Пока Ваша учётная запись не подтверждена. Нажмите на кнопку ниже и введите полученный в СМС-сообщении код в соответствующее поле.</p>
+                <p>    Если Вы указали неверный телефон при регистрации, перейдите в раздел редактирования контактов, укажите правильный номер и подтвердите его.</p>
+                <input type="submit" class="btn btn-warning" value="Отправить СМС с кодом подтверждения">
 
                 @if (Session::has('flash_message'))
                     {{ \Illuminate\Support\Facades\Session::get('flash_message') }}
-                <div class="modalBackground">
-                    <div class="modalActive">
-                        <div class="modalClose">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
-                                <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
-                            </svg>
-                        </div>
+                    <div class="modalBackground">
+                        <div class="modalActive">
+                            <div class="modalClose">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                                    <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#383C3F" fill-opacity="0.4"/>
+                                </svg>
+                            </div>
                             <div class="modalWindow">
                                 <p>Письмо с подтверждением успешно отправлено!</p>
                                 <div style="padding: 0 45% 5%">
@@ -127,97 +128,125 @@
                                 <p>1. Проверьте папки со спамом и массовыми рассылками.</p>
                                 <p>2. Проверьте корректность введенного email-адреса.</p>
                             </div>
+                        </div>
                     </div>
-                </div>
                 @endif
-
             </form>
-        @endif
 
-        @if (!$model->completed())
-            <div class='verification_info'>
-                <p class="verification_text" style="margin-bottom: 0">
-                    Для продолжения регистрации корректно заполните все данные профиля
-                </p>
+            <div class='contacts'>
+                <div class='title'>
+                    <h4>Контакты</h4>
+                    <a href="{{ route('profileEditContact') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                            <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class='info'>
+                    <div class='tel'>
+                        <span>Номер телефона</span>
+                        <p>+{{ (int)(substr($model->phone_number, 0, 1) - 1).' ('.substr($model->phone_number, 1, 3).') '.substr($model->phone_number, 4, 3).' '.substr($model->phone_number, 7, 2).' '.substr($model->phone_number, 9) }}</p>
+                    </div>
+                    <div class='email'>
+                        <span>Email</span>
+                        <p>{{ $model->email }}</p>
+                    </div>
+
+                </div>
             </div>
-        @endif
+        @else
+            @if(session('success'))
+                <div class="alert alert-success" style="width: 100%">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-        <div class='name_section'>
-            <div class='name'>
-                <h3>{{ ($model->surname ? : '---').' '.($model->name ? : '---').' '.($model->patronymic ? : '---') }}</h3>
-                <?php
-                    $arr = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-                ?>
+            @if (!$model->completed())
+                <div class='verification_info'>
+                    <p class="verification_text" style="margin-bottom: 0">
+                        Для продолжения регистрации корректно заполните все данные профиля
+                    </p>
+                </div>
+            @endif
 
-                <p @if (!$model->checkAge()) style="color: red" @endif>
-                    Дата рождения: {{ date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}
-                    @if (!$model->checkAge())
-                        <br>
-                        <br>
-                        <i>Ваш возраст не может быть меньше 10 и больше 18 лет</i>
-                    @endif
-                </p>
+            <div class='name_section'>
+                <div class='name'>
+                    <h3>{{ ($model->surname ? : '---').' '.($model->name ? : '---').' '.($model->patronymic ? : '---') }}</h3>
+                    <?php
+                        $arr = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+                    ?>
 
-            </div>
-            <a href="{{ route('profileEditCommon') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_blue">
-                    <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#024566" fill-opacity="0.4"/>
-                </svg>
-            </a>
-        </div>
+                    <p @if (!$model->checkAge()) style="color: red" @endif>
+                        Дата рождения: {{ date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}
+                        @if (!$model->checkAge())
+                            <br>
+                            <br>
+                            <i>Ваш возраст не может быть меньше 10 и больше 18 лет</i>
+                        @endif
+                    </p>
 
-        <div class='contacts'>
-            <div class='title'>
-                <h4>Контакты</h4>
-                <a href="{{ route('profileEditContact') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
-                        <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
+                </div>
+                <a href="{{ route('profileEditCommon') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_blue">
+                        <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#024566" fill-opacity="0.4"/>
                     </svg>
                 </a>
             </div>
 
-            <div class='info'>
-                <div class='tel'>
-                    <span>Номер телефона</span>
-                    <p>+{{ (int)(substr($model->phone_number, 0, 1) - 1).' ('.substr($model->phone_number, 1, 3).') '.substr($model->phone_number, 4, 3).' '.substr($model->phone_number, 7, 2).' '.substr($model->phone_number, 9) }}</p>
-                </div>
-                <div class='email'>
-                    <span>Email</span>
-                    <p>{{ $model->email }}</p>
+            <div class='contacts'>
+                <div class='title'>
+                    <h4>Контакты</h4>
+                    <a href="{{ route('profileEditContact') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                            <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
+                        </svg>
+                    </a>
                 </div>
 
+                <div class='info'>
+                    <div class='tel'>
+                        <span>Номер телефона</span>
+                        <p>+{{ (int)(substr($model->phone_number, 0, 1) - 1).' ('.substr($model->phone_number, 1, 3).') '.substr($model->phone_number, 4, 3).' '.substr($model->phone_number, 7, 2).' '.substr($model->phone_number, 9) }}</p>
+                    </div>
+                    <div class='email'>
+                        <span>Email</span>
+                        <p>{{ $model->email }}</p>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <div class='personaldata'>
+            <div class='personaldata'>
 
-            <div class='title'>
-                <h4>Персональные данные</h4>
-                <a href="{{-- route('profileEditSpecial') --}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
-                        <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
-                    </svg>
-                </a>
+                <div class='title'>
+                    <h4>Персональные данные</h4>
+                    <a href="{{-- route('profileEditSpecial') --}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
+                            <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class='info'>
+                    <div class='raion'>
+                        <span>Район</span>
+                        <p>{{ $model->municipality_id ? $model->municipality->name : '---' }}</p>
+                    </div>
+
+                    <div class='school'>
+                        <span>Школа</span>
+                        <p>{{ $model->educational_institution_id ? $model->educational->name : '---' }}</p>
+                    </div>
+
+                    <div class='grade_real'>
+                        <span>Класс обучения</span>
+                        <p>{{ $model->class ? $model->class : '---' }}</p>
+                    </div>
+
+                </div>
             </div>
-
-            <div class='info'>
-                <div class='raion'>
-                    <span>Район</span>
-                    <p>{{ $model->municipality_id ? $model->municipality->name : '---' }}</p>
-                </div>
-
-                <div class='school'>
-                    <span>Школа</span>
-                    <p>{{ $model->educational_institution_id ? $model->educational->name : '---' }}</p>
-                </div>
-
-                <div class='grade_real'>
-                    <span>Класс обучения</span>
-                    <p>{{ $model->class ? $model->class : '---' }}</p>
-                </div>
-
-            </div>
-        </div>
+        @endif
     </div>
     <div class='Column'></div>
 </div>

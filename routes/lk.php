@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::post('profile-request-contact', [\App\Http\Controllers\Lk\LkController::class, 'requestContact'])->name('profileRequestContact');
     Route::post('profile-request-special', [\App\Http\Controllers\Lk\LkController::class, 'requestSpecial'])->name('profileRequestSpecial');
 
+    Route::get('phone-confirm/{phone}/{result}', [\App\Http\Controllers\Lk\LkController::class, 'showPhoneConfirm'])->name('showPhoneConfirm');
+
+    Route::post('phone-confirm', [\App\Http\Controllers\Lk\LkController::class, 'phoneConfirm'])->name('phoneConfirm');
+    Route::post('phone-confirm-process', [\App\Http\Controllers\Lk\LkController::class, 'phoneConfirmProcess'])->name('phoneConfirmProcess');
+
     Route::get('entry', [\App\Http\Controllers\Lk\EntryController::class, 'create'])->name('entry');
     Route::get('entry-dropdown-class-data', [\App\Http\Controllers\Lk\EntryController::class, 'dropdownClassData'])->name('entryDropdownClassData');
 

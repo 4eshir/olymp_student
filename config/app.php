@@ -234,4 +234,9 @@ return [
 
     ],
 
+    'params' => [
+        'smsApiKey' => 'r0jeD03cDzh6nCeBD4pnDsbcPTZ',
+        'smsApiLogin' => 'gkalashnik@schooltech.ru'
+    ]
+
 ];

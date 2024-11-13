@@ -24,6 +24,10 @@ class EntryController extends Controller
     public function create()
     {
         $model = UserWork::where('id', Auth::id())->first();
+        if ($model->phone_verified_at == null) {
+            return redirect()->route('default');
+        }
+
         $subjects = Subject::where('actual', true)->get();
         $entries = [];
         $warrant = WarrantInvolvement::where('actual', true)->get();
