@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Validation\Rules\PasswordCustom;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
             return PasswordCustom::min(8)
                 ->mixedCase();
         });
+        Schema::defaultStringLength(191);
     }
 }
