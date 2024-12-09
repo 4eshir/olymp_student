@@ -32,7 +32,7 @@ class EntryController extends Controller
         $entries = [];
         $warrant = WarrantInvolvement::where('actual', true)->get();
 
-        $targetOlympiadEntries = OlympiadEntryWork::where('user_id', Auth::id())->get();
+        $targetOlympiadEntries = OlympiadEntryWork::where('user_id', Auth::id())->where('created_at', '>', '2024-01-01')->get();
 
         foreach ($targetOlympiadEntries as $olympiadEntry)
         {

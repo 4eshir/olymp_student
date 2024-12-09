@@ -100,7 +100,7 @@
         @if ($model->email_verified_at == null)
             <form method="POST" class="verification_info" action="{{ route('verification.send') }}">
                 @csrf
-                <p class="verification_text">Пока Ваша учётная запись не подтверждена. На указанную Вами электронную почту было направлено письмо для подтверждения.</p>
+                <p class="verification_text"><b>Шаг 1. Подтвердите электронную почту</b></p>
                 <p>    Если Вы указали неверный email при регистрации, перейдите в раздел редактирования контактов, укажите правильную электронную почту и подтвердите её.</p>
                 <input type="submit" class="btn btn-warning" value="Повторная отправка письма с подтверждением">
 
@@ -137,7 +137,7 @@
             <form method="POST" class="verification_info" action="{{ route('phoneConfirm') }}">
                 @csrf
                 <input name="_phone" type="hidden" value="{{$model->phone_number}}"/>
-                <p class="verification_text">Пока Ваша учётная запись не подтверждена. Нажмите на кнопку ниже и введите полученный в СМС-сообщении код в соответствующее поле.</p>
+                <p class="verification_text"><b>Шаг 2. Подтвердите личный номер телефона</b></p>
                 <p>    Если Вы указали неверный телефон при регистрации, перейдите в раздел редактирования контактов, укажите правильный номер и подтвердите его.</p>
                 <input type="submit" class="btn btn-warning" value="Отправить СМС с кодом подтверждения">
             </form>
@@ -174,8 +174,18 @@
             @if (!$model->completed())
                 <div class='verification_info'>
                     <p class="verification_text" style="margin-bottom: 0">
-                        Для продолжения регистрации корректно заполните все данные профиля
-                    </p>
+                        <b>Шаг 3. Заполните данные профиля: ФИО, дату рождения, район, школу и класс обучения</b>
+                    </p><br>
+                    <p>    После подачи заявки на олимпиаду изменить данные сведения будет невозможно. Будьте внимательны при сохранении данных.</p>
+                </div>
+            @endif
+
+            @if ($model->completed())
+                <div class='verification_success'>
+                    <p class="verification_text" style="margin-bottom: 0">
+                        <b>Шаг 4. Перейдите в раздел "Мои олимпиады"</b>
+                    </p><br>
+                    <p>    В разделе меню (в компьютерной версии меню расположено слева, в мобильной версии - наверху в раскрывающемся списке) найдите пункт "Мои олимпиады", чтобы подать заявку или просмотреть уже поданные заявки.</p>
                 </div>
             @endif
 
@@ -187,7 +197,7 @@
                     ?>
 
                     <p @if (!$model->checkAge()) style="color: red" @endif>
-                        Дата рождения: {{ date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}
+                        Дата рождения: {{ $model->birthdate == null ? '' : date("d", strtotime($model->birthdate)).' '.$arr[(int)(date("m", strtotime($model->birthdate))) - 1].' '.date("Y", strtotime($model->birthdate)) }}
                         @if (!$model->checkAge())
                             <br>
                             <br>
