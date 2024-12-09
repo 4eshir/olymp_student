@@ -97,14 +97,12 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
-
-        @if ($model->phone_verified_at == null)
-            <form method="POST" class="verification_info" action="{{ route('phoneConfirm') }}">
+        @if ($model->email_verified_at == null)
+            <form method="POST" class="verification_info" action="{{ route('verification.send') }}">
                 @csrf
-                <input name="_phone" type="hidden" value="{{$model->phone_number}}"/>
-                <p class="verification_text">Пока Ваша учётная запись не подтверждена. Нажмите на кнопку ниже и введите полученный в СМС-сообщении код в соответствующее поле.</p>
-                <p>    Если Вы указали неверный телефон при регистрации, перейдите в раздел редактирования контактов, укажите правильный номер и подтвердите его.</p>
-                <input type="submit" class="btn btn-warning" value="Отправить СМС с кодом подтверждения">
+                <p class="verification_text">Пока Ваша учётная запись не подтверждена. На указанную Вами электронную почту было направлено письмо для подтверждения.</p>
+                <p>    Если Вы указали неверный email при регистрации, перейдите в раздел редактирования контактов, укажите правильную электронную почту и подтвердите её.</p>
+                <input type="submit" class="btn btn-warning" value="Повторная отправка письма с подтверждением">
 
                 @if (Session::has('flash_message'))
                     {{ \Illuminate\Support\Facades\Session::get('flash_message') }}
@@ -131,6 +129,17 @@
                         </div>
                     </div>
                 @endif
+
+            </form>
+        @endif
+
+        @if ($model->phone_verified_at == null)
+            <form method="POST" class="verification_info" action="{{ route('phoneConfirm') }}">
+                @csrf
+                <input name="_phone" type="hidden" value="{{$model->phone_number}}"/>
+                <p class="verification_text">Пока Ваша учётная запись не подтверждена. Нажмите на кнопку ниже и введите полученный в СМС-сообщении код в соответствующее поле.</p>
+                <p>    Если Вы указали неверный телефон при регистрации, перейдите в раздел редактирования контактов, укажите правильный номер и подтвердите его.</p>
+                <input type="submit" class="btn btn-warning" value="Отправить СМС с кодом подтверждения">
             </form>
 
             <div class='contacts'>
