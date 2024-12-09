@@ -163,8 +163,8 @@
         if (event.key === 'Enter') { event.preventDefault(); }
     });
 
-    const initialMinutes = 0;
-    const initialSeconds = 30;
+    const initialMinutes = 3;
+    const initialSeconds = 0;
     const totalTimeInSeconds = initialMinutes * 60 + initialSeconds;
 
     // Получаем время из localStorage или используем время инициализации

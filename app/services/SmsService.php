@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 class SmsService
 {
     // Время жизни сообщения в секундах (в кэше и для повторной отправки)
-    const SMS_LIFETIME = 30;
+    const SMS_LIFETIME = 180;
 
     public static function sendSms($phone)
     {
