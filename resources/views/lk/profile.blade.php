@@ -56,6 +56,9 @@
         <a href="{{ route('entry') }}">
             Мои олимпиады
         </a>
+        <a href="https://disk.yandex.ru/i/iDliJHlGBbzKAA" style="color: red;">
+            Видеоинструкция
+        </a>
     </div>
     <form method="POST" action="{{ route('logout') }}">
         @csrf
@@ -84,6 +87,9 @@
                 <a href="{{ route('entry') }}">
                     Мои олимпиады
                 </a>
+                <a href="https://disk.yandex.ru/i/iDliJHlGBbzKAA" style="color: red;">
+                    Видеоинструкция
+                </a>
             </div>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -97,6 +103,7 @@
     </form>
 
     <div class='section animate__animated animate__fadeIn'>
+
         @if ($model->email_verified_at == null)
             <form method="POST" class="verification_info" action="{{ route('verification.send') }}">
                 @csrf
