@@ -133,13 +133,13 @@
         @if ($model->completed())
             <div class="verification_success">
                 <p class="verification_text">
-                    <b>Шаг 5. Заполните регистрационную форму, чтобы подать заявку на школьный предмет</b>
+                    <b>Шаг 5. Заполните форму, и подайте заявку на региональный этап по выбранному Вами предмету</b>
                 </p>
-                <p>Убедитесь что заявка сохранена в системе и отображается в блоке "Мои олимпиады".</p>
+                <p>Убедитесь что поданная заявка отображается в блоке "Мои олимпиады" (ниже, под кнопкой "Подать заявку на участие").</p>
             </div>
 
                 <div class='title'>
-                    <h4>Регистрация на региональный этап ВсОШ</h4>
+                    <h4>Форма заявки на участие в региональном этапе ВсОШ</h4>
                 </div>
 
                 <form class='mainform_profile' method="POST" action="{{ route('createEntry') }}">
@@ -170,6 +170,7 @@
 
                         <label>Обоснование участия</label>
                         <select class="form-select" name="warrant" id="classInput3">
+                            <option value="" selected>Выберите обоснование участия</option>
                             @foreach($warrants as $warrant)
                                 <option value="{{ $warrant->id }}">{{ $warrant->name }}</option>
                             @endforeach
@@ -403,7 +404,7 @@
 
                 $.get('{{url('entry-dropdown-class-data?subject_id=')}}'+id)
                     .done(function(data){
-                        var s='<option value="" selected>Выберите класс</option>';
+                        var s='<option value="" selected>Выберите класс участия</option>';
 
                         console.log(data);
 
