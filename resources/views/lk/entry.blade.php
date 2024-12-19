@@ -171,7 +171,6 @@
 
                         <label>Обоснование участия</label>
                         <select class="form-select" name="warrant" id="classInput3">
-                            <option value="" selected>Выберите обоснование участия</option>
                             @foreach($warrants as $warrant)
                                 <option value="{{ $warrant->id }}">{{ $warrant->name }}</option>
                             @endforeach
