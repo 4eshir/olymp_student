@@ -204,7 +204,7 @@
             @if(!$model->edit)
                     <div class='verification_info'>
                         <p class="verification_text" style="margin-bottom: 0">
-                            <b>Редактирование данных профиля невозможно</b>
+                            <b>Редактирование данных профиля недоступно</b>
                         </p><br>
                         <p>    Подача заявок на участие в региональном этапе ВсОШ завершена</p>
                     </div>
