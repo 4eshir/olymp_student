@@ -45,6 +45,9 @@
         <a href="{{ route('entry') }}">
             Мои олимпиады
         </a>
+        <a href="https://disk.yandex.ru/i/iDliJHlGBbzKAA" style="color: red;">
+            Видеоинструкция
+        </a>
     </div>
 
     <form method="POST" action="{{ route('logout') }}">

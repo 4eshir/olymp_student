@@ -76,6 +76,9 @@
             <a href="{{ route('entry') }}">
                 Мои олимпиады
             </a>
+            <a href="https://disk.yandex.ru/i/iDliJHlGBbzKAA" style="color: red;">
+                Видеоинструкция
+            </a>
         </div>
 
         <button type="submit" class="logout" style="border: 0">
