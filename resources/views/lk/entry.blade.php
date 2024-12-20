@@ -131,6 +131,7 @@
 
     <div class='section animate__animated animate__fadeIn'>
         @if ($model->completed())
+            @if($model->edit)
             <div class="verification_success">
                 <p class="verification_text">
                     <b>Шаг 5. Заполните форму, и подайте заявку на региональный этап по выбранному Вами предмету</b>
@@ -199,9 +200,9 @@
                         </div>
                     </div>
                 @endif
+            @endif
 
-
-            <div hidden class="verification_success">
+            <div class="verification_success">
                 <p class="verification_text">
                     Регистрация на региональный этап Всероссийской Олимпиады школьников 2024/2025 завершена.
                 </p>

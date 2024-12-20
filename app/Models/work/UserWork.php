@@ -16,6 +16,7 @@ class UserWork extends User
 {
     protected $guarded = [];
     public $timestamps = false;
+    public $edit = false;
 
     public function completed()
     {

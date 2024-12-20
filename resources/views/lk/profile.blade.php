@@ -141,7 +141,7 @@
             </form>
         @endif
 
-        @if ($model->phone_verified_at == null)
+        @if ($model->phone_verified_at == null && $model->edit)
             <form method="POST" class="verification_info" action="{{ route('phoneConfirm') }}">
                 @csrf
                 <input name="_phone" type="hidden" value="{{$model->phone_number}}"/>
@@ -154,11 +154,13 @@
             <div class='contacts'>
                 <div class='title'>
                     <h4>Контакты</h4>
+                    @if ($model->edit)
                     <a href="{{ route('profileEditContact') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
                             <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
                         </svg>
                     </a>
+                    @endif
                 </div>
 
                 <div class='info'>
@@ -180,7 +182,7 @@
                 </div>
             @endif
 
-            @if (!$model->completed())
+            @if (!$model->completed() && $model->edit)
                 <div class='verification_info'>
                     <p class="verification_text" style="margin-bottom: 0">
                         <b>Шаг 3. Заполните данные профиля: ФИО, дата рождения, район, школа и класс обучения</b>
@@ -190,13 +192,22 @@
                 </div>
             @endif
 
-            @if ($model->completed())
+            @if ($model->completed() && $model->edit)
                 <div class='verification_success'>
                     <p class="verification_text" style="margin-bottom: 0">
                         <b>Шаг 4. Перейдите в раздел "Мои олимпиады"</b>
                     </p><br>
                     <p>    В разделе меню (в компьютерной версии меню расположено слева, в мобильной версии - наверху в раскрывающемся списке) найдите пункт "Мои олимпиады", чтобы подать заявку на региональный этап ВсОШ или просмотреть уже поданные заявки.</p>
                 </div>
+            @endif
+
+            @if(!$model->edit)
+                    <div class='verification_info'>
+                        <p class="verification_text" style="margin-bottom: 0">
+                            <b>Редактирование данных профиля невозможно</b>
+                        </p><br>
+                        <p>    Подача заявок на участие в региональном этапе ВсОШ завершена</p>
+                    </div>
             @endif
 
             <div class='name_section'>
@@ -216,21 +227,25 @@
                     </p>
 
                 </div>
+                @if ($model->edit)
                 <a href="{{ route('profileEditCommon') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_blue">
                         <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#024566" fill-opacity="0.4"/>
                     </svg>
                 </a>
+                @endif
             </div>
 
             <div class='contacts'>
                 <div class='title'>
                     <h4>Контакты</h4>
+                    @if ($model->edit)
                     <a href="{{ route('profileEditContact') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
                             <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
                         </svg>
                     </a>
+                    @endif
                 </div>
 
                 <div class='info'>
@@ -250,11 +265,13 @@
 
                 <div class='title'>
                     <h4>Персональные данные</h4>
+                    @if ($model->edit)
                     <a href="{{route('profileEditSpecial')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="edit_icon_gray">
                             <path d="M9.243 18.996H21V20.996H3V16.754L12.9 6.85403L17.142 11.097L9.242 18.997L9.243 18.996ZM14.313 5.44003L16.435 3.31903C16.6225 3.13156 16.8768 3.02625 17.142 3.02625C17.4072 3.02625 17.6615 3.13156 17.849 3.31903L20.678 6.14703C20.8655 6.33456 20.9708 6.58887 20.9708 6.85403C20.9708 7.1192 20.8655 7.3735 20.678 7.56103L18.556 9.68303L14.314 5.44003H14.313Z" fill="#383C3F" fill-opacity="0.4"/>
                         </svg>
                     </a>
+                    @endif
                 </div>
 
                 <div class='info'>
