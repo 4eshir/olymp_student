@@ -115,6 +115,7 @@
 
                 <select name="class" id="classInput" class="form-select">
                     <option disabled>Выберите Ваш класс обучения</option>
+                    <option value="6" {{ $model->class == 6 ? 'selected' : '' }}>6</option>
                     <option value="7" {{ $model->class == 7 ? 'selected' : '' }}>7</option>
                     <option value="8" {{ $model->class == 8 ? 'selected' : '' }}>8</option>
                     <option value="9" {{ $model->class == 9 ? 'selected' : '' }}>9</option>
